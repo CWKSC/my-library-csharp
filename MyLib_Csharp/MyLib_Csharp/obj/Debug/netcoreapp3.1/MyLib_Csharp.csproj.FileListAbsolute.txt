@@ -1,0 +1,11 @@
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.exe
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.deps.json
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.runtimeconfig.json
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.runtimeconfig.dev.json
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.dll
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\bin\Debug\netcoreapp3.1\MyLib_Csharp.pdb
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.csprojAssemblyReference.cache
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.AssemblyInfoInputs.cache
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.AssemblyInfo.cs
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.dll
+D:\User\Develop\GitHub\MyLib_Csharp\MyLib_Csharp\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.pdb
