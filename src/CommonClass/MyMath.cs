@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp.DataStructure;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
@@ -14,10 +15,12 @@ namespace MyLib_Csharp.CommonClass
         public const double TwoPI = 2 * Math.PI;
         public const double PIOver2 = Math.PI / 2;
         public const double PIOver4 = Math.PI / 4;
+        public const double PIOver6 = Math.PI / 6;
         public const double PIOver8 = Math.PI / 8;
         public const double PIOver16 = Math.PI / 16;
         public const double PIOver32 = Math.PI / 32;
         public const double PIOver64 = Math.PI / 64;
+        public const double ThreePIOverTwo = 3 * Math.PI / 2;
         #endregion
 
         #region Angle convert constant
@@ -76,59 +79,379 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+        #region Trigonometric functions
+        public static double Sin(double degrees) => Math.Sin(DegreesToRadians(degrees));
+        public static double Cos(double degrees) => Math.Cos(DegreesToRadians(degrees));
+        public static double Tan(double degrees) => Math.Tan(DegreesToRadians(degrees));
+        public static double Atan2(Vector2 point) => Math.Atan2(point.Y, point.X);
+        public static double Atan2(List<double> list) => Math.Atan2(list[1], list[0]);
+        #endregion
 
         #region Cartesian to Polar
-        public static double CartesianToPolar_Radians(double x, double y) => Math.Atan2(y, x);
-        public static double CartesianToPolar_Radians(Vector2 point) => Math.Atan2(point.Y, point.X);
-        public static double CartesianToPolar_Degrees(double x, double y) => Math.Atan2(y, x) * RadToDeg;
-        public static double CartesianToPolar_Degrees(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToDeg;
-        public static double CartesianToPolar_Gradians(double x, double y) => Math.Atan2(y, x) * RadToGrad;
-        public static double CartesianToPolar_Gradians(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad;
-        public static double CartesianToPolar_Turns(double x, double y) => Math.Atan2(y, x) * RadToTurn;
-        public static double CartesianToPolar_Turns(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToTurn;
+
+        #region Cartesian to Polar (default)
+
+        #region CartesianToPolar_Radians
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_Radians(double x, double y)
+        {
+            double result = Math.Atan2(y, x);
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_Radians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X);
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_Radians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]);
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Degrees
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_Degrees(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_Degrees(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_Degrees(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Gradians
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_Gradians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_Gradians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_Gradians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Turns
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_Turns(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_Turns(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_Turns(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #endregion
 
         #region Cartesian to Polar (start at Up)
-        public static double CartesianToPolar_startAtUp_Radians(double x, double y) => Math.Atan2(y, x) - RightAngleRad;
-        public static double CartesianToPolar_startAtUp_Radians(Vector2 point) => Math.Atan2(point.Y, point.X) - RightAngleRad;
-        public static double CartesianToPolar_startAtUp_Degrees(double x, double y) => Math.Atan2(y, x) * RadToDeg - RightAngleDeg;
-        public static double CartesianToPolar_startAtUp_Degrees(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToDeg - RightAngleDeg;
-        public static double CartesianToPolar_startAtUp_Gradians(double x, double y) => Math.Atan2(y, x) * RadToGrad - RightAngleGrad;
-        public static double CartesianToPolar_startAtUp_Gradians(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - RightAngleGrad;
-        public static double CartesianToPolar_startAtUp_Turns(double x, double y) => Math.Atan2(y, x) * RadToGrad - RightAngleTurn;
-        public static double CartesianToPolar_startAtUp_Turns(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - RightAngleTurn;
+
+        #region CartesianToPolar_Radians
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtUp_Radians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) - RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtUp_Radians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) - RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtUp_Radians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) - RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Degrees
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtUp_Degrees(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToDeg - RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtUp_Degrees(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToDeg - RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtUp_Degrees(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToDeg - RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Gradians
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtUp_Gradians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToGrad - RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtUp_Gradians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToGrad - RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtUp_Gradians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToGrad - RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Turns
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtUp_Turns(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToTurn - RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtUp_Turns(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToTurn - RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtUp_Turns(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToTurn - RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
         #endregion
 
         #region Cartesian to Polar (start at Left)
-        public static double CartesianToPolar_startAtLeft_Radians(double x, double y) => Math.Atan2(y, x) - 2 * RightAngleRad;
-        public static double CartesianToPolar_startAtLeft_Radians(Vector2 point) => Math.Atan2(point.Y, point.X) - 2 * RightAngleRad;
-        public static double CartesianToPolar_startAtLeft_Degrees(double x, double y) => Math.Atan2(y, x) * RadToDeg - 2 * RightAngleDeg;
-        public static double CartesianToPolar_startAtLeft_Degrees(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToDeg - 2 * RightAngleDeg;
-        public static double CartesianToPolar_startAtLeft_Gradians(double x, double y) => Math.Atan2(y, x) * RadToGrad - 2 * RightAngleGrad;
-        public static double CartesianToPolar_startAtLeft_Gradians(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - 2 * RightAngleGrad;
-        public static double CartesianToPolar_startAtLeft_Turns(double x, double y) => Math.Atan2(y, x) * RadToGrad - 2 * RightAngleTurn;
-        public static double CartesianToPolar_startAtLeft_Turns(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - 2 * RightAngleTurn;
+
+        #region CartesianToPolar_Radians
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtLeft_Radians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) - 2 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtLeft_Radians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) - 2 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtLeft_Radians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) - 2 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Degrees
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtLeft_Degrees(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToDeg - 2 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtLeft_Degrees(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToDeg - 2 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtLeft_Degrees(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToDeg - 2 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Gradians
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtLeft_Gradians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToGrad - 2 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtLeft_Gradians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToGrad - 2 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtLeft_Gradians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToGrad - 2 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Turns
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtLeft_Turns(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToTurn - 2 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtLeft_Turns(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToTurn - 2 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtLeft_Turns(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToTurn - 2 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
         #endregion
 
         #region Cartesian to Polar (start at Down)
-        public static double CartesianToPolar_startAtDown_Radians(double x, double y) => Math.Atan2(y, x) - 3 * RightAngleRad;
-        public static double CartesianToPolar_startAtDown_Radians(Vector2 point) => Math.Atan2(point.Y, point.X) - 3 * RightAngleRad;
-        public static double CartesianToPolar_startAtDown_Degrees(double x, double y) => Math.Atan2(y, x) * RadToDeg - 3 * RightAngleDeg;
-        public static double CartesianToPolar_startAtDown_Degrees(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToDeg - 3 * RightAngleDeg;
-        public static double CartesianToPolar_startAtDown_Gradians(double x, double y) => Math.Atan2(y, x) * RadToGrad - 3 * RightAngleGrad;
-        public static double CartesianToPolar_startAtDown_Gradians(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - 3 * RightAngleGrad;
-        public static double CartesianToPolar_startAtDown_Turns(double x, double y) => Math.Atan2(y, x) * RadToGrad - 3 * RightAngleTurn;
-        public static double CartesianToPolar_startAtDown_Turns(Vector2 point) => Math.Atan2(point.Y, point.X) * RadToGrad - 3 * RightAngleTurn;
+
+        #region CartesianToPolar_Radians
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtDown_Radians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) - 3 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtDown_Radians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) - 3 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, TwoPI) </summary> 
+        public static double CartesianToPolar_startAtDown_Radians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) - 3 * RightAngleRad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Degrees
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtDown_Degrees(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToDeg - 3 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtDown_Degrees(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToDeg - 3 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 360) </summary> 
+        public static double CartesianToPolar_startAtDown_Degrees(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToDeg - 3 * RightAngleDeg;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Gradians
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtDown_Gradians(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToGrad - 3 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtDown_Gradians(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToGrad - 3 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 400) </summary> 
+        public static double CartesianToPolar_startAtDown_Gradians(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToGrad - 3 * RightAngleGrad;
+            return result < 0 ? result + TwoPI : result;
+        }
+        #endregion
+
+        #region CartesianToPolar_Turns
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtDown_Turns(double x, double y)
+        {
+            double result = Math.Atan2(y, x) * RadToTurn - 3 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtDown_Turns(Vector2 point)
+        {
+            double result = Math.Atan2(point.Y, point.X) * RadToTurn - 3 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
+        /// <summary> [0, 1) </summary> 
+        public static double CartesianToPolar_startAtDown_Turns(List<double> list)
+        {
+            double result = Math.Atan2(list[1], list[0]) * RadToTurn - 3 * RightAngleTurn;
+            return result < 0 ? result + TwoPI : result;
+        }
         #endregion
 
         #endregion
 
+        #endregion
+
+
+        #region Convert
 
         #region Degrees convert
         public static double DegreesToRadians(double degrees) => degrees * DegToRad;
         public static double DegreesToGradians(double degrees) => degrees * DegToGrad;
         public static double DegreesToTurns(double degrees) => degrees * DegToTurn;
-        public static Vector2 DegreesToUnitVector(double degrees) => new Vector2((float)Math.Cos(degrees), (float)Math.Sin(degrees));
-        public static List<double> DegreesToList(double degrees) => new List<double>() { Math.Cos(degrees), Math.Sin(degrees) };
+        public static Vector2 DegreesToUnitVector(double degrees) => Vector2.Normalize(new Vector2((float)Math.Cos(DegreesToRadians(degrees)), (float)Math.Sin(DegreesToRadians(degrees))));
+        public static List<double> DegreesToList(double degrees) => new List<double>() { Math.Cos(DegreesToRadians(degrees)), Math.Sin(DegreesToRadians(degrees)) };
         #endregion
 
         #region Radians convert
@@ -143,44 +466,87 @@ namespace MyLib_Csharp.CommonClass
         public static double GradiansToDegrees(double gradians) => gradians * GradToDeg;
         public static double GradiansToRadians(double gradians) => gradians * GradToRad;
         public static double GradiansToTurns(double gradians) => gradians * GradToTurn;
-        public static Vector2 GradiansToUnitVector(double radians) => DegreesToUnitVector(GradiansToDegrees(radians));
-        public static List<double> GradiansToList(double radians) => DegreesToList(GradiansToDegrees(radians));
+        public static Vector2 GradiansToUnitVector(double gradians) => DegreesToUnitVector(GradiansToDegrees(gradians));
+        public static List<double> GradiansToList(double gradians) => DegreesToList(GradiansToDegrees(gradians));
         #endregion
 
         #region Turn convert
         public static double TurnsToDegrees(double turns) => turns * TurnToDeg;
         public static double TurnsToRadians(double turns) => turns * TurnToRad;
         public static double TurnsToGradians(double turns) => turns * TurnToGrad;
-        public static Vector2 TurnsToUnitVector(double radians) => DegreesToUnitVector(TurnsToDegrees(radians));
-        public static List<double> TurnsToList(double radians) => DegreesToList(TurnsToDegrees(radians));
+        public static Vector2 TurnsToUnitVector(double turns) => DegreesToUnitVector(TurnsToDegrees(turns));
+        public static List<double> TurnsToList(double turns) => DegreesToList(TurnsToDegrees(turns));
         #endregion
 
-        #region Normalize Angle
-        public static double NormalizeDegrees(double degrees)
+        #region UnitVector convert
+        public static double UnitVectorToDegrees(Vector2 unitVector) => CartesianToPolar_Degrees(unitVector);
+        public static double UnitVectorToRadians(Vector2 unitVector) => CartesianToPolar_Radians(unitVector);
+        public static double UnitVectorToGradians(Vector2 unitVector) => CartesianToPolar_Gradians(unitVector);
+        public static double UnitVectorToTurns(Vector2 unitVector) => CartesianToPolar_Turns(unitVector);
+        public static List<double> UnitVectorToList(Vector2 unitVector) => new List<double>() { unitVector.X, unitVector.Y };
+        #endregion
+
+        #region List convert
+        public static double ListToDegrees(List<double> list) => CartesianToPolar_Degrees(list);
+        public static double ListToRadians(List<double> list) => CartesianToPolar_Radians(list);
+        public static double ListToGradians(List<double> list) => CartesianToPolar_Gradians(list);
+        public static double ListToTurns(List<double> list) => CartesianToPolar_Turns(list);
+        public static Vector2 ListToUnitVector(List<double> list) => new Vector2((float)list[0], (float)list[1]);
+
+        #endregion
+
+        #endregion
+
+        #region Normalize angle
+
+        #region Normalize angle [0, fullTurn)
+        /// <summary> [0, 360) </summary>
+        public static double NormalizeDegrees_0_360(double degrees)
         {
-            while (degrees <= -HalfTurnDeg) degrees += TurnToDeg;
-            while (degrees > HalfTurnDeg) degrees -= TurnToDeg;
+            while (degrees >= TurnToDeg) degrees -= TurnToDeg;
+            while (degrees < 0) degrees += TurnToDeg;
             return degrees;
         }
-        public static double NormalizeRadians(double radians)
+        /// <summary> [0, TwoPI) </summary>
+        public static double NormalizeRadians_0_TwoPI(double radians)
         {
-            while (radians <= -HalfTurnRad) radians += TurnToRad;
-            while (radians > HalfTurnRad) radians -= TurnToRad;
+            while (radians >= TurnToRad) radians -= TurnToRad;
+            while (radians < 0) radians += TurnToRad;
             return radians;
         }
-        public static double NormalizeGradians(double gradians)
+        /// <summary> [0, 400) </summary>
+        public static double NormalizeGradians_0_400(double gradians)
         {
-            while (gradians <= -HalfTurngGrad) gradians += TurnToGrad;
-            while (gradians > HalfTurngGrad) gradians -= TurnToGrad;
+            while (gradians >= TurnToGrad) gradians -= TurnToGrad;
+            while (gradians < 0) gradians += TurnToGrad;
             return gradians;
         }
-        public static double NormalizeTurn(double turns)
+        /// <summary> [0, 1) </summary>
+        public static double NormalizeTurn_0_1(double turns)
         {
-            while (turns <= -HalfTurn) turns += 1;
-            while (turns > HalfTurn) turns -= 1;
+            while (turns >= 0) turns -= 1;
+            while (turns < 0) turns += 1;
             return turns;
         }
         #endregion
 
+        #region Normalize angle [-halfTurn, halfTurn)
+        /// <summary> [-180, 180) </summary>
+        public static double NormalizeDegrees_neg180_180(double degrees)
+        {
+            while (degrees >= HalfTurnDeg) degrees -= TurnToDeg;
+            while( degrees < -HalfTurnDeg) degrees += TurnToDeg;
+            return degrees;
+        }
+        #endregion
+
+        #endregion
+
+        #region Test
+        public static void Test()
+        {
+
+        }
+        #endregion
     }
 }

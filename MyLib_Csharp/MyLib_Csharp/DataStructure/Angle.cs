@@ -21,18 +21,18 @@ namespace MyLib_Csharp.DataStructure
         public List<double> list = new List<double>(2);
 
         #region Constructor
-        public Angle(double radians) => this.radians = radians;
+        public Angle(double radians) => UpdateByRadians(radians);
         public Angle(AngleType angleType, double value) {
             switch (angleType)
             {
-                case AngleType.Degrees:  UpdateByDegrees(value);  break;
-                case AngleType.Radians:  UpdateByRadians(value);  break;
+                case AngleType.Degrees: UpdateByDegrees(value); break;
+                case AngleType.Radians: UpdateByRadians(value); break;
                 case AngleType.Gradians: UpdateByGradians(value); break;
-                case AngleType.Turns:    UpdateByTurns(value);    break;
+                case AngleType.Turns: UpdateByTurns(value); break;
             }
         }
-        public Angle(Vector2 unitVector) => this.unitVector = Vector2.Normalize(unitVector);
-        public Angle(List<double> list) => this.list = list;
+        public Angle(Vector2 unitVector) => UpdateByUnitVector(Vector2.Normalize(unitVector));
+        public Angle(List<double> list) => UpdateByList(list);
         public Angle(Angle angle)
         {
             degrees = angle.degrees;
@@ -43,6 +43,8 @@ namespace MyLib_Csharp.DataStructure
             list = angle.list;
         }
         #endregion
+
+        #region Update by somethings (Degrees, Radians, Gradians, Turns,  UnitVector, List)
 
         #region UpdateByDegrees
         public void UpdateByDegrees()
@@ -124,7 +126,50 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
-        #region Operation
+        #region UpdateByUnitVector
+        public void UpdateByUnitVector()
+        {
+            degrees = MyMath.UnitVectorToDegrees(unitVector);
+            radians = MyMath.UnitVectorToRadians(unitVector);
+            gradians = MyMath.UnitVectorToGradians(unitVector);
+            turns = MyMath.UnitVectorToTurns(unitVector);
+            list = MyMath.UnitVectorToList(unitVector);
+        }
+        public void UpdateByUnitVector(Vector2 unitVector)
+        {
+            this.unitVector = unitVector;
+            degrees = MyMath.UnitVectorToDegrees(unitVector);
+            radians = MyMath.UnitVectorToRadians(unitVector);
+            gradians = MyMath.UnitVectorToGradians(unitVector);
+            turns = MyMath.UnitVectorToTurns(unitVector);
+            list = MyMath.UnitVectorToList(unitVector);
+        }
+        #endregion
+
+        #region UpdateByList
+        public void UpdateByList()
+        {
+            degrees = MyMath.ListToDegrees(list);
+            radians = MyMath.ListToRadians(list);
+            gradians = MyMath.ListToGradians(list);
+            turns = MyMath.ListToTurns(list);
+            unitVector = MyMath.ListToUnitVector(list);
+        }
+        public void UpdateByList(List<double> list)
+        {
+            this.list = list;
+            degrees = MyMath.ListToDegrees(list);
+            radians = MyMath.ListToRadians(list);
+            gradians = MyMath.ListToGradians(list);
+            turns = MyMath.ListToTurns(list);
+            unitVector = MyMath.ListToUnitVector(list);
+        }
+        #endregion
+
+        #endregion
+
+
+        #region Operation (Add, Sub, Mult, Div)
         public static Angle Add(Angle lhs, Angle rhs)
         {
             Angle newAngle = new Angle(lhs);
@@ -180,6 +225,34 @@ namespace MyLib_Csharp.DataStructure
         public static Angle operator -(Angle lhs, Angle rhs) => Sub(lhs, rhs);
         public static Angle operator *(Angle lhs, Angle rhs) => Mult(lhs, rhs);
         public static Angle operator /(Angle lhs, Angle rhs) => Div(lhs, rhs);
+        #endregion
+
+        #region Override ToString()
+        public override string ToString()
+        {
+            return "Degrees : " + degrees + "\n" + 
+                "Radians : " + radians + "\n" + 
+                "Gradians : " + gradians + "\n" + 
+                "Turns : " + turns + "\n" + 
+                "UnitVector : " + unitVector + "\n" + 
+                "List : [" + list[0] + ", " + list[1] + "]";
+        }
+        #endregion
+
+        #region Test
+        public static void Test()
+        {
+            Angle a = new Angle(Math.PI);
+            Console.WriteLine("[a = Math.PI]\n" + a + "\n");
+
+            Angle b = new Angle(MyMath.ThreePIOverTwo);
+            Console.WriteLine("[b = MyMath.ThreePIOverTwo]\n" + b + "\n");
+
+            Console.WriteLine("[a + b]\n" + (a + b) + "\n");
+            Console.WriteLine("[a - b]\n" + (a - b) + "\n");
+            Console.WriteLine("[a * b]\n" + (a * b) + "\n");
+            Console.WriteLine("[a / b]\n" + (a / b) + "\n");
+        }
         #endregion
 
     }
