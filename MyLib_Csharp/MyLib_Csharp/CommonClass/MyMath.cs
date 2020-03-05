@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp.DataStructure;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
@@ -127,7 +128,7 @@ namespace MyLib_Csharp.CommonClass
         public static double DegreesToRadians(double degrees) => degrees * DegToRad;
         public static double DegreesToGradians(double degrees) => degrees * DegToGrad;
         public static double DegreesToTurns(double degrees) => degrees * DegToTurn;
-        public static Vector2 DegreesToUnitVector(double degrees) => new Vector2((float)Math.Cos(degrees), (float)Math.Sin(degrees));
+        public static Vector2 DegreesToUnitVector(double degrees) => Vector2.Normalize(new Vector2((float)Math.Cos(degrees), (float)Math.Sin(degrees)));
         public static List<double> DegreesToList(double degrees) => new List<double>() { Math.Cos(degrees), Math.Sin(degrees) };
         #endregion
 
@@ -154,7 +155,7 @@ namespace MyLib_Csharp.CommonClass
         public static Vector2 TurnsToUnitVector(double radians) => DegreesToUnitVector(TurnsToDegrees(radians));
         public static List<double> TurnsToList(double radians) => DegreesToList(TurnsToDegrees(radians));
         #endregion
-
+        
         #region Normalize Angle
         public static double NormalizeDegrees(double degrees)
         {
@@ -181,6 +182,7 @@ namespace MyLib_Csharp.CommonClass
             return turns;
         }
         #endregion
+
 
     }
 }

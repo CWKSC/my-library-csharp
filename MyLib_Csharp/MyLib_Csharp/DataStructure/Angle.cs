@@ -31,7 +31,7 @@ namespace MyLib_Csharp.DataStructure
                 case AngleType.Turns:    UpdateByTurns(value);    break;
             }
         }
-        public Angle(Vector2 unitVector) => this.unitVector = unitVector;
+        public Angle(Vector2 unitVector) => this.unitVector = Vector2.Normalize(unitVector);
         public Angle(List<double> list) => this.list = list;
         public Angle(Angle angle)
         {
@@ -78,7 +78,7 @@ namespace MyLib_Csharp.DataStructure
             this.radians = radians;
             degrees = MyMath.RadiansToDegrees(radians);
             gradians = MyMath.RadiansToGradians(radians);
-            turn = MyMath.RadiansToTurns(radians);
+            turns = MyMath.RadiansToTurns(radians);
             unitVector = MyMath.RadiansToUnitVector(radians);
             list = MyMath.RadiansToList(radians);
         }
@@ -124,6 +124,63 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
+        #region Operation
+        public static Angle Add(Angle lhs, Angle rhs)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees += rhs.degrees;
+            newAngle.radians += rhs.radians;
+            newAngle.gradians += rhs.gradians;
+            newAngle.turns += rhs.turns;
+            newAngle.unitVector += rhs.unitVector;
+            newAngle.list[0] += rhs.list[0];
+            newAngle.list[1] += rhs.list[1];
+            return newAngle;
+        }
+        public static Angle Sub(Angle lhs, Angle rhs)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees -= rhs.degrees;
+            newAngle.radians -= rhs.radians;
+            newAngle.gradians -= rhs.gradians;
+            newAngle.turns -= rhs.turns;
+            newAngle.unitVector -= rhs.unitVector;
+            newAngle.list[0] -= rhs.list[0];
+            newAngle.list[1] -= rhs.list[1];
+            return newAngle;
+        }
+        public static Angle Mult(Angle lhs, Angle rhs)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees *= rhs.degrees;
+            newAngle.radians *= rhs.radians;
+            newAngle.gradians *= rhs.gradians;
+            newAngle.turns *= rhs.turns;
+            newAngle.unitVector *= rhs.unitVector;
+            newAngle.list[0] *= rhs.list[0];
+            newAngle.list[1] *= rhs.list[1];
+            return newAngle;
+        }
+        public static Angle Div(Angle lhs, Angle rhs)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees /= rhs.degrees;
+            newAngle.radians /= rhs.radians;
+            newAngle.gradians /= rhs.gradians;
+            newAngle.turns /= rhs.turns;
+            newAngle.unitVector /= rhs.unitVector;
+            newAngle.list[0] /= rhs.list[0];
+            newAngle.list[1] /= rhs.list[1];
+            return newAngle;
+        }
+        #endregion
+
+        #region Operator overloading
+        public static Angle operator +(Angle lhs, Angle rhs) => Add(lhs, rhs);
+        public static Angle operator -(Angle lhs, Angle rhs) => Sub(lhs, rhs);
+        public static Angle operator *(Angle lhs, Angle rhs) => Mult(lhs, rhs);
+        public static Angle operator /(Angle lhs, Angle rhs) => Div(lhs, rhs);
+        #endregion
 
     }
 }
