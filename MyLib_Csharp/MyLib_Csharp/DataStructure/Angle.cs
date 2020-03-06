@@ -13,12 +13,12 @@ namespace MyLib_Csharp.DataStructure
 
     class Angle
     {
-        public double degrees;
-        public double radians;
-        public double gradians;
-        public double turns;
-        public Vector2 unitVector = new Vector2();
-        public List<double> list = new List<double>(2);
+        private double degrees;
+        private double radians;
+        private double gradians;
+        private double turns;
+        private Vector2 unitVector = new Vector2();
+        private List<double> list = new List<double>(2);
 
         #region Constructor
         public Angle(double radians) => UpdateByRadians(radians);
@@ -32,7 +32,7 @@ namespace MyLib_Csharp.DataStructure
             }
         }
         public Angle(Vector2 unitVector) => UpdateByUnitVector(Vector2.Normalize(unitVector));
-        public Angle(List<double> list) => UpdateByList(list);
+        public Angle(List<double> list) => UpdateByList(MyMath.NormalizeList(list));
         public Angle(Angle angle)
         {
             degrees = angle.degrees;
@@ -43,6 +43,16 @@ namespace MyLib_Csharp.DataStructure
             list = angle.list;
         }
         #endregion
+
+        #region Properties
+        public double Degrees { get => degrees; set => UpdateByDegrees(value); }
+        public double Radians { get => radians; set => UpdateByRadians(value); }
+        public double Gradians { get => gradians; set => UpdateByGradians(value); }
+        public double Turns { get => turns; set => UpdateByTurns(value); }
+        public Vector2 UnitVector { get => unitVector; set => UpdateByUnitVector(value); }
+        public List<double> List { get => list; set => UpdateByList(value); }
+        #endregion
+
 
         #region Update by somethings (Degrees, Radians, Gradians, Turns,  UnitVector, List)
 
@@ -58,11 +68,7 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByDegrees(double degrees)
         {
             this.degrees = degrees;
-            radians = MyMath.DegreesToRadians(degrees);
-            gradians = MyMath.DegreesToGradians(degrees);
-            turns = MyMath.DegreesToTurns(degrees);
-            unitVector = MyMath.DegreesToUnitVector(degrees);
-            list = MyMath.DegreesToList(degrees);
+            UpdateByDegrees();
         }
         #endregion
 
@@ -78,11 +84,7 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByRadians(double radians)
         {
             this.radians = radians;
-            degrees = MyMath.RadiansToDegrees(radians);
-            gradians = MyMath.RadiansToGradians(radians);
-            turns = MyMath.RadiansToTurns(radians);
-            unitVector = MyMath.RadiansToUnitVector(radians);
-            list = MyMath.RadiansToList(radians);
+            UpdateByRadians();
         }
         #endregion
 
@@ -98,11 +100,7 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByGradians(double gradians)
         {
             this.gradians = gradians;
-            degrees = MyMath.GradiansToDegrees(gradians);
-            radians = MyMath.GradiansToRadians(gradians);
-            turns = MyMath.GradiansToTurns(gradians);
-            unitVector = MyMath.GradiansToUnitVector(gradians);
-            list = MyMath.GradiansToList(gradians);
+            UpdateByGradians();
         }
         #endregion
 
@@ -118,11 +116,7 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByTurns(double turns)
         {
             this.turns = turns;
-            degrees = MyMath.TurnsToDegrees(turns);
-            radians = MyMath.TurnsToRadians(turns);
-            gradians = MyMath.TurnsToGradians(turns);
-            unitVector = MyMath.TurnsToUnitVector(turns);
-            list = MyMath.TurnsToList(turns);
+            UpdateByTurns();
         }
         #endregion
 
@@ -138,11 +132,7 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByUnitVector(Vector2 unitVector)
         {
             this.unitVector = unitVector;
-            degrees = MyMath.UnitVectorToDegrees(unitVector);
-            radians = MyMath.UnitVectorToRadians(unitVector);
-            gradians = MyMath.UnitVectorToGradians(unitVector);
-            turns = MyMath.UnitVectorToTurns(unitVector);
-            list = MyMath.UnitVectorToList(unitVector);
+            UpdateByUnitVector();
         }
         #endregion
 
@@ -158,14 +148,19 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByList(List<double> list)
         {
             this.list = list;
-            degrees = MyMath.ListToDegrees(list);
-            radians = MyMath.ListToRadians(list);
-            gradians = MyMath.ListToGradians(list);
-            turns = MyMath.ListToTurns(list);
-            unitVector = MyMath.ListToUnitVector(list);
+            UpdateByList();
         }
         #endregion
 
+        #endregion
+
+
+        #region Normalize
+        public Angle Normalize()
+        {
+            Degrees = MyMath.NormalizeDegrees_0_360(degrees);
+            return this;
+        }
         #endregion
 
 
@@ -239,19 +234,35 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
+
         #region Test
         public static void Test()
         {
+            // Constructor //
             Angle a = new Angle(Math.PI);
-            Console.WriteLine("[a = Math.PI]\n" + a + "\n");
+            Angle b = new Angle(AngleType.Degrees, 30);
+            Angle c = new Angle(AngleType.Radians, MyMath.ThreePIOverTwo); // same to Angle a
+            Angle d = new Angle(AngleType.Gradians, 400);
+            Angle e = new Angle(AngleType.Turns, 0.5);
+            Angle f = new Angle(new Vector2(1, 1));
+            Angle g = new Angle(new List<double>() {-1, -1});
 
-            Angle b = new Angle(MyMath.ThreePIOverTwo);
+            // Print //
+            Console.WriteLine("[a = new Angle(Math.PI);]\n" + a + "\n");
             Console.WriteLine("[b = MyMath.ThreePIOverTwo]\n" + b + "\n");
+            Console.WriteLine("[c = new Angle(AngleType.Radians, MyMath.ThreePIOverTwo);]\n" + c + "\n");
+            Console.WriteLine("[d = new Angle(AngleType.Gradians, 400);]\n" + d + "\n");
+            Console.WriteLine("[e = new Angle(AngleType.Turns, 0.5);]\n" + e + "\n");
+            Console.WriteLine("[f = new Angle(new Vector2(1, 1));]\n" + f + "\n");
+            Console.WriteLine("[g = new Angle(new List<double>() {-1, -1});]\n" + g + "\n");
 
+            // Operation //
             Console.WriteLine("[a + b]\n" + (a + b) + "\n");
             Console.WriteLine("[a - b]\n" + (a - b) + "\n");
             Console.WriteLine("[a * b]\n" + (a * b) + "\n");
             Console.WriteLine("[a / b]\n" + (a / b) + "\n");
+
+
         }
         #endregion
 
