@@ -17,8 +17,10 @@ namespace MyLib_Csharp.DataStructure
         private double radians;
         private double gradians;
         private double turns;
-        private Vector2 unitVector = new Vector2();
-        private List<double> list = new List<double>(2);
+        private Vector2 vector;
+        private Vector2 unitVector;
+        private List<double> list;
+        private List<double> unitList;
 
         #region Constructor
         public Angle(double radians) => UpdateByRadians(radians);

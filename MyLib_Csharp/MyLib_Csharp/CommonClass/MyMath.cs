@@ -114,23 +114,11 @@ namespace MyLib_Csharp.CommonClass
 
         #region CartesianToPolar_Degrees
         /// <summary> [0, 360) </summary> 
-        public static double CartesianToPolar_Degrees(double x, double y)
-        {
-            double result = Math.Atan2(y, x) * RadToDeg;
-            return result < 0 ? result + TwoPI : result;
-        }
+        public static double CartesianToPolar_Degrees(double x, double y) => CartesianToPolar_Radians(x, y) * RadToDeg;
         /// <summary> [0, 360) </summary> 
-        public static double CartesianToPolar_Degrees(Vector2 point)
-        {
-            double result = Math.Atan2(point.Y, point.X) * RadToDeg;
-            return result < 0 ? result + TwoPI : result;
-        }
+        public static double CartesianToPolar_Degrees(Vector2 point) => CartesianToPolar_Radians(point) * RadToDeg;
         /// <summary> [0, 360) </summary> 
-        public static double CartesianToPolar_Degrees(List<double> list)
-        {
-            double result = Math.Atan2(list[1], list[0]) * RadToDeg;
-            return result < 0 ? result + TwoPI : result;
-        }
+        public static double CartesianToPolar_Degrees(List<double> list) => CartesianToPolar_Radians(list) * RadToDeg;
         #endregion
 
         #region CartesianToPolar_Gradians
