@@ -8,13 +8,14 @@ namespace MyLib_Csharp.DataStructure
 {
     enum AngleType
     {
-        Degrees, Radians, Gradians, Turns, UnitVector, List
+        Degrees, Radians, Pi, Gradians, Turns
     }
 
     class Angle
     {
         private double degrees;
         private double radians;
+        private double pi;
         private double gradians;
         private double turns;
         private Vector2 vector;
@@ -29,6 +30,7 @@ namespace MyLib_Csharp.DataStructure
             {
                 case AngleType.Degrees: UpdateByDegrees(value); break;
                 case AngleType.Radians: UpdateByRadians(value); break;
+                case AngleType.Pi: break;
                 case AngleType.Gradians: UpdateByGradians(value); break;
                 case AngleType.Turns: UpdateByTurns(value); break;
             }
