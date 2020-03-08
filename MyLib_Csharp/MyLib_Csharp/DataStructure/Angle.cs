@@ -18,8 +18,8 @@ namespace MyLib_Csharp.DataStructure
         private double pi;
         private double gradians;
         private double turns;
-        private Vector2 vector;
-        private Vector2 unitVector;
+        private Vector2 vector2;
+        private Vector2 unitVector2;
         private List<double> list;
         private List<double> unitList;
 
@@ -30,21 +30,25 @@ namespace MyLib_Csharp.DataStructure
             {
                 case AngleType.Degrees: UpdateByDegrees(value); break;
                 case AngleType.Radians: UpdateByRadians(value); break;
-                case AngleType.Pi: break;
+                case AngleType.Pi: UpdateByPI(value); break;
                 case AngleType.Gradians: UpdateByGradians(value); break;
                 case AngleType.Turns: UpdateByTurns(value); break;
             }
         }
-        public Angle(Vector2 unitVector) => UpdateByUnitVector(Vector2.Normalize(unitVector));
-        public Angle(List<double> list) => UpdateByList(MyMath.NormalizeList(list));
+        public Angle(Vector2 vector) => UpdateByVector2(vector);
+        public Angle(List<double> list) => UpdateByList(list);
+        /// <summary> new Angle by Angle (A new internal member class will also be created)</summary>
         public Angle(Angle angle)
         {
             degrees = angle.degrees;
             radians = angle.radians;
+            pi = angle.pi;
             gradians = angle.gradians;
             turns = angle.turns;
-            unitVector = angle.unitVector;
-            list = angle.list;
+            vector2 = new Vector2(angle.vector2.X, angle.vector2.Y);
+            unitVector2 = new Vector2(angle.unitVector2.X, angle.unitVector2.Y);
+            list = new List<double>(angle.list);
+            unitList = new List<double>(angle.unitList);
         }
         #endregion
 
@@ -53,7 +57,7 @@ namespace MyLib_Csharp.DataStructure
         public double Radians { get => radians; set => UpdateByRadians(value); }
         public double Gradians { get => gradians; set => UpdateByGradians(value); }
         public double Turns { get => turns; set => UpdateByTurns(value); }
-        public Vector2 UnitVector { get => unitVector; set => UpdateByUnitVector(value); }
+        public Vector2 UnitVector { get => unitVector2; set => UpdateByUnitVector(value); }
         public List<double> List { get => list; set => UpdateByList(value); }
         #endregion
 
@@ -66,7 +70,7 @@ namespace MyLib_Csharp.DataStructure
             radians = MyMath.DegreesToRadians(degrees);
             gradians = MyMath.DegreesToGradians(degrees);
             turns = MyMath.DegreesToTurns(degrees);
-            unitVector = MyMath.DegreesToUnitVector(degrees);
+            unitVector2 = MyMath.DegreesToUnitVector(degrees);
             list = MyMath.DegreesToList(degrees);
         }
         public void UpdateByDegrees(double degrees)
@@ -82,7 +86,7 @@ namespace MyLib_Csharp.DataStructure
             degrees = MyMath.RadiansToDegrees(radians);
             gradians = MyMath.RadiansToGradians(radians);
             turns = MyMath.RadiansToTurns(radians);
-            unitVector = MyMath.RadiansToUnitVector(radians);
+            unitVector2 = MyMath.RadiansToUnitVector(radians);
             list = MyMath.RadiansToList(radians);
         }
         public void UpdateByRadians(double radians)
@@ -92,13 +96,24 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
+        #region UpdateByPI
+        public void UpdateByPI()
+        {
+
+        }
+        public void UpdateByPI(double pi)
+        {
+
+        }
+        #endregion
+
         #region UpdateByGradians
         public void UpdateByGradians()
         {
             degrees = MyMath.GradiansToDegrees(gradians);
             radians = MyMath.GradiansToRadians(gradians);
             turns = MyMath.GradiansToTurns(gradians);
-            unitVector = MyMath.GradiansToUnitVector(gradians);
+            unitVector2 = MyMath.GradiansToUnitVector(gradians);
             list = MyMath.GradiansToList(gradians);
         }
         public void UpdateByGradians(double gradians)
@@ -114,7 +129,7 @@ namespace MyLib_Csharp.DataStructure
             degrees = MyMath.TurnsToDegrees(turns);
             radians = MyMath.TurnsToRadians(turns);
             gradians = MyMath.TurnsToGradians(turns);
-            unitVector = MyMath.TurnsToUnitVector(turns);
+            unitVector2 = MyMath.TurnsToUnitVector(turns);
             list = MyMath.TurnsToList(turns);
         }
         public void UpdateByTurns(double turns)
@@ -124,18 +139,40 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
+        #region UpdateByVector
+        public void UpdateByVector2()
+        {
+            degrees = MyMath.Vector2ToDegrees(vector2);
+            radians = MyMath.Vector2ToRadians(vector2);
+            pi = MyMath.Vector2ToPI(vector2);
+            gradians = MyMath.Vector2ToGradians(vector2);
+            turns = MyMath.Vector2ToTurns(vector2);
+            unitVector2 = Vector2.Normalize(vector2);
+            list = MyMath.Vector2ToList(vector2);
+            unitList = MyMath.Vector2ToUnitList(vector2);
+        }
+        public void UpdateByVector2(Vector2 vector2)
+        {
+            this.vector2 = vector2;
+            UpdateByVector2();
+        }
+        #endregion
+
         #region UpdateByUnitVector
         public void UpdateByUnitVector()
         {
-            degrees = MyMath.UnitVectorToDegrees(unitVector);
-            radians = MyMath.UnitVectorToRadians(unitVector);
-            gradians = MyMath.UnitVectorToGradians(unitVector);
-            turns = MyMath.UnitVectorToTurns(unitVector);
-            list = MyMath.UnitVectorToList(unitVector);
+            degrees = MyMath.UnitVector2ToDegrees(unitVector2);
+            radians = MyMath.UnitVector2ToRadians(unitVector2);
+            pi = MyMath.UnitVector2ToPI(unitVector2);
+            gradians = MyMath.UnitVector2ToGradians(unitVector2);
+            turns = MyMath.UnitVector2ToTurns(unitVector2);
+            vector2 = MyMath.UnitVector2ToVector2(unitVector2);
+            list = MyMath.UnitVector2ToList(unitVector2);
+            unitList = MyMath.UnitVector2ToUnitList(unitVector2);
         }
-        public void UpdateByUnitVector(Vector2 unitVector)
+        public void UpdateByUnitVector(Vector2 unitVector2)
         {
-            this.unitVector = unitVector;
+            this.unitVector2 = unitVector2;
             UpdateByUnitVector();
         }
         #endregion
@@ -147,7 +184,7 @@ namespace MyLib_Csharp.DataStructure
             radians = MyMath.ListToRadians(list);
             gradians = MyMath.ListToGradians(list);
             turns = MyMath.ListToTurns(list);
-            unitVector = MyMath.ListToUnitVector(list);
+            unitVector2 = MyMath.ListToUnitVector2(list);
         }
         public void UpdateByList(List<double> list)
         {
@@ -176,7 +213,7 @@ namespace MyLib_Csharp.DataStructure
             newAngle.radians += rhs.radians;
             newAngle.gradians += rhs.gradians;
             newAngle.turns += rhs.turns;
-            newAngle.unitVector += rhs.unitVector;
+            newAngle.unitVector2 += rhs.unitVector2;
             newAngle.list[0] += rhs.list[0];
             newAngle.list[1] += rhs.list[1];
             return newAngle;
@@ -188,7 +225,7 @@ namespace MyLib_Csharp.DataStructure
             newAngle.radians -= rhs.radians;
             newAngle.gradians -= rhs.gradians;
             newAngle.turns -= rhs.turns;
-            newAngle.unitVector -= rhs.unitVector;
+            newAngle.unitVector2 -= rhs.unitVector2;
             newAngle.list[0] -= rhs.list[0];
             newAngle.list[1] -= rhs.list[1];
             return newAngle;
@@ -200,7 +237,7 @@ namespace MyLib_Csharp.DataStructure
             newAngle.radians *= rhs.radians;
             newAngle.gradians *= rhs.gradians;
             newAngle.turns *= rhs.turns;
-            newAngle.unitVector *= rhs.unitVector;
+            newAngle.unitVector2 *= rhs.unitVector2;
             newAngle.list[0] *= rhs.list[0];
             newAngle.list[1] *= rhs.list[1];
             return newAngle;
@@ -212,7 +249,7 @@ namespace MyLib_Csharp.DataStructure
             newAngle.radians /= rhs.radians;
             newAngle.gradians /= rhs.gradians;
             newAngle.turns /= rhs.turns;
-            newAngle.unitVector /= rhs.unitVector;
+            newAngle.unitVector2 /= rhs.unitVector2;
             newAngle.list[0] /= rhs.list[0];
             newAngle.list[1] /= rhs.list[1];
             return newAngle;
@@ -230,11 +267,11 @@ namespace MyLib_Csharp.DataStructure
         public override string ToString()
         {
             return "Degrees : " + degrees + "\n" + 
-                "Radians : " + radians + "\n" + 
+                "Radians : " + radians + " Pi : " + pi + "\n" + 
                 "Gradians : " + gradians + "\n" + 
                 "Turns : " + turns + "\n" + 
-                "UnitVector : " + unitVector + "\n" + 
-                "List : [" + list[0] + ", " + list[1] + "]";
+                "Vector : " + vector2 + " UnitVector : " + unitVector2 + "\n" +
+                "List : [" + list[0] + ", " + list[1] + "]" + " UnitList : [" + unitList[0] + ", " + unitList[1] + "]";
         }
         #endregion
 
