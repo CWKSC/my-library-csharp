@@ -34,6 +34,11 @@ namespace MyLib_Csharp.CommonClass
         public const double RadToGrad = 200 / Math.PI;
         public const double RadToTurn = 1 / (2 * Math.PI);
 
+        public const double PIToDeg = 180;
+        public const double PIToRad = Math.PI;
+        public const double PIToGrad = 200;
+        public const double PIToTurn = 1 / 2;
+
         public const double GradToDeg = 9 / 10;
         public const double GradToRad = Math.PI / 200;
         public const double GradToPI = 1 / 200;
@@ -335,7 +340,11 @@ namespace MyLib_Csharp.CommonClass
         #endregion
 
         #region PI convert
-
+        public static double PIToDegrees(double pi) => pi * PIToDeg;
+        public static double PIToRadians(double pi) => pi * PIToRad;
+        public static double PIToGradians(double pi) => pi * PIToGrad;
+        public static double PIToTurns(double pi) => pi * PIToTurn;
+        public static double PIToVector2(double pi) => pi * PIToDeg;
         #endregion
 
         #region Gradians convert
