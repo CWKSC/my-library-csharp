@@ -318,10 +318,10 @@ namespace MyLib_Csharp.CommonClass
         public static double DegreesToPI(double degrees) => degrees * DegToPI;
         public static double DegreesToGradians(double degrees) => degrees * DegToGrad;
         public static double DegreesToTurns(double degrees) => degrees * DegToTurn;
-        public static Vector2 DegreesToVector2(double degrees) => new Vector2((float)Math.Cos(DegreesToRadians(degrees)), (float)Math.Sin(DegreesToRadians(degrees)));
-        public static Vector2 DegreesToUnitVector2(double degrees) => Vector2.Normalize(DegreesToVector2(degrees));
-        public static List<double> DegreesToList(double degrees) => new List<double>() { Math.Cos(DegreesToRadians(degrees)), Math.Sin(DegreesToRadians(degrees)) };
-        public static List<double> DegreesToUnitList(double degrees) => NormalizeList(DegreesToList(degrees));
+        public static Vector2 DegreesToVector2(double degrees) => RadiansToVector2(DegreesToRadians(degrees));
+        public static Vector2 DegreesToUnitVector2(double degrees) => RadiansToUnitVector2(DegreesToRadians(degrees));
+        public static List<double> DegreesToList(double degrees) => RadiansToList(DegreesToRadians(degrees));
+        public static List<double> DegreesToUnitList(double degrees) => RadiansToUnitList(DegreesToRadians(degrees));
         /// <summary> return new Angle </summary>
         public static Angle DegreesToAngle(double degrees) => new Angle(AngleType.Degrees, degrees);
         #endregion
@@ -344,7 +344,12 @@ namespace MyLib_Csharp.CommonClass
         public static double PIToRadians(double pi) => pi * PIToRad;
         public static double PIToGradians(double pi) => pi * PIToGrad;
         public static double PIToTurns(double pi) => pi * PIToTurn;
-        public static double PIToVector2(double pi) => pi * PIToDeg;
+        public static Vector2 PIToVector2(double pi) => RadiansToVector2(PIToRadians(pi));
+        public static Vector2 PIToUnitVector2(double pi) => RadiansToUnitVector2(PIToRadians(pi));
+        public static List<double> PIToList(double pi) => RadiansToList(PIToRadians(pi));
+        public static List<double> PIToUnitList(double pi) => RadiansToUnitList(PIToRadians(pi));
+        /// <summary> return new Angle </summary>
+        public static Angle PIToAngle(double pi) => new Angle(AngleType.Pi, pi);
         #endregion
 
         #region Gradians convert
@@ -353,9 +358,9 @@ namespace MyLib_Csharp.CommonClass
         public static double GradiansToPI(double gradians) => gradians * GradToPI;
         public static double GradiansToTurns(double gradians) => gradians * GradToTurn;
         public static Vector2 GradiansToVector2(double gradians) => RadiansToVector2(GradiansToRadians(gradians));
-        public static Vector2 GradiansToUnitVector2(double gradians) => Vector2.Normalize(GradiansToVector2(gradians));
+        public static Vector2 GradiansToUnitVector2(double gradians) => RadiansToUnitVector2(GradiansToRadians(gradians));
         public static List<double> GradiansToList(double gradians) => RadiansToList(GradiansToRadians(gradians));
-        public static List<double> GradiansToUnitList(double gradians) => NormalizeList(GradiansToList(gradians));
+        public static List<double> GradiansToUnitList(double gradians) => RadiansToUnitList(GradiansToRadians(gradians));
         /// <summary> return new Angle </summary>
         public static Angle GradiansToAngle(double gradians) => new Angle(AngleType.Gradians, gradians);
         #endregion
@@ -363,9 +368,12 @@ namespace MyLib_Csharp.CommonClass
         #region Turn convert
         public static double TurnsToDegrees(double turns) => turns * TurnToDeg;
         public static double TurnsToRadians(double turns) => turns * TurnToRad;
+        public static double TurnsToPI(double turns) => turns * TurnToPI;
         public static double TurnsToGradians(double turns) => turns * TurnToGrad;
-        public static Vector2 TurnsToUnitVector2(double turns) => DegreesToUnitVector2(TurnsToDegrees(turns));
-        public static List<double> TurnsToList(double turns) => DegreesToList(TurnsToDegrees(turns));
+        public static Vector2 TurnsToVector2(double turns) => RadiansToVector2(TurnsToRadians(turns));
+        public static Vector2 TurnsToUnitVector2(double turns) => RadiansToUnitVector2(TurnsToRadians(turns));
+        public static List<double> TurnsToList(double turns) => RadiansToList(TurnsToRadians(turns));
+        public static List<double> TurnsToUnitList(double turns) => RadiansToUnitList(TurnsToRadians(turns));
         public static Angle TurnsToAngle(double turns) => new Angle(AngleType.Turns, turns);
         #endregion
 
@@ -376,8 +384,10 @@ namespace MyLib_Csharp.CommonClass
         public static double Vector2ToGradians(Vector2 vector2) => CartesianToPolar_Gradians(vector2);
         public static double Vector2ToTurns(Vector2 vector2) => CartesianToPolar_Turns(vector2);
         public static Vector2 Vector2ToUnitVector2(Vector2 vector2) => Vector2.Normalize(vector2);
+        /// <summary> return new List </summary>
         public static List<double> Vector2ToList(Vector2 vector2) => new List<double>() { vector2.X, vector2.Y };
-        public static List<double> Vector2ToUnitList(Vector2 vector2) => NormalizeList(new List<double>() { vector2.X, vector2.Y });
+        /// <summary> return new List </summary>
+        public static List<double> Vector2ToUnitList(Vector2 vector2) => NormalizeList(Vector2ToList(vector2));
         /// <summary> return new Angle </summary>
         public static Angle Vector2ToAngle(Vector2 vector2) => new Angle(vector2);
         #endregion
@@ -401,13 +411,28 @@ namespace MyLib_Csharp.CommonClass
         public static double ListToPI(List<double> list) => CartesianToPolar_PI(list);
         public static double ListToGradians(List<double> list) => CartesianToPolar_Gradians(list);
         public static double ListToTurns(List<double> list) => CartesianToPolar_Turns(list);
+        public static Vector2 ListToVector2(List<double> list) => new Vector2((float) list[0], (float) list[1]);
+        /// <summary> return new Vector2 </summary>
         public static Vector2 ListToUnitVector2(List<double> list) => Vector2.Normalize(new Vector2((float)list[0], (float)list[1]));
+        /// <summary> return new List </summary>
+        public static List<double> ListToUnitList(List<double> list) => NormalizeList(list);
         /// <summary> return new Angle </summary>
         public static Angle ListToAngle(List<double> list) => new Angle(list);
         #endregion
 
         #region UnitList convert
-
+        public static double UnitListToDegrees(List<double> list) => CartesianToPolar_Degrees(NormalizeList(list));
+        public static double UnitListToRadians(List<double> list) => CartesianToPolar_Radians(NormalizeList(list));
+        public static double UnitListToPI(List<double> list) => CartesianToPolar_PI(NormalizeList(list));
+        public static double UnitListToGradians(List<double> list) => CartesianToPolar_Gradians(NormalizeList(list));
+        public static double UnitListToTurns(List<double> list) => CartesianToPolar_Turns(NormalizeList(list));
+        public static Vector2 UnitListToVector2(List<double> list) => ListToVector2(NormalizeList(list));
+        /// <summary> return new Vector2 </summary>
+        public static Vector2 UnitListToUnitVector2(List<double> list) => ListToUnitVector2(NormalizeList(list));
+        /// <summary> return new List </summary>
+        public static List<double> UnitListToList(List<double> list) => new List<double>(NormalizeList(list));
+        /// <summary> return new Angle </summary>
+        public static Angle UnitListToAngle(List<double> list) => new Angle(list);
         #endregion
 
         #endregion
@@ -415,6 +440,7 @@ namespace MyLib_Csharp.CommonClass
         #region Normalize
 
         #region NormalizeList
+        /// <summary> return new List </summary>
         public static List<double> NormalizeList(List<double> list) => UnitVector2ToList(ListToUnitVector2(list));
         #endregion
 
