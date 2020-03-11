@@ -55,10 +55,13 @@ namespace MyLib_Csharp.DataStructure
         #region Properties
         public double Degrees { get => degrees; set => UpdateByDegrees(value); }
         public double Radians { get => radians; set => UpdateByRadians(value); }
+        public double PI { get => pi; set => UpdateByPI(value); }
         public double Gradians { get => gradians; set => UpdateByGradians(value); }
         public double Turns { get => turns; set => UpdateByTurns(value); }
+        public Vector2 Vector2 { get => vector2; set => UpdateByVector2(value); }
         public Vector2 UnitVector { get => unitVector2; set => UpdateByUnitVector(value); }
         public List<double> List { get => list; set => UpdateByList(value); }
+        public List<double> UnitList { get => unitList; set => UpdateByUnitList(value); }
         #endregion
 
 
@@ -68,10 +71,13 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByDegrees()
         {
             radians = MyMath.DegreesToRadians(degrees);
+            pi = MyMath.DegreesToPI(degrees);
             gradians = MyMath.DegreesToGradians(degrees);
             turns = MyMath.DegreesToTurns(degrees);
-            unitVector2 = MyMath.DegreesToUnitVector(degrees);
+            vector2 = MyMath.DegreesToVector2(degrees);
+            unitVector2 = MyMath.DegreesToUnitVector2(degrees);
             list = MyMath.DegreesToList(degrees);
+            unitList = MyMath.DegreesToUnitList(degrees);
         }
         public void UpdateByDegrees(double degrees)
         {
@@ -84,10 +90,13 @@ namespace MyLib_Csharp.DataStructure
         public void UpdateByRadians()
         {
             degrees = MyMath.RadiansToDegrees(radians);
+            pi = MyMath.RadiansToPI(radians);
             gradians = MyMath.RadiansToGradians(radians);
             turns = MyMath.RadiansToTurns(radians);
-            unitVector2 = MyMath.RadiansToUnitVector(radians);
+            vector2 = MyMath.RadiansToVector2(radians);
+            unitVector2 = MyMath.RadiansToUnitVector2(radians);
             list = MyMath.RadiansToList(radians);
+            unitList = MyMath.RadiansToUnitList(radians);
         }
         public void UpdateByRadians(double radians)
         {
@@ -99,11 +108,19 @@ namespace MyLib_Csharp.DataStructure
         #region UpdateByPI
         public void UpdateByPI()
         {
-
+            degrees = MyMath.PIToDegrees(radians);
+            radians = MyMath.PIToRadians(radians);
+            gradians = MyMath.PIToGradians(radians);
+            turns = MyMath.PIToTurns(radians);
+            vector2 = MyMath.PIToVector2(radians);
+            unitVector2 = MyMath.PIToUnitVector2(radians);
+            list = MyMath.PIToList(radians);
+            unitList = MyMath.PIToUnitList(radians);
         }
         public void UpdateByPI(double pi)
         {
-
+            this.pi = pi;
+            UpdateByPI();
         }
         #endregion
 
@@ -112,9 +129,12 @@ namespace MyLib_Csharp.DataStructure
         {
             degrees = MyMath.GradiansToDegrees(gradians);
             radians = MyMath.GradiansToRadians(gradians);
+            pi = MyMath.GradiansToPI(gradians);
             turns = MyMath.GradiansToTurns(gradians);
-            unitVector2 = MyMath.GradiansToUnitVector(gradians);
+            vector2 = MyMath.GradiansToVector2(gradians);
+            unitVector2 = MyMath.GradiansToUnitVector2(gradians);
             list = MyMath.GradiansToList(gradians);
+            unitList = MyMath.GradiansToUnitList(gradians);
         }
         public void UpdateByGradians(double gradians)
         {
@@ -128,9 +148,12 @@ namespace MyLib_Csharp.DataStructure
         {
             degrees = MyMath.TurnsToDegrees(turns);
             radians = MyMath.TurnsToRadians(turns);
+            pi = MyMath.TurnsToPI(turns);
             gradians = MyMath.TurnsToGradians(turns);
-            unitVector2 = MyMath.TurnsToUnitVector(turns);
+            vector2 = MyMath.TurnsToVector2(turns);
+            unitVector2 = MyMath.TurnsToUnitVector2(turns);
             list = MyMath.TurnsToList(turns);
+            unitList = MyMath.TurnsToUnitList(turns);
         }
         public void UpdateByTurns(double turns)
         {
@@ -172,7 +195,7 @@ namespace MyLib_Csharp.DataStructure
         }
         public void UpdateByUnitVector(Vector2 unitVector2)
         {
-            this.unitVector2 = unitVector2;
+            this.unitVector2 = Vector2.Normalize(unitVector2);
             UpdateByUnitVector();
         }
         #endregion
@@ -182,14 +205,36 @@ namespace MyLib_Csharp.DataStructure
         {
             degrees = MyMath.ListToDegrees(list);
             radians = MyMath.ListToRadians(list);
+            pi = MyMath.ListToPI(list);
             gradians = MyMath.ListToGradians(list);
             turns = MyMath.ListToTurns(list);
+            vector2 = MyMath.ListToVector2(list);
             unitVector2 = MyMath.ListToUnitVector2(list);
+            unitList = MyMath.ListToUnitList(list);
         }
         public void UpdateByList(List<double> list)
         {
             this.list = list;
             UpdateByList();
+        }
+        #endregion
+
+        #region UpdateByUnitList
+        public void UpdateByUnitList()
+        {
+            degrees = MyMath.UnitListToDegrees(list);
+            radians = MyMath.UnitListToRadians(list);
+            pi = MyMath.UnitListToPI(list);
+            gradians = MyMath.UnitListToGradians(list);
+            turns = MyMath.UnitListToTurns(list);
+            vector2 = MyMath.UnitListToVector2(list);
+            unitVector2 = MyMath.UnitListToUnitVector2(list);
+            list = MyMath.UnitListToList(list);
+        }
+        public void UpdateByUnitList(List<double> list)
+        {
+            this.list = list;
+            UpdateByUnitList();
         }
         #endregion
 
