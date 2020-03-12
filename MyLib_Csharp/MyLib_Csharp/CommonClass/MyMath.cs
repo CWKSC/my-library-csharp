@@ -24,42 +24,42 @@ namespace MyLib_Csharp.CommonClass
         #endregion
 
         #region Angle convert constant
-        public const double DegToRad = Math.PI / 180;
-        public const double DegToPI = 1 / 180;
-        public const double DegToGrad = 10 / 9;
-        public const double DegToTurn = 1 / 360;
+        public const double DegToRad = Math.PI / 180d;
+        public const double DegToPI = 1 / 180d;
+        public const double DegToGrad = 10d / 9d;
+        public const double DegToTurn = 1d / 360d;
 
-        public const double RadToDeg = 180 / Math.PI;
-        public const double RadToPI = 1 / Math.PI;
-        public const double RadToGrad = 200 / Math.PI;
-        public const double RadToTurn = 1 / (2 * Math.PI);
+        public const double RadToDeg = 180d / Math.PI;
+        public const double RadToPI = 1d / Math.PI;
+        public const double RadToGrad = 200d / Math.PI;
+        public const double RadToTurn = 1d / (2d * Math.PI);
 
-        public const double PIToDeg = 180;
+        public const double PIToDeg = 180d;
         public const double PIToRad = Math.PI;
-        public const double PIToGrad = 200;
-        public const double PIToTurn = 1 / 2;
+        public const double PIToGrad = 200d;
+        public const double PIToTurn = 1d / 2d;
 
-        public const double GradToDeg = 9 / 10;
-        public const double GradToRad = Math.PI / 200;
-        public const double GradToPI = 1 / 200;
-        public const double GradToTurn = 1 / 400;
+        public const double GradToDeg = 9d / 10d;
+        public const double GradToRad = Math.PI / 200d;
+        public const double GradToPI = 1d / 200d;
+        public const double GradToTurn = 1d / 400d;
 
-        public const double TurnToDeg = 360;
-        public const double TurnToRad = 2 * Math.PI;
-        public const double TurnToPI = 2;
-        public const double TurnToGrad = 400;
+        public const double TurnToDeg = 360d;
+        public const double TurnToRad = 2d * Math.PI;
+        public const double TurnToPI = 2d;
+        public const double TurnToGrad = 400d;
 
-        public const double RightAngleDeg = TurnToDeg / 4;
-        public const double RightAngleRad = TurnToRad / 4;
-        public const double RightAnglePI = TurnToPI / 4;
-        public const double RightAngleGrad = TurnToGrad / 4;
-        public const double RightAngleTurn = 1 / 4;
+        public const double RightAngleDeg = TurnToDeg / 4d;
+        public const double RightAngleRad = TurnToRad / 4d;
+        public const double RightAnglePI = TurnToPI / 4d;
+        public const double RightAngleGrad = TurnToGrad / 4d;
+        public const double RightAngleTurn = 1d / 4d;
 
-        public const double HalfTurnDeg = TurnToDeg / 2;
-        public const double HalfTurnRad = TurnToRad / 2;
-        public const double HalgTurnPI = TurnToPI / 2;
-        public const double HalfTurngGrad = TurnToGrad / 2;
-        public const double HalfTurn = 1 / 2;
+        public const double HalfTurnDeg = TurnToDeg / 2d;
+        public const double HalfTurnRad = TurnToRad / 2d;
+        public const double HalgTurnPI = TurnToPI / 2d;
+        public const double HalfTurngGrad = TurnToGrad / 2d;
+        public const double HalfTurn = 1d / 2d;
         #endregion
 
         #region Square of root
@@ -421,18 +421,18 @@ namespace MyLib_Csharp.CommonClass
         #endregion
 
         #region UnitList convert
-        public static double UnitListToDegrees(List<double> list) => CartesianToPolar_Degrees(NormalizeList(list));
-        public static double UnitListToRadians(List<double> list) => CartesianToPolar_Radians(NormalizeList(list));
-        public static double UnitListToPI(List<double> list) => CartesianToPolar_PI(NormalizeList(list));
-        public static double UnitListToGradians(List<double> list) => CartesianToPolar_Gradians(NormalizeList(list));
-        public static double UnitListToTurns(List<double> list) => CartesianToPolar_Turns(NormalizeList(list));
-        public static Vector2 UnitListToVector2(List<double> list) => ListToVector2(NormalizeList(list));
+        public static double UnitListToDegrees(List<double> unitList) => CartesianToPolar_Degrees(NormalizeList(unitList));
+        public static double UnitListToRadians(List<double> unitList) => CartesianToPolar_Radians(NormalizeList(unitList));
+        public static double UnitListToPI(List<double> unitList) => CartesianToPolar_PI(NormalizeList(unitList));
+        public static double UnitListToGradians(List<double> unitList) => CartesianToPolar_Gradians(NormalizeList(unitList));
+        public static double UnitListToTurns(List<double> unitList) => CartesianToPolar_Turns(NormalizeList(unitList));
+        public static Vector2 UnitListToVector2(List<double> unitList) => ListToVector2(NormalizeList(unitList));
         /// <summary> return new Vector2 </summary>
-        public static Vector2 UnitListToUnitVector2(List<double> list) => ListToUnitVector2(NormalizeList(list));
+        public static Vector2 UnitListToUnitVector2(List<double> unitList) => ListToUnitVector2(NormalizeList(unitList));
         /// <summary> return new List </summary>
-        public static List<double> UnitListToList(List<double> list) => new List<double>(NormalizeList(list));
+        public static List<double> UnitListToList(List<double> unitList) => new List<double>(NormalizeList(unitList));
         /// <summary> return new Angle </summary>
-        public static Angle UnitListToAngle(List<double> list) => new Angle(list);
+        public static Angle UnitListToAngle(List<double> unitList) => new Angle(NormalizeList(unitList));
         #endregion
 
         #endregion

@@ -108,14 +108,14 @@ namespace MyLib_Csharp.DataStructure
         #region UpdateByPI
         public void UpdateByPI()
         {
-            degrees = MyMath.PIToDegrees(radians);
-            radians = MyMath.PIToRadians(radians);
-            gradians = MyMath.PIToGradians(radians);
-            turns = MyMath.PIToTurns(radians);
-            vector2 = MyMath.PIToVector2(radians);
-            unitVector2 = MyMath.PIToUnitVector2(radians);
-            list = MyMath.PIToList(radians);
-            unitList = MyMath.PIToUnitList(radians);
+            degrees = MyMath.PIToDegrees(pi);
+            radians = MyMath.PIToRadians(pi);
+            gradians = MyMath.PIToGradians(pi);
+            turns = MyMath.PIToTurns(pi);
+            vector2 = MyMath.PIToVector2(pi);
+            unitVector2 = MyMath.PIToUnitVector2(pi);
+            list = MyMath.PIToList(pi);
+            unitList = MyMath.PIToUnitList(pi);
         }
         public void UpdateByPI(double pi)
         {
@@ -222,18 +222,18 @@ namespace MyLib_Csharp.DataStructure
         #region UpdateByUnitList
         public void UpdateByUnitList()
         {
-            degrees = MyMath.UnitListToDegrees(list);
-            radians = MyMath.UnitListToRadians(list);
-            pi = MyMath.UnitListToPI(list);
-            gradians = MyMath.UnitListToGradians(list);
-            turns = MyMath.UnitListToTurns(list);
-            vector2 = MyMath.UnitListToVector2(list);
-            unitVector2 = MyMath.UnitListToUnitVector2(list);
-            list = MyMath.UnitListToList(list);
+            degrees = MyMath.UnitListToDegrees(unitList);
+            radians = MyMath.UnitListToRadians(unitList);
+            pi = MyMath.UnitListToPI(unitList);
+            gradians = MyMath.UnitListToGradians(unitList);
+            turns = MyMath.UnitListToTurns(unitList);
+            vector2 = MyMath.UnitListToVector2(unitList);
+            unitVector2 = MyMath.UnitListToUnitVector2(unitList);
+            list = MyMath.UnitListToList(unitList);
         }
-        public void UpdateByUnitList(List<double> list)
+        public void UpdateByUnitList(List<double> unitList)
         {
-            this.list = list;
+            this.unitList = MyMath.NormalizeList(unitList);
             UpdateByUnitList();
         }
         #endregion
@@ -256,11 +256,17 @@ namespace MyLib_Csharp.DataStructure
             Angle newAngle = new Angle(lhs);
             newAngle.degrees += rhs.degrees;
             newAngle.radians += rhs.radians;
+            newAngle.pi += rhs.pi;
             newAngle.gradians += rhs.gradians;
             newAngle.turns += rhs.turns;
+            newAngle.vector2 += rhs.vector2;
             newAngle.unitVector2 += rhs.unitVector2;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
             newAngle.list[0] += rhs.list[0];
             newAngle.list[1] += rhs.list[1];
+            newAngle.unitList[0] += rhs.unitList[0];
+            newAngle.unitList[1] += rhs.unitList[1];
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
             return newAngle;
         }
         public static Angle Sub(Angle lhs, Angle rhs)
@@ -268,35 +274,144 @@ namespace MyLib_Csharp.DataStructure
             Angle newAngle = new Angle(lhs);
             newAngle.degrees -= rhs.degrees;
             newAngle.radians -= rhs.radians;
+            newAngle.pi -= rhs.pi;
             newAngle.gradians -= rhs.gradians;
             newAngle.turns -= rhs.turns;
+            newAngle.vector2 -= rhs.vector2;
             newAngle.unitVector2 -= rhs.unitVector2;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
             newAngle.list[0] -= rhs.list[0];
             newAngle.list[1] -= rhs.list[1];
+            newAngle.unitList[0] -= rhs.unitList[0];
+            newAngle.unitList[1] -= rhs.unitList[1];
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
             return newAngle;
         }
+        /// <summary>
+        /// In class member vector and list<br/>
+        /// It not use vector mult, like dot or cross product<br/>
+        /// It just (x0 * x1, y0 * y1)
+        /// </summary>
         public static Angle Mult(Angle lhs, Angle rhs)
         {
             Angle newAngle = new Angle(lhs);
             newAngle.degrees *= rhs.degrees;
             newAngle.radians *= rhs.radians;
+            newAngle.pi *= rhs.pi;
             newAngle.gradians *= rhs.gradians;
             newAngle.turns *= rhs.turns;
+            newAngle.vector2 *= rhs.vector2;
             newAngle.unitVector2 *= rhs.unitVector2;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
             newAngle.list[0] *= rhs.list[0];
             newAngle.list[1] *= rhs.list[1];
+            newAngle.unitList[0] *= rhs.unitList[0];
+            newAngle.unitList[1] *= rhs.unitList[1];
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
             return newAngle;
         }
+        /// <summary>
+        /// In class member vector and list<br/>
+        /// It not use vector mult, like dot or cross product<br/>
+        /// It just (x0 * x1, y0 * y1)
+        /// </summary>
         public static Angle Div(Angle lhs, Angle rhs)
         {
             Angle newAngle = new Angle(lhs);
             newAngle.degrees /= rhs.degrees;
             newAngle.radians /= rhs.radians;
+            newAngle.pi /= rhs.pi;
             newAngle.gradians /= rhs.gradians;
             newAngle.turns /= rhs.turns;
+            newAngle.vector2 /= rhs.vector2;
             newAngle.unitVector2 /= rhs.unitVector2;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
             newAngle.list[0] /= rhs.list[0];
             newAngle.list[1] /= rhs.list[1];
+            newAngle.unitList[0] /= rhs.unitList[0];
+            newAngle.unitList[1] /= rhs.unitList[1];
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            return newAngle;
+        }
+
+        public static Angle ScalarAdd(Angle lhs, double scalar)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees += scalar;
+            newAngle.radians += scalar;
+            newAngle.pi += scalar;
+            newAngle.gradians += scalar;
+            newAngle.turns += scalar;
+            newAngle.vector2.X += (float)scalar;
+            newAngle.vector2.Y += (float)scalar;
+            newAngle.unitVector2.X += (float)scalar;
+            newAngle.unitVector2.Y += (float)scalar;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
+            newAngle.list[0] += scalar;
+            newAngle.list[1] += scalar;
+            newAngle.unitList[0] += scalar;
+            newAngle.unitList[1] += scalar;
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            return newAngle;
+        }
+        public static Angle ScalarSub(Angle lhs, double scalar)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees -= scalar;
+            newAngle.radians -= scalar;
+            newAngle.pi -= scalar;
+            newAngle.gradians -= scalar;
+            newAngle.turns -= scalar;
+            newAngle.vector2.X -= (float)scalar;
+            newAngle.vector2.Y -= (float)scalar;
+            newAngle.unitVector2.X -= (float)scalar;
+            newAngle.unitVector2.Y -= (float)scalar;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
+            newAngle.list[0] -= scalar;
+            newAngle.list[1] -= scalar;
+            newAngle.unitList[0] -= scalar;
+            newAngle.unitList[1] -= scalar;
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            return newAngle;
+        }
+        public static Angle ScalarMult(Angle lhs, double scalar)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees *= scalar;
+            newAngle.radians *= scalar;
+            newAngle.pi *= scalar;
+            newAngle.gradians *= scalar;
+            newAngle.turns *= scalar;
+            newAngle.vector2.X *= (float)scalar;
+            newAngle.vector2.Y *= (float)scalar;
+            newAngle.unitVector2.X *= (float)scalar;
+            newAngle.unitVector2.Y *= (float)scalar;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
+            newAngle.list[0] *= scalar;
+            newAngle.list[1] *= scalar;
+            newAngle.unitList[0] *= scalar;
+            newAngle.unitList[1] *= scalar;
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            return newAngle;
+        }
+        public static Angle ScalarDiv(Angle lhs, double scalar)
+        {
+            Angle newAngle = new Angle(lhs);
+            newAngle.degrees /= scalar;
+            newAngle.radians /= scalar;
+            newAngle.pi /= scalar;
+            newAngle.gradians /= scalar;
+            newAngle.turns /= scalar;
+            newAngle.vector2.X /= (float)scalar;
+            newAngle.vector2.Y /= (float)scalar;
+            newAngle.unitVector2.X /= (float)scalar;
+            newAngle.unitVector2.Y /= (float)scalar;
+            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
+            newAngle.list[0] /= scalar;
+            newAngle.list[1] /= scalar;
+            newAngle.unitList[0] /= scalar;
+            newAngle.unitList[1] /= scalar;
+            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
             return newAngle;
         }
         #endregion
@@ -306,6 +421,14 @@ namespace MyLib_Csharp.DataStructure
         public static Angle operator -(Angle lhs, Angle rhs) => Sub(lhs, rhs);
         public static Angle operator *(Angle lhs, Angle rhs) => Mult(lhs, rhs);
         public static Angle operator /(Angle lhs, Angle rhs) => Div(lhs, rhs);
+        public static Angle operator +(Angle lhs, double scalar) => ScalarAdd(lhs, scalar);
+        public static Angle operator -(Angle lhs, double scalar) => ScalarSub(lhs, scalar);
+        public static Angle operator *(Angle lhs, double scalar) => ScalarMult(lhs, scalar);
+        public static Angle operator /(Angle lhs, double scalar) => ScalarDiv(lhs, scalar);
+        public static Angle operator +(double scalar, Angle rhs) => ScalarAdd(rhs, scalar);
+        public static Angle operator -(double scalar, Angle rhs) => ScalarSub(rhs, scalar);
+        public static Angle operator *(double scalar, Angle rhs) => ScalarMult(rhs, scalar);
+        public static Angle operator /(double scalar, Angle rhs) => ScalarDiv(rhs, scalar);
         #endregion
 
         #region Override ToString()
@@ -320,6 +443,31 @@ namespace MyLib_Csharp.DataStructure
         }
         #endregion
 
+        #region Print
+        /// <summary> Console.Write(ToString()); </summary>
+        public void Print()
+        {
+            Console.Write(ToString());
+        }
+        /// <summary>
+        /// Console.WriteLine(ToString() + '\n');<br/>
+        /// // be care here are two '\n' in the end
+        /// </summary>
+        public void Println()
+        {
+            Console.WriteLine(ToString() + '\n');
+        }
+        /// <summary>
+        /// "Degrees : " + degrees<br/>
+        /// "Radians : " + radians + '\n'
+        /// </summary>
+        public void PrintDegRad()
+        {
+            Console.WriteLine(
+                "Degrees : " + degrees + "\n" +
+                "Radians : " + radians);
+        }
+        #endregion
 
         #region Test
         public static void Test()
@@ -327,22 +475,26 @@ namespace MyLib_Csharp.DataStructure
             // Constructor //
             Angle a = new Angle(Math.PI);
             Angle b = new Angle(AngleType.Degrees, 30);
-            Angle c = new Angle(AngleType.Radians, MyMath.ThreePIOverTwo); // same to Angle a
-            Angle d = new Angle(AngleType.Gradians, 400);
-            Angle e = new Angle(AngleType.Turns, 0.5);
-            Angle f = new Angle(new Vector2(1, 1));
-            Angle g = new Angle(new List<double>() {-1, -1});
+            Angle c = new Angle(AngleType.Radians, MyMath.ThreePIOverTwo);
+            Angle d = new Angle(AngleType.Pi, 3d / 2d); // same to Angle c
+            Angle e = new Angle(AngleType.Gradians, 400);
+            Angle f = new Angle(AngleType.Turns, 0.5);
+            Angle g = new Angle(new Vector2(1, 1));
+            Angle h = new Angle(new List<double>() {-1, -1});
 
             // Print //
             Console.WriteLine("[a = new Angle(Math.PI);]\n" + a + "\n");
-            Console.WriteLine("[b = MyMath.ThreePIOverTwo]\n" + b + "\n");
+            Console.WriteLine("[b = new Angle(AngleType.Degrees, 30);]\n" + b + "\n");
             Console.WriteLine("[c = new Angle(AngleType.Radians, MyMath.ThreePIOverTwo);]\n" + c + "\n");
-            Console.WriteLine("[d = new Angle(AngleType.Gradians, 400);]\n" + d + "\n");
-            Console.WriteLine("[e = new Angle(AngleType.Turns, 0.5);]\n" + e + "\n");
-            Console.WriteLine("[f = new Angle(new Vector2(1, 1));]\n" + f + "\n");
-            Console.WriteLine("[g = new Angle(new List<double>() {-1, -1});]\n" + g + "\n");
+            Console.WriteLine("[d = new Angle(AngleType.Pi, 3.0f / 2.0f);]\n" + d + "\n");
+            Console.WriteLine("[e = new Angle(AngleType.Gradians, 400);]\n" + e + "\n");
+            Console.WriteLine("[f = new Angle(AngleType.Turns, 0.5);]\n" + f + "\n");
+            Console.WriteLine("[g = new Angle(new Vector2(1, 1));]\n" + g + "\n");
+            Console.WriteLine("[h = new Angle(new List<double>() {-1, -1});]\n" + h + "\n");
 
             // Operation //
+            Console.WriteLine("[a = new Angle(Math.PI);]\n" + a + "\n");
+            Console.WriteLine("[b = new Angle(AngleType.Degrees, 30);]\n" + b + "\n");
             Console.WriteLine("[a + b]\n" + (a + b) + "\n");
             Console.WriteLine("[a - b]\n" + (a - b) + "\n");
             Console.WriteLine("[a * b]\n" + (a * b) + "\n");
