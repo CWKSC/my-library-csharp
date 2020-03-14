@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\MyLib_Csharp\\MyLib_Csharp\\MyLib_Csharp.csproj",
+      "projectUniqueName": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp.csproj",
       "projectName": "MyLib_Csharp",
-      "projectPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\MyLib_Csharp\\MyLib_Csharp\\MyLib_Csharp.csproj",
+      "projectPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp.csproj",
       "packagesPath": "C:\\Users\\sam97\\.nuget\\packages\\",
-      "outputPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\MyLib_Csharp\\MyLib_Csharp\\obj\\",
+      "outputPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

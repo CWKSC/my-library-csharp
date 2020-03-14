@@ -1,4 +1,7 @@
-﻿namespace Pastel
+﻿
+/* https://github.com/silkfire/Pastel */
+
+namespace Pastel
 {
     using System;
     using System.Collections.Generic;
