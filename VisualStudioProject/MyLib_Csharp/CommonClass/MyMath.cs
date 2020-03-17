@@ -310,6 +310,17 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+        #region s
+        public double Integral(Func<double, double> func, double lower, double upper, double step = 0.001)
+        {
+            double sum = 0;
+            for (double i = lower; i <= upper; i += step)
+            {
+                sum += func(i) * step;
+            }
+            return sum;
+        }
+        #endregion
 
         #region Convert
 
