@@ -1,4 +1,5 @@
-﻿using MyLib_Csharp.DataStructure;
+﻿using MyLib_Csharp.CommonClass;
+using MyLib_Csharp.DataStructure;
 using System;
 
 namespace MyLib_Csharp
@@ -7,7 +8,7 @@ namespace MyLib_Csharp
     {
         static void Main(string[] args)
         {
-            Angle.Test();
+            MyMath.Test();
         }
     }
 }
