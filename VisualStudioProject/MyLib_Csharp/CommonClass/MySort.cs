@@ -8,7 +8,6 @@ namespace MyLib_Csharp.CommonClass
     {
         public static T[] BubbleSort<T>(T[] array) where T : IComparable
         {
-            
             T[] result = (T[])array.Clone();
             for (int i = 0; i < array.Length; i++)
             {
@@ -27,7 +26,11 @@ namespace MyLib_Csharp.CommonClass
 
         public static void Test()
         {
-            int[] testArray = MyArray.GenerateRandIntArray(100);
+            int[,] testArray = MyArray.GenerateRandInt2dArray(5, 5);
+
+            //BubbleSort(testArray);
+
+            MyArray.Print(testArray);
         }
     }
 }

@@ -20,3 +20,5 @@ D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\n
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.AssemblyInfo.cs
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.dll
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.pdb
+D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.csproj.CoreCompileInputs.cache
+D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp\obj\Debug\netcoreapp3.1\MyLib_Csharp.genruntimeconfig.cache
