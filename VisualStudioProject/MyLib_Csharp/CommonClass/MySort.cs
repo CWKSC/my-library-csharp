@@ -24,11 +24,13 @@ namespace MyLib_Csharp.CommonClass
             return result;
         }
 
+
+
         public static void Test()
         {
-            int[,] testArray = MyArray.GenerateRandInt2dArray(5, 5);
+            int[] testArray = MyArray.GenerateRandIntArray(10);
 
-            //BubbleSort(testArray);
+            MyTest.TestExecutionTime(BubbleSort, testArray);
 
             MyArray.Print(testArray);
         }
