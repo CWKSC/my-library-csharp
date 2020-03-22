@@ -551,5 +551,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("DegreesToUnitList   (30) = [" + DegreesToUnitList(30)[0] + ", " + DegreesToUnitList(30)[1] + "]");
         }
         #endregion
+
+
     }
 }

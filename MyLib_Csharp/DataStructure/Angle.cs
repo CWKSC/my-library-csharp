@@ -334,84 +334,29 @@ namespace MyLib_Csharp.DataStructure
             return newAngle;
         }
 
+        /// <summary> Assume scalar is radians </summary>
         public static Angle ScalarAdd(Angle lhs, double scalar)
         {
             Angle newAngle = new Angle(lhs);
-            newAngle.degrees += scalar;
-            newAngle.radians += scalar;
-            newAngle.pi += scalar;
-            newAngle.gradians += scalar;
-            newAngle.turns += scalar;
-            newAngle.vector2.X += (float)scalar;
-            newAngle.vector2.Y += (float)scalar;
-            newAngle.unitVector2.X += (float)scalar;
-            newAngle.unitVector2.Y += (float)scalar;
-            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
-            newAngle.list[0] += scalar;
-            newAngle.list[1] += scalar;
-            newAngle.unitList[0] += scalar;
-            newAngle.unitList[1] += scalar;
-            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            newAngle.Radians += scalar;
             return newAngle;
         }
         public static Angle ScalarSub(Angle lhs, double scalar)
         {
             Angle newAngle = new Angle(lhs);
-            newAngle.degrees -= scalar;
-            newAngle.radians -= scalar;
-            newAngle.pi -= scalar;
-            newAngle.gradians -= scalar;
-            newAngle.turns -= scalar;
-            newAngle.vector2.X -= (float)scalar;
-            newAngle.vector2.Y -= (float)scalar;
-            newAngle.unitVector2.X -= (float)scalar;
-            newAngle.unitVector2.Y -= (float)scalar;
-            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
-            newAngle.list[0] -= scalar;
-            newAngle.list[1] -= scalar;
-            newAngle.unitList[0] -= scalar;
-            newAngle.unitList[1] -= scalar;
-            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            newAngle.Radians -= scalar;
             return newAngle;
         }
         public static Angle ScalarMult(Angle lhs, double scalar)
         {
             Angle newAngle = new Angle(lhs);
-            newAngle.degrees *= scalar;
-            newAngle.radians *= scalar;
-            newAngle.pi *= scalar;
-            newAngle.gradians *= scalar;
-            newAngle.turns *= scalar;
-            newAngle.vector2.X *= (float)scalar;
-            newAngle.vector2.Y *= (float)scalar;
-            newAngle.unitVector2.X *= (float)scalar;
-            newAngle.unitVector2.Y *= (float)scalar;
-            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
-            newAngle.list[0] *= scalar;
-            newAngle.list[1] *= scalar;
-            newAngle.unitList[0] *= scalar;
-            newAngle.unitList[1] *= scalar;
-            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            newAngle.Radians *= scalar;
             return newAngle;
         }
         public static Angle ScalarDiv(Angle lhs, double scalar)
         {
             Angle newAngle = new Angle(lhs);
-            newAngle.degrees /= scalar;
-            newAngle.radians /= scalar;
-            newAngle.pi /= scalar;
-            newAngle.gradians /= scalar;
-            newAngle.turns /= scalar;
-            newAngle.vector2.X /= (float)scalar;
-            newAngle.vector2.Y /= (float)scalar;
-            newAngle.unitVector2.X /= (float)scalar;
-            newAngle.unitVector2.Y /= (float)scalar;
-            newAngle.unitVector2 = Vector2.Normalize(newAngle.unitVector2);
-            newAngle.list[0] /= scalar;
-            newAngle.list[1] /= scalar;
-            newAngle.unitList[0] /= scalar;
-            newAngle.unitList[1] /= scalar;
-            newAngle.unitList = MyMath.NormalizeList(newAngle.unitList);
+            newAngle.Radians /= scalar;
             return newAngle;
         }
         #endregion
@@ -499,8 +444,10 @@ namespace MyLib_Csharp.DataStructure
             Console.WriteLine("[a - b]\n" + (a - b) + "\n");
             Console.WriteLine("[a * b]\n" + (a * b) + "\n");
             Console.WriteLine("[a / b]\n" + (a / b) + "\n");
-
-
+            Console.WriteLine("[a + Math.PI]\n" + (a + Math.PI) + "\n");
+            Console.WriteLine("[a - Math.PI]\n" + (a - Math.PI) + "\n");
+            Console.WriteLine("[a * 2]\n" + (a * 2) + "\n");
+            Console.WriteLine("[a / 2]\n" + (a / 2) + "\n");
         }
         #endregion
 

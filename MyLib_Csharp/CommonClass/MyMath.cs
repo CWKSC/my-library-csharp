@@ -310,6 +310,17 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+        #region Integral
+        public double Integral(Func<double, double> func, double lower, double upper, double step = 0.001)
+        {
+            double sum = 0;
+            for (double i = lower; i <= upper; i += step)
+            {
+                sum += func(i) * step;
+            }
+            return sum;
+        }
+        #endregion
 
         #region Convert
 
@@ -496,7 +507,48 @@ namespace MyLib_Csharp.CommonClass
         #region Test
         public static void Test()
         {
+            // Trigonometric functions //
+            Console.WriteLine("Sin(30) = " + Sin(30));
+            Console.WriteLine("Cos(60) = " + Sin(30));
+            Console.WriteLine("Tan(45) = " + Sin(30) + '\n');
 
+            // Cartesian to Polar //
+            Console.WriteLine("CartesianToPolar_Radians (1, 1) = " + CartesianToPolar_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_PI      (1, 1) = " + CartesianToPolar_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_Degrees (1, 1) = " + CartesianToPolar_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_Gradians(1, 1) = " + CartesianToPolar_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_Turns   (1, 1) = " + CartesianToPolar_Turns(1, 1) + '\n');
+
+            // Cartesian to Polar (start at Up) //
+            Console.WriteLine("CartesianToPolar_startAtUp_Radians (1, 1) = " + CartesianToPolar_startAtUp_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_PI      (1, 1) = " + CartesianToPolar_startAtUp_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Degrees (1, 1) = " + CartesianToPolar_startAtUp_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Gradians(1, 1) = " + CartesianToPolar_startAtUp_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Turns   (1, 1) = " + CartesianToPolar_startAtUp_Turns(1, 1) + '\n');
+
+            // Cartesian to Polar (start at Left) //
+            Console.WriteLine("CartesianToPolar_startAtLeft_Radians (1, 1) = " + CartesianToPolar_startAtLeft_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_PI      (1, 1) = " + CartesianToPolar_startAtLeft_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Degrees (1, 1) = " + CartesianToPolar_startAtLeft_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Gradians(1, 1) = " + CartesianToPolar_startAtLeft_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Turns   (1, 1) = " + CartesianToPolar_startAtLeft_Turns(1, 1) + '\n');
+
+            // Cartesian to Polar (start at Down) //
+            Console.WriteLine("CartesianToPolar_startAtDown_Radians (1, 1) = " + CartesianToPolar_startAtDown_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_PI      (1, 1) = " + CartesianToPolar_startAtDown_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Degrees (1, 1) = " + CartesianToPolar_startAtDown_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Gradians(1, 1) = " + CartesianToPolar_startAtDown_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Turns   (1, 1) = " + CartesianToPolar_startAtDown_Turns(1, 1) + '\n');
+
+            // Degrees Convert //
+            Console.WriteLine("DegreesToRadians    (30) = " + DegreesToRadians(30));
+            Console.WriteLine("DegreesToPI         (30) = " + DegreesToPI(30));
+            Console.WriteLine("DegreesToGradians   (30) = " + DegreesToGradians(30));
+            Console.WriteLine("DegreesToTurns      (30) = " + DegreesToTurns(30));
+            Console.WriteLine("DegreesToVector2    (30) = " + DegreesToVector2(30));
+            Console.WriteLine("DegreesToUnitVector2(30) = " + DegreesToUnitVector2(30));
+            Console.WriteLine("DegreesToList       (30) = [" + DegreesToList(30)[0] + ", " + DegreesToList(30)[1] + "]");
+            Console.WriteLine("DegreesToUnitList   (30) = [" + DegreesToUnitList(30)[0] + ", " + DegreesToUnitList(30)[1] + "]");
         }
         #endregion
     }
