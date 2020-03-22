@@ -24,6 +24,11 @@ namespace MyLib_Csharp.CommonClass
             return result;
         }
 
+        public static void A(float[] a)
+        {
+
+        }
+
 
         public static void Test()
         {
