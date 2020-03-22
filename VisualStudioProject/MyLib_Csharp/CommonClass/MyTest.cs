@@ -8,14 +8,14 @@ namespace MyLib_Csharp.CommonClass
     class MyTest
     {
 
-        public static void TestExecutionTime<Input>(Action<Input> action, Input input)
+        public static void TestExecutionTime<Input>(Action<Input[]> action, params Input[] input)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             action(input);
             stopwatch.Stop();
             Console.WriteLine(action.Method.Name + " run " + stopwatch.Elapsed.TotalMilliseconds + " ms");
         }
-        public static Output TestExecutionTime<Input, Output>(Func<Input, Output> func, Input input)
+        public static Output TestExecutionTime<Input, Output>(Func<Input[], Output> func, params Input[] input)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             Output output = func(input);

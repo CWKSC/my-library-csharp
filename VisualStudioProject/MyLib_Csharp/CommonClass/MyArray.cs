@@ -40,6 +40,11 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write(element + " ");
             }
         }
+        public static void Println<T>(T[] array)
+        {
+            Print(array);
+            Console.Write('\n');
+        }
         public static void Print<T>(T[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)

@@ -9,15 +9,15 @@ namespace MyLib_Csharp.CommonClass
         public static T[] BubbleSort<T>(T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < result.Length; i++)
             {
-                for (int j = 0; j < array.Length - 1; j++)
+                for (int j = 0; j < result.Length - 1; j++)
                 {
-                    if (array[j].CompareTo(array[j + 1]) > 0)
+                    if (result[j].CompareTo(result[j + 1]) == 1)
                     {
-                        T temp = array[j + 1];
-                        array[j + 1] = array[j];
-                        array[j] = temp;
+                        T temp = result[j + 1];
+                        result[j + 1] = result[j];
+                        result[j] = temp;
                     }
                 }
             }
@@ -25,14 +25,13 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-
         public static void Test()
         {
             int[] testArray = MyArray.GenerateRandIntArray(10);
 
-            MyTest.TestExecutionTime(BubbleSort, testArray);
-
-            MyArray.Print(testArray);
+            MyArray.Println(testArray);
+            MyArray.Print(MyTest.TestExecutionTime(BubbleSort, testArray));
+            
         }
     }
 }
