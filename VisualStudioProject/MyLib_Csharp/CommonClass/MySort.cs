@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MySort
+    public static class MySort
     {
 
         public static void Swap<T>(ref T a, ref T b)
@@ -14,7 +14,7 @@ namespace MyLib_Csharp.CommonClass
             b = temp;
         }
 
-        public static T[] BubbleSort<T>(T[] array) where T : IComparable
+        public static T[] BubbleSort<T>(this T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();
             for (int i = 0; i < result.Length; i++)
@@ -30,7 +30,7 @@ namespace MyLib_Csharp.CommonClass
             return result;
         }
 
-        public static T[] SelectionSort<T>(T[] array) where T : IComparable
+        public static T[] SelectionSort<T>(this T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();
             for (int i = 0; i < array.Length; i++)
@@ -48,12 +48,43 @@ namespace MyLib_Csharp.CommonClass
             return result;
         }
 
+
         public static void Test()
         {
             int[] testArray = MyArray.GenerateRandIntArray(10);
 
-            MyArray.Println(testArray);
+            MyTest.Warmup(() => testArray.BubbleSort());
+
+            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime().Println();
+            MyArray.Println(((Func<int[]>)testArray.BubbleSort).TestExecutionTime());
+            MyArray.Println(MyTest.TestExecutionTime(testArray.BubbleSort));
             MyArray.Println(MyTest.TestExecutionTime(BubbleSort, testArray));
+
+            Console.WriteLine();
+
+            MyArray.Println(MyTest.TestExecutionTime(BubbleSort, testArray));
+            MyArray.Println(MyTest.TestExecutionTime(testArray.BubbleSort));
+            MyArray.Println(((Func<int[]>)testArray.BubbleSort).TestExecutionTime());
+            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime().Println();
+
+            Console.WriteLine();
+
+            for(int i = 0; i < 10; i++)
+            {
+                ((Func<int[]>)testArray.BubbleSort).TestExecutionTime();
+            }
+            Console.WriteLine();
+            for (int i = 0; i < 10; i++)
+            {
+                MyTest.TestExecutionTime(testArray.BubbleSort);
+            }
+            Console.WriteLine();
+            for (int i = 0; i < 10; i++)
+            {
+                MyTest.TestExecutionTime(BubbleSort, testArray);
+            }
+
+            MyArray.Println(MyTest.TestExecutionTime(testArray.SelectionSort));
             MyArray.Println(MyTest.TestExecutionTime(SelectionSort, testArray));
 
         }

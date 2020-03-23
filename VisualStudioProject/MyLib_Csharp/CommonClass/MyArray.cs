@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyArray
+    public static class MyArray
     {
 
         public static int[] GenerateRandIntArray(int n)
@@ -40,7 +40,7 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write(element + " ");
             }
         }
-        public static void Println<T>(T[] array)
+        public static void Println<T>(this T[] array)
         {
             Print(array);
             Console.Write('\n');

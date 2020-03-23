@@ -6,11 +6,21 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyTest
+    public static class MyTest
     {
 
+        public static void Warmup(this Action action)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
+            while (stopwatch.ElapsedMilliseconds < 1200)
+            {
+                action();
+            }
+            stopwatch.Stop();
+        }
 
-        public static void TestExecutionTime(Action action)
+        public static void TestExecutionTime(this Action action)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             action();
@@ -110,6 +120,14 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
+        public static Output TestExecutionTime<Output>(this Func<Output> func)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            Output output = func();
+            stopwatch.Stop();
+            Console.WriteLine(func.Method.Name + " run " + stopwatch.Elapsed.TotalMilliseconds + " ms");
+            return output;
+        }
         public static Output TestExecutionTime<P1, Output>(Func<P1, Output> func, P1 p1)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
