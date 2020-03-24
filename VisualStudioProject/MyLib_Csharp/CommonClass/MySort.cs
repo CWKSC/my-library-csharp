@@ -69,10 +69,9 @@ namespace MyLib_Csharp.CommonClass
 
             Console.WriteLine();
 
-            for(int i = 0; i < 10; i++)
-            {
-                ((Func<int[]>)testArray.BubbleSort).TestExecutionTime();
-            }
+
+            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime(100);
+
             Console.WriteLine();
             for (int i = 0; i < 10; i++)
             {

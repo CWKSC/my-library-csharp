@@ -20,12 +20,20 @@ namespace MyLib_Csharp.CommonClass
             stopwatch.Stop();
         }
 
+
         public static void TestExecutionTime(this Action action)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
             action();
             stopwatch.Stop();
             Console.WriteLine(action.Method.Name + " run " + stopwatch.Elapsed.TotalMilliseconds + " ms");
+        }
+        public static void TestExecutionTime(this Action action, int times)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for(int i = 0; i < times; i++){ action(); }
+            stopwatch.Stop();
+            Console.WriteLine(action.Method.Name + " " + times + " times run "  + stopwatch.Elapsed.TotalMilliseconds + " ms, average : " + stopwatch.Elapsed.TotalMilliseconds / times + " ms");
         }
         public static void TestExecutionTime<P1>(Action<P1> action, P1 p1)
         {
@@ -127,6 +135,13 @@ namespace MyLib_Csharp.CommonClass
             stopwatch.Stop();
             Console.WriteLine(func.Method.Name + " run " + stopwatch.Elapsed.TotalMilliseconds + " ms");
             return output;
+        }
+        public static void TestExecutionTime<Output>(this Func<Output> func, int times)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for(int i = 0; i < times; i++) { func(); }
+            stopwatch.Stop();
+            Console.WriteLine(func.Method.Name + " " + times + " times run " + stopwatch.Elapsed.TotalMilliseconds + " ms, average : " + stopwatch.Elapsed.TotalMilliseconds / times);
         }
         public static Output TestExecutionTime<P1, Output>(Func<P1, Output> func, P1 p1)
         {
