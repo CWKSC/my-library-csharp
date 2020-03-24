@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Pastel;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 
 namespace MyLib_Csharp.CommonClass
@@ -14,6 +17,18 @@ namespace MyLib_Csharp.CommonClass
             for (int i = 0; i < result.Length; i++)
             {
                 result[i] = random.Next(int.MinValue, int.MaxValue);
+            }
+            return result;
+        }
+
+        /// <summary>[min, max)</summary>
+        public static int[] GenerateRandIntArray(int n, int min, int max)
+        {
+            int[] result = new int[n];
+            Random random = new Random();
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = random.Next(min, max);
             }
             return result;
         }
@@ -45,6 +60,26 @@ namespace MyLib_Csharp.CommonClass
             Print(array);
             Console.Write('\n');
         }
+
+        /// <summary>
+        /// Mark color of some index
+        /// </summary>
+        public static void Println<T>(this T[] array, Color color, params int[] markIndex)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (markIndex.Contains(i))
+                {
+                    Console.Write(array[i].ToString().Pastel(color) + " ");
+                }
+                else
+                {
+                    Console.Write(array[i] + " ");
+                }
+            }
+            Console.Write('\n');
+        }
+
         public static void Print<T>(T[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)

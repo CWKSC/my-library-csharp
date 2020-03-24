@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Text;
 using System.Threading;
 
@@ -23,9 +24,10 @@ namespace MyLib_Csharp.CommonClass
             {
                 for (int j = 0; j < result.Length - i - 1; j++)
                 {
-                    if (result[j].CompareTo(result[j+1]) > 0)
+                    if (result[j].CompareTo(result[j + 1]) > 0)
                     {
                         Swap(ref result[j], ref result[j + 1]);
+                        MyArray.Println(result, Color.Red, j, j + 1);
                     }
                 }
             }
@@ -35,49 +37,103 @@ namespace MyLib_Csharp.CommonClass
         public static T[] SelectionSort<T>(this T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < result.Length; i++)
             {
                 int maxIndex = 0;
-                for (int j = 0; j < array.Length - i; j++)
+                for (int j = 0; j < result.Length - i ; j++)
                 {
-                    if(result[j].CompareTo(array[maxIndex]) == 1)
+                    if(result[j].CompareTo(result[maxIndex]) > 0)
                     {
                         maxIndex = j;
                     }
                 }
-                Swap(ref result[maxIndex], ref result[array.Length - 1 - i]);
+                Swap(ref result[maxIndex], ref result[result.Length - 1 - i]);
+                MyArray.Println(result, Color.Red, maxIndex, result.Length - 1 - i);
             }
             return result;
         }
 
+        /// <summary>[min, max]</summary>
+        public static int[] CountingSort(this int[] array, int min, int max)
+        {
+            int[] result = (int[])array.Clone();
+            int[] countArray = new int[max - min + 1];
+            int absMin = Math.Abs(min);
+            for(int i = 0; i < result.Length; i++)
+            {
+                ++countArray[result[i] + absMin];
+            }
+
+            int j = 0;
+            int index = min;
+            while (j < result.Length)
+            {
+                if (countArray[index - absMin] != 0)
+                {
+                    result[j] = index;
+                    --countArray[index - absMin];
+                }
+                else
+                {
+                    ++index;
+                    continue;
+                }
+                ++j;
+            }
+            return result;
+        }
+
+        public static void PrintIsSorted<T>(this T[] array) where T : IComparable
+        {
+            if (IsSorted(array))
+            {
+                Console.WriteLine("Sorted (ascending)");
+            }
+            else
+            {
+                Console.WriteLine("Unsorted (ascending)");
+            }
+        }
+        public static bool IsSorted<T>(this T[] array) where T : IComparable
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1].CompareTo(array[i]) == 1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public static void Test()
         {
-            int[] testArray = MyArray.GenerateRandIntArray(10000);
+            const int dataLength = 10;
+            const int dataMin = 0;
+            const int dataMax = 1000;
+            int[] allRangeIntArray = MyArray.GenerateRandIntArray(dataLength);
+            int[] inRangeIntArray = MyArray.GenerateRandIntArray(dataLength, dataMin, dataMax);
 
             MyTest.SetProcessPriority();
-            MyTest.Warmup(testArray.BubbleSort);
+            MyTest.Warmup(allRangeIntArray.BubbleSort);
+
+            // Sort Sample //
+            //MyTest.TestExecutionTime(allRangeIntArray.BubbleSort).PrintIsSorted();
+            //MyTest.TestExecutionTime(BubbleSort, allRangeIntArray).PrintIsSorted();
+            //((Func<int[]>)allRangeIntArray.BubbleSort).TestExecutionTime().PrintIsSorted();
 
             // BubbleSort //
-            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime();
-            Console.WriteLine();
-
-            MyTest.TestExecutionTime(testArray.BubbleSort);
-            Console.WriteLine();
-
-            MyTest.TestExecutionTime(BubbleSort, testArray);
+            MyTest.TestExecutionTime(BubbleSort, allRangeIntArray).PrintIsSorted();
+            MyTest.TestExecutionTime(BubbleSort, inRangeIntArray).PrintIsSorted();
             Console.WriteLine();
 
             // SelectionSort //
-            ((Func<int[]>)testArray.SelectionSort).TestExecutionTime();
+            MyTest.TestExecutionTime(SelectionSort, allRangeIntArray).Println();
+            MyTest.TestExecutionTime(SelectionSort, inRangeIntArray).PrintIsSorted();
             Console.WriteLine();
 
-            MyTest.TestExecutionTime(testArray.SelectionSort);
-            Console.WriteLine();
-
-            MyTest.TestExecutionTime(SelectionSort, testArray);
-            Console.WriteLine();
-
+            // CountingSort //
+            MyTest.TestExecutionTime(CountingSort, inRangeIntArray, dataMin, dataMax).PrintIsSorted();
 
         }
     }
