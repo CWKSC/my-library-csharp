@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 
 namespace MyLib_Csharp.CommonClass
 {
@@ -51,40 +53,31 @@ namespace MyLib_Csharp.CommonClass
 
         public static void Test()
         {
-            int[] testArray = MyArray.GenerateRandIntArray(10);
+            int[] testArray = MyArray.GenerateRandIntArray(10000);
 
-            MyTest.Warmup(() => testArray.BubbleSort());
+            MyTest.SetProcessPriority();
+            MyTest.Warmup(testArray.BubbleSort);
 
-            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime().Println();
-            MyArray.Println(((Func<int[]>)testArray.BubbleSort).TestExecutionTime());
-            MyArray.Println(MyTest.TestExecutionTime(testArray.BubbleSort));
-            MyArray.Println(MyTest.TestExecutionTime(BubbleSort, testArray));
-
+            // BubbleSort //
+            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime();
             Console.WriteLine();
 
-            MyArray.Println(MyTest.TestExecutionTime(BubbleSort, testArray));
-            MyArray.Println(MyTest.TestExecutionTime(testArray.BubbleSort));
-            MyArray.Println(((Func<int[]>)testArray.BubbleSort).TestExecutionTime());
-            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime().Println();
-
+            MyTest.TestExecutionTime(testArray.BubbleSort);
             Console.WriteLine();
 
-
-            ((Func<int[]>)testArray.BubbleSort).TestExecutionTime(100);
-
+            MyTest.TestExecutionTime(BubbleSort, testArray);
             Console.WriteLine();
-            for (int i = 0; i < 10; i++)
-            {
-                MyTest.TestExecutionTime(testArray.BubbleSort);
-            }
-            Console.WriteLine();
-            for (int i = 0; i < 10; i++)
-            {
-                MyTest.TestExecutionTime(BubbleSort, testArray);
-            }
 
-            MyArray.Println(MyTest.TestExecutionTime(testArray.SelectionSort));
-            MyArray.Println(MyTest.TestExecutionTime(SelectionSort, testArray));
+            // SelectionSort //
+            ((Func<int[]>)testArray.SelectionSort).TestExecutionTime();
+            Console.WriteLine();
+
+            MyTest.TestExecutionTime(testArray.SelectionSort);
+            Console.WriteLine();
+
+            MyTest.TestExecutionTime(SelectionSort, testArray);
+            Console.WriteLine();
+
 
         }
     }
