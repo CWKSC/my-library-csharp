@@ -6,8 +6,8 @@ MyMath
 ```C#
 #region Static constant 
 
-    #region PI
-    public const double TwoPI = 2 * Math.PI;
+#region PI
+public const double TwoPI = 2 * Math.PI;
 public const double PIOver2 = Math.PI / 2;
 public const double PIOver4 = Math.PI / 4;
 public const double PIOver6 = Math.PI / 6;
@@ -18,8 +18,8 @@ public const double PIOver64 = Math.PI / 64;
 public const double ThreePIOverTwo = 3 * Math.PI / 2;
 #endregion
 
-    #region Angle convert constant
-    public const double DegToRad = Math.PI / 180d;
+#region Angle convert constant
+public const double DegToRad = Math.PI / 180d;
 public const double DegToPI = 1 / 180d;
 public const double DegToGrad = 10d / 9d;
 public const double DegToTurn = 1d / 360d;
@@ -57,8 +57,8 @@ public const double HalfTurngGrad = TurnToGrad / 2d;
 public const double HalfTurn = 1d / 2d;
 #endregion
 
-    #region Square of root
-    public const float squareRoot2_float = 1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764157f;
+#region Square of root
+public const float squareRoot2_float = 1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764157f;
 public const float squareRoot3_float = 1.7320508075688772935274463415058723669428052538103806280558069794519330169088000370811461867572485756756261414154f;
 public const float squareRoot5_float = 2.23606797749978969640917366873127623544061835961152572427089724541052092563780489941441440837878227f;
 public const float squareRoot6_float = 2.44948974278317809819728407470589139196594748065667f;
@@ -83,7 +83,7 @@ public const decimal squareRoot8_decimal = 2.82842712474619009760337744841939615
 public const decimal squareRoot10_decimal = 3.16227766016837933199889354443271853371955513932521M;
 #endregion
 
-    #endregion
+#endregion
 
 MyMath.Atan2(System.Collections.Generic.List<double>);
 MyMath.Atan2(System.Numerics.Vector2);
