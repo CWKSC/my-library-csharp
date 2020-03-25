@@ -34,7 +34,7 @@ namespace MyLib_Csharp.CommonClass
         }
         public static T[] BubbleSort_Debug<T>(this T[] array) where T : IComparable
         {
-            int ifCount = 0, swapCount = 0;
+            int ifCount = 0, matchIfCount = 0, swapCount = 0;
             T[] result = (T[])array.Clone();
             for (int i = 0; i < result.Length; i++)
             {
@@ -44,6 +44,7 @@ namespace MyLib_Csharp.CommonClass
                     ifCount++;
                     if (result[j - 1].CompareTo(result[j]) > 0)
                     {
+                        matchIfCount++;
                         MyArray.Println(result, Color.Yellow, j - 1, j);
                         Swap(ref result[j - 1], ref result[j]);
                         MyArray.Println(result, Color.Red, j - 1, j);
@@ -51,7 +52,9 @@ namespace MyLib_Csharp.CommonClass
                     }
                 }
             }
-            Console.WriteLine("Check condition (Green) times: " + ifCount + ", Swap (Red) times: " + swapCount);
+            Console.WriteLine("Check condition (Green) times: " + ifCount);
+            Console.WriteLine("Match condition (Yellow) times: " + matchIfCount);
+            Console.WriteLine("Swap (Red) times: " + swapCount);
             return result;
         }
 
@@ -73,10 +76,9 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
-
         public static T[] SelectionSort_Debug<T>(this T[] array) where T : IComparable
         {
-            int ifCount = 0, swapCount = 0;
+            int ifCount = 0, matchIfCount = 0, swapCount = 0;
             T[] result = (T[])array.Clone();
             for (int i = 0; i < result.Length; i++)
             {
@@ -87,6 +89,7 @@ namespace MyLib_Csharp.CommonClass
                     ifCount++;
                     if (result[j].CompareTo(result[maxIndex]) > 0)
                     {
+                        matchIfCount++;
                         MyArray.Println(result, Color.Yellow, j, maxIndex);
                         maxIndex = j;
                     }
@@ -95,7 +98,9 @@ namespace MyLib_Csharp.CommonClass
                 MyArray.Println(result, Color.Red, maxIndex, result.Length - 1 - i);
                 swapCount++;
             }
-            Console.WriteLine("Check condition (Green) times: " + ifCount + ", Swap (Red) times: " + swapCount);
+            Console.WriteLine("Check condition (Green) times: " + ifCount);
+            Console.WriteLine("Match condition (Yellow) times: " + matchIfCount);
+            Console.WriteLine("Swap (Red) times: " + swapCount);
             return result;
         }
 
@@ -128,6 +133,36 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
+        /// <summary>[min, max]</summary>
+        public static int[] CountingSort_Debug(this int[] array, int min, int max)
+        {
+            int[] result = (int[])array.Clone();
+            int[] countArray = new int[max - min + 1];
+            int absMin = Math.Abs(min);
+            for (int i = 0; i < result.Length; i++)
+            {
+                ++countArray[result[i] + absMin];
+            }
+
+            int j = 0;
+            int index = min;
+            while (j < result.Length)
+            {
+                if (countArray[index - absMin] != 0)
+                {
+                    result[j] = index;
+                    --countArray[index - absMin];
+                }
+                else
+                {
+                    ++index;
+                    continue;
+                }
+                ++j;
+            }
+            MyArray.Println(result);
+            return result;
+        }
 
         public static void PrintIsSorted_ascending<T>(this T[] array) where T : IComparable
         {
@@ -144,7 +179,30 @@ namespace MyLib_Csharp.CommonClass
         {
             for (int i = 1; i < array.Length; i++)
             {
-                if (array[i - 1].CompareTo(array[i]) == 1)
+                if (array[i - 1].CompareTo(array[i]) > 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void PrintIsSorted_descending<T>(this T[] array) where T : IComparable
+        {
+            if (IsSorted_descending(array))
+            {
+                Console.WriteLine("Sorted (descending)");
+            }
+            else
+            {
+                Console.WriteLine("Unsorted (descending)");
+            }
+        }
+        public static bool IsSorted_descending<T>(this T[] array) where T : IComparable
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1].CompareTo(array[i]) < 0)
                 {
                     return false;
                 }
@@ -163,11 +221,6 @@ namespace MyLib_Csharp.CommonClass
             MyTest.SetProcessPriority();
             MyTest.Warmup(allRangeIntArray.BubbleSort);
 
-            // Sort Sample //
-            //MyTest.TestExecutionTime(allRangeIntArray.BubbleSort).PrintIsSorted();
-            //MyTest.TestExecutionTime(BubbleSort, allRangeIntArray).PrintIsSorted();
-            //((Func<int[]>)allRangeIntArray.BubbleSort).TestExecutionTime().PrintIsSorted();
-
             // BubbleSort //
             MyTest.TestExecutionTime(BubbleSort_Debug, allRangeIntArray).PrintIsSorted_ascending();
             MyTest.TestExecutionTime(BubbleSort_Debug, inRangeIntArray).PrintIsSorted_ascending();
@@ -179,7 +232,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine();
 
             // CountingSort //
-            MyTest.TestExecutionTime(CountingSort, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
+            MyTest.TestExecutionTime(CountingSort_Debug, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
 
         }
     }
