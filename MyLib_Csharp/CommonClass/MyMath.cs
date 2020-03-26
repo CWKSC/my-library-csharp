@@ -90,6 +90,7 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+
         #region Trigonometric functions
         public static double Sin(double degrees) => Math.Sin(DegreesToRadians(degrees));
         public static double Cos(double degrees) => Math.Cos(DegreesToRadians(degrees));
@@ -97,6 +98,7 @@ namespace MyLib_Csharp.CommonClass
         public static double Atan2(Vector2 point) => Math.Atan2(point.Y, point.X);
         public static double Atan2(List<double> list) => Math.Atan2(list[1], list[0]);
         #endregion
+
 
         #region Cartesian to Polar
 
@@ -310,6 +312,7 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+
         #region Integral
         public double Integral(Func<double, double> func, double lower, double upper, double step = 0.001)
         {
@@ -321,6 +324,7 @@ namespace MyLib_Csharp.CommonClass
             return sum;
         }
         #endregion
+
 
         #region Convert
 
@@ -448,6 +452,7 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+
         #region Normalize
 
         #region NormalizeList
@@ -504,6 +509,7 @@ namespace MyLib_Csharp.CommonClass
 
         #endregion
 
+
         #region Test
         public static void Test()
         {
@@ -551,5 +557,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("DegreesToUnitList   (30) = [" + DegreesToUnitList(30)[0] + ", " + DegreesToUnitList(30)[1] + "]");
         }
         #endregion
+
+
     }
 }

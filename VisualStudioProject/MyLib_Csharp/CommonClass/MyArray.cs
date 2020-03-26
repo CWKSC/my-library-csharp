@@ -91,5 +91,39 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write('\n');
             }
         }
+
+
+
+        /// <summary>
+        /// 打亂陣列中順序
+        /// </summary>
+        public static void Shuffle<T>(T[] Source)
+        {
+            // Reference : https://github.com/k79k06k02k/Utility/blob/master/Scripts/Utility.cs
+            if (Source == null) return;
+
+            int len = Source.Length;
+
+            int r;
+
+            //暫存用
+            T tmp;
+            Random random = new Random();
+
+            for (int i = 0; i < len - 1; i++)
+            {
+                //取亂數，範圍包含最小值，不包含最大值
+                r = random.Next(i, len);
+
+                //如果一樣則重取            
+                if (i == r) continue;
+
+                //取亂數後的索引與原來的交換
+                tmp = Source[i];
+                Source[i] = Source[r];
+                Source[r] = tmp;
+            }
+        }
+
     }
 }

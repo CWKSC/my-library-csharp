@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Pastel;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyArray
+    public static class MyArray
     {
 
         public static int[] GenerateRandIntArray(int n)
@@ -14,6 +17,18 @@ namespace MyLib_Csharp.CommonClass
             for (int i = 0; i < result.Length; i++)
             {
                 result[i] = random.Next(int.MinValue, int.MaxValue);
+            }
+            return result;
+        }
+
+        /// <summary>[min, max)</summary>
+        public static int[] GenerateRandIntArray(int n, int min, int max)
+        {
+            int[] result = new int[n];
+            Random random = new Random();
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = random.Next(min, max);
             }
             return result;
         }
@@ -40,11 +55,31 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write(element + " ");
             }
         }
-        public static void Println<T>(T[] array)
+        public static void Println<T>(this T[] array)
         {
             Print(array);
             Console.Write('\n');
         }
+
+        /// <summary>
+        /// Mark color of some index
+        /// </summary>
+        public static void Println<T>(this T[] array, Color color, params int[] markIndex)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (markIndex.Contains(i))
+                {
+                    Console.Write(array[i].ToString().Pastel(color) + " ");
+                }
+                else
+                {
+                    Console.Write(array[i] + " ");
+                }
+            }
+            Console.Write('\n');
+        }
+
         public static void Print<T>(T[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
@@ -56,5 +91,39 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write('\n');
             }
         }
+
+
+
+        /// <summary>
+        /// 打亂陣列中順序
+        /// </summary>
+        public static void Shuffle<T>(T[] Source)
+        {
+            // Reference : https://github.com/k79k06k02k/Utility/blob/master/Scripts/Utility.cs
+            if (Source == null) return;
+
+            int len = Source.Length;
+
+            int r;
+
+            //暫存用
+            T tmp;
+            Random random = new Random();
+
+            for (int i = 0; i < len - 1; i++)
+            {
+                //取亂數，範圍包含最小值，不包含最大值
+                r = random.Next(i, len);
+
+                //如果一樣則重取            
+                if (i == r) continue;
+
+                //取亂數後的索引與原來的交換
+                tmp = Source[i];
+                Source[i] = Source[r];
+                Source[r] = tmp;
+            }
+        }
+
     }
 }

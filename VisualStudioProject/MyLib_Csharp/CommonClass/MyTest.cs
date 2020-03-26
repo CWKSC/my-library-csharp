@@ -23,6 +23,7 @@ namespace MyLib_Csharp.CommonClass
 
         public static void Warmup(this Action action)
         {
+            Console.WriteLine("Warmup");
             Stopwatch stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
             while (stopwatch.ElapsedMilliseconds < 1200)
@@ -33,6 +34,7 @@ namespace MyLib_Csharp.CommonClass
         }
         public static void Warmup<T>(this Func<T> func)
         {
+            Console.WriteLine("Warmup");
             Stopwatch stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
             while (stopwatch.ElapsedMilliseconds < 1200)
