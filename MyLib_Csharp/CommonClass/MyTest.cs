@@ -11,6 +11,12 @@ namespace MyLib_Csharp.CommonClass
     {
 
 
+        public static void SetTestSetting()
+        {
+            MyTest.SetProcessPriority();
+            MyTest.Warmup(() => { });
+        }
+
         public static void SetProcessPriority()
         {
             // Reference : https://www.codeproject.com/Articles/61964/Performance-Tests-Precise-Run-Time-Measurements-wi
@@ -31,6 +37,7 @@ namespace MyLib_Csharp.CommonClass
                 action();
             }
             stopwatch.Stop();
+            Console.WriteLine("Warmup finish");
         }
         public static void Warmup<T>(this Func<T> func)
         {

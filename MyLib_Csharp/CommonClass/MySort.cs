@@ -119,10 +119,10 @@ namespace MyLib_Csharp.CommonClass
             int index = min;
             while (j < result.Length)
             {
-                if (countArray[index - absMin] != 0)
+                if (countArray[index + absMin] != 0)
                 {
                     result[j] = index;
-                    --countArray[index - absMin];
+                    --countArray[index + absMin];
                 }
                 else
                 {
@@ -148,10 +148,10 @@ namespace MyLib_Csharp.CommonClass
             int index = min;
             while (j < result.Length)
             {
-                if (countArray[index - absMin] != 0)
+                if (countArray[index + absMin] != 0)
                 {
                     result[j] = index;
-                    --countArray[index - absMin];
+                    --countArray[index + absMin];
                 }
                 else
                 {
@@ -213,13 +213,19 @@ namespace MyLib_Csharp.CommonClass
         public static void Test()
         {
             const int dataLength = 10;
-            const int dataMin = 0;
-            const int dataMax = 1000;
+            const int dataMin = -500;
+            const int dataMax = 500;
             int[] allRangeIntArray = MyArray.GenerateRandIntArray(dataLength);
             int[] inRangeIntArray = MyArray.GenerateRandIntArray(dataLength, dataMin, dataMax);
 
-            MyTest.SetProcessPriority();
-            MyTest.Warmup(allRangeIntArray.BubbleSort);
+            MyTest.SetTestSetting();
+
+
+            /* Uncomment to see sorting flow
+             * many Print and so dataLength = 10 is suitable 
+             * (add "*" here to uncomment quickly) --> /
+            
+            Console.WriteLine("Start sorting flow / correctness test");
 
             // BubbleSort //
             MyTest.TestExecutionTime(BubbleSort_Debug, allRangeIntArray).PrintIsSorted_ascending();
@@ -233,7 +239,18 @@ namespace MyLib_Csharp.CommonClass
 
             // CountingSort //
             MyTest.TestExecutionTime(CountingSort_Debug, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
+            Console.WriteLine();
 
+            //*/
+
+            // BubbleSort //
+            MyTest.TestExecutionTime(BubbleSort, allRangeIntArray);
+            MyTest.TestExecutionTime(BubbleSort, inRangeIntArray);
+            // SelectionSort //
+            MyTest.TestExecutionTime(SelectionSort, allRangeIntArray);
+            MyTest.TestExecutionTime(SelectionSort, inRangeIntArray);
+            // CountingSort //
+            MyTest.TestExecutionTime(CountingSort, inRangeIntArray, dataMin, dataMax);
         }
     }
 }
