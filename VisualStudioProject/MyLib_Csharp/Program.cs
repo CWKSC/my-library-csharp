@@ -6,6 +6,7 @@ namespace MyLib_Csharp
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             MyMath.Test();
