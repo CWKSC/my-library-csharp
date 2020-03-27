@@ -8,7 +8,6 @@ namespace MyLib_Csharp
     {
         static void Main(string[] args)
         {
-
             MyMath.Test();
         }
     }
