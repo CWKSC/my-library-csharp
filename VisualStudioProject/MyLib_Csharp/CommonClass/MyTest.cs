@@ -37,6 +37,7 @@ namespace MyLib_Csharp.CommonClass
                 action();
             }
             stopwatch.Stop();
+            Console.WriteLine("Warmup finish");
         }
         public static void Warmup<T>(this Func<T> func)
         {
