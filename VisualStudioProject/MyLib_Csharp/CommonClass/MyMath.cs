@@ -157,10 +157,37 @@ namespace MyLib_Csharp.CommonClass
 
         public static bool IsPrime_short(short n)
         {
-            if (n <= 1 || (n & 1) != 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0 || n % 11 == 0 || n % 13 == 0 || n % 17 == 0 || n % 19 == 0 || n % 23 == 0 || n % 29 == 0 || n % 31 == 0 || n % 37 == 0 || n % 41 == 0 || n % 43 == 0 || n % 47 == 0 || n % 53 == 0 || n % 59 == 0 || n % 61 == 0 || n % 67 == 0 || n % 71 == 0 || n % 73 == 0 || n % 79 == 0 || n % 83 == 0 || n % 89 == 0 || n % 97 == 0 || n % 101 == 0 || n % 103 == 0 || n % 107 == 0 || n % 109 == 0 || n % 113 == 0 || n % 127 == 0 || n % 131 == 0 || n % 137 == 0 || n % 139 == 0 || n % 149 == 0 || n % 151 == 0 || n % 157 == 0 || n % 163 == 0 || n % 167 == 0 || n % 173 == 0 || n % 179 == 0 || n % 181 == 0)
+            if (n <= 1 || n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n % 7 == 0 || n % 11 == 0 || n % 13 == 0 || n % 17 == 0 || n % 19 == 0 || n % 23 == 0 || n % 29 == 0 || n % 31 == 0 || n % 37 == 0 || n % 41 == 0 || n % 43 == 0 || n % 47 == 0 || n % 53 == 0 || n % 59 == 0 || n % 61 == 0 || n % 67 == 0 || n % 71 == 0 || n % 73 == 0 || n % 79 == 0 || n % 83 == 0 || n % 89 == 0 || n % 97 == 0 || n % 101 == 0 || n % 103 == 0 || n % 107 == 0 || n % 109 == 0 || n % 113 == 0 || n % 127 == 0 || n % 131 == 0 || n % 137 == 0 || n % 139 == 0 || n % 149 == 0 || n % 151 == 0 || n % 157 == 0 || n % 163 == 0 || n % 167 == 0 || n % 173 == 0 || n % 179 == 0 || n % 181 == 0)
                 return false;
             return true;
         }
+
+        public static bool TestPrimeTestCorrect(Func<int, bool> isPrime)
+        {
+            for (int i = 0; i < short.MaxValue; i++) 
+            {
+                if(IsPrime_normal(i) ^ isPrime(i))
+                {
+                    Console.WriteLine(isPrime.Method.Name + " fail in " + i + ", because isPrime(" + i + ") = " + isPrime(i));
+                    return false;
+                }
+            }
+            Console.WriteLine(isPrime.Method.Name + " pass");
+            return true;
+        }
+        //public static bool TestPrimeTestCorrect(Func<short, bool> isPrime)
+        //{
+        //    for (short i = 0; i < short.MaxValue; i++)
+        //    {
+        //        if (IsPrime_normal(i) != isPrime(i))
+        //        {
+        //            Console.WriteLine(isPrime.Method.Name + " pass");
+        //            return false;
+        //        }
+        //    }
+        //    Console.WriteLine(isPrime.Method.Name + " fail");
+        //    return true;
+        //}
         #endregion
 
 
@@ -574,41 +601,48 @@ namespace MyLib_Csharp.CommonClass
         #endregion
 
 
+
+
         public static void Test()
         {
 
             // Trigonometric functions //
             Console.WriteLine("Sin(30) = " + Sin(30));
             Console.WriteLine("Cos(60) = " + Sin(30));
-            Console.WriteLine("Tan(45) = " + Sin(30) + '\n');
+            Console.WriteLine("Tan(45) = " + Sin(30));
+            Console.WriteLine();
 
             // Cartesian to Polar //
             Console.WriteLine("CartesianToPolar_Radians (1, 1) = " + CartesianToPolar_Radians(1, 1));
             Console.WriteLine("CartesianToPolar_PI      (1, 1) = " + CartesianToPolar_PI(1, 1));
             Console.WriteLine("CartesianToPolar_Degrees (1, 1) = " + CartesianToPolar_Degrees(1, 1));
             Console.WriteLine("CartesianToPolar_Gradians(1, 1) = " + CartesianToPolar_Gradians(1, 1));
-            Console.WriteLine("CartesianToPolar_Turns   (1, 1) = " + CartesianToPolar_Turns(1, 1) + '\n');
+            Console.WriteLine("CartesianToPolar_Turns   (1, 1) = " + CartesianToPolar_Turns(1, 1));
+            Console.WriteLine();
 
             // Cartesian to Polar (start at Up) //
             Console.WriteLine("CartesianToPolar_startAtUp_Radians (1, 1) = " + CartesianToPolar_startAtUp_Radians(1, 1));
             Console.WriteLine("CartesianToPolar_startAtUp_PI      (1, 1) = " + CartesianToPolar_startAtUp_PI(1, 1));
             Console.WriteLine("CartesianToPolar_startAtUp_Degrees (1, 1) = " + CartesianToPolar_startAtUp_Degrees(1, 1));
             Console.WriteLine("CartesianToPolar_startAtUp_Gradians(1, 1) = " + CartesianToPolar_startAtUp_Gradians(1, 1));
-            Console.WriteLine("CartesianToPolar_startAtUp_Turns   (1, 1) = " + CartesianToPolar_startAtUp_Turns(1, 1) + '\n');
+            Console.WriteLine("CartesianToPolar_startAtUp_Turns   (1, 1) = " + CartesianToPolar_startAtUp_Turns(1, 1));
+            Console.WriteLine();
 
             // Cartesian to Polar (start at Left) //
             Console.WriteLine("CartesianToPolar_startAtLeft_Radians (1, 1) = " + CartesianToPolar_startAtLeft_Radians(1, 1));
             Console.WriteLine("CartesianToPolar_startAtLeft_PI      (1, 1) = " + CartesianToPolar_startAtLeft_PI(1, 1));
             Console.WriteLine("CartesianToPolar_startAtLeft_Degrees (1, 1) = " + CartesianToPolar_startAtLeft_Degrees(1, 1));
             Console.WriteLine("CartesianToPolar_startAtLeft_Gradians(1, 1) = " + CartesianToPolar_startAtLeft_Gradians(1, 1));
-            Console.WriteLine("CartesianToPolar_startAtLeft_Turns   (1, 1) = " + CartesianToPolar_startAtLeft_Turns(1, 1) + '\n');
+            Console.WriteLine("CartesianToPolar_startAtLeft_Turns   (1, 1) = " + CartesianToPolar_startAtLeft_Turns(1, 1));
+            Console.WriteLine();
 
             // Cartesian to Polar (start at Down) //
             Console.WriteLine("CartesianToPolar_startAtDown_Radians (1, 1) = " + CartesianToPolar_startAtDown_Radians(1, 1));
             Console.WriteLine("CartesianToPolar_startAtDown_PI      (1, 1) = " + CartesianToPolar_startAtDown_PI(1, 1));
             Console.WriteLine("CartesianToPolar_startAtDown_Degrees (1, 1) = " + CartesianToPolar_startAtDown_Degrees(1, 1));
             Console.WriteLine("CartesianToPolar_startAtDown_Gradians(1, 1) = " + CartesianToPolar_startAtDown_Gradians(1, 1));
-            Console.WriteLine("CartesianToPolar_startAtDown_Turns   (1, 1) = " + CartesianToPolar_startAtDown_Turns(1, 1) + '\n');
+            Console.WriteLine("CartesianToPolar_startAtDown_Turns   (1, 1) = " + CartesianToPolar_startAtDown_Turns(1, 1));
+            Console.WriteLine();
 
             // Degrees Convert //
             Console.WriteLine("DegreesToRadians    (30) = " + DegreesToRadians(30));
@@ -619,14 +653,19 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("DegreesToUnitVector2(30) = " + DegreesToUnitVector2(30));
             Console.WriteLine("DegreesToList       (30) = [" + DegreesToList(30)[0] + ", " + DegreesToList(30)[1] + "]");
             Console.WriteLine("DegreesToUnitList   (30) = [" + DegreesToUnitList(30)[0] + ", " + DegreesToUnitList(30)[1] + "]");
-
+            Console.WriteLine();
 
             // Here start the performance test //
 
             // Test Setting //
             MyTest.SetTestSetting();
+            Console.WriteLine();
 
             // Prime Test //
+            TestPrimeTestCorrect(IsPrime_normal);
+            TestPrimeTestCorrect((i) => IsPrime_short((short)i));
+            TestPrimeTestCorrect(IsPrime_int);
+            Console.WriteLine();
 
             // Prime Test (short) //
             // MyMath.IsPrime_short()
