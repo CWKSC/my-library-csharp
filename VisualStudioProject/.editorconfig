@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0022: 使用方法的區塊主體
+csharp_style_expression_bodied_methods = false:silent

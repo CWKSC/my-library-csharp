@@ -1,8 +1,6 @@
 ﻿using MyLib_Csharp.DataStructure;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 
 namespace MyLib_Csharp.CommonClass

@@ -2,6 +2,7 @@
 using MyLib_Csharp.DataStructure;
 using System;
 
+
 namespace MyLib_Csharp
 {
     class Program
@@ -9,7 +10,6 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            
             MyMath.Test();
         }
     }

@@ -26,17 +26,18 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-        public enum Find
-        {
-            F, m, a
-        }
-        public static float F_ma(Find find, float p1, float p2) => find switch
-        {
-            Find.F => p1 * p2,
-            Find.m => p1 / p2,
-            Find.a => p1 / p2,
-            _ => throw new ArgumentException("Unexpected Find enum value.")
-        };
+        public static double? F_ma(double? F, double? m, double? a) => 
+            F == null ? m * a : 
+            m == null ? F / a : 
+            a == null ? F / m : 
+            null;
+        /*
+        if (F == null) return m * a;
+        if (m == null) return F / a;
+        if (a == null) return F / m;
+        return null;
+        */
+
 
 
     }
