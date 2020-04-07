@@ -17,6 +17,12 @@ namespace MyLib_Csharp.CommonClass
             return mass * velocity * velocity / 2.0f;
         }
 
+        public static double? KE_mv(double? KE, double? m, double? v) =>
+            KE == null ? m * v * v / 2.0f :
+            m == null  ? 2 * KE / (v * v) :
+            v == null  ? 2 * KE / m :
+            null;
+
         public static float gravity = 9.81f;
 
         public static bool CircleCollision(Vector2 a, float r1, Vector2 b, float r2)
@@ -37,7 +43,6 @@ namespace MyLib_Csharp.CommonClass
         if (a == null) return F / m;
         return null;
         */
-
 
 
     }
