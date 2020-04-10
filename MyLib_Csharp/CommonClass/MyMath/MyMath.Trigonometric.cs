@@ -3,20 +3,10 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
-
-
 namespace MyLib_Csharp.CommonClass
 {
     public partial class MyMath
     {
-
-        public static void TrigonometricTest()
-        {
-            Console.WriteLine("Sin(30) = " + Sin(30));
-            Console.WriteLine("Cos(60) = " + Sin(30));
-            Console.WriteLine("Tan(45) = " + Sin(30));
-            Console.WriteLine();
-        }
 
         public static double Sin(double degrees) => Math.Sin(DegreesToRadians(degrees));
         public static double Cos(double degrees) => Math.Cos(DegreesToRadians(degrees));

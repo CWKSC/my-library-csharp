@@ -11,8 +11,8 @@ namespace MyLib_Csharp.CommonClass
 
         public static void SetTestSetting()
         {
-            MyTest.SetProcessPriority();
-            MyTest.Warmup(() => { });
+            SetProcessPriority();
+            Warmup(() => { });
         }
 
         public static void SetProcessPriority()
