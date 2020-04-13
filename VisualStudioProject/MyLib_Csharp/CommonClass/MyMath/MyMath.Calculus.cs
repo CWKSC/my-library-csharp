@@ -11,6 +11,71 @@ namespace MyLib_Csharp.CommonClass
 
         public static void CalculusTest()
         {
+            // Differential x^4 (x = 3)
+            // Answer is 4x^3, 4(3)^3 = 108
+
+            Console.WriteLine("[ Differential x^4 (x = 3) ]");
+            Console.WriteLine("Answer is 4x^3, 4(3)^3 = 108");
+            Console.WriteLine();
+
+
+            Console.WriteLine("[Diff_Forward]");
+            double Differential_x_pow_4__3 = Diff_Forward(x => x * x * x * x, 3);
+            Console.WriteLine("Use default(1e-3) step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+            Differential_x_pow_4__3 = Diff_Forward(x => x * x * x * x, 3, 1e-6);
+            Console.WriteLine("Use 1e-6 step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+
+            Console.WriteLine("[Diff_Backward]");
+            Differential_x_pow_4__3 = Diff_Backward(x => x * x * x * x, 3);
+            Console.WriteLine("Use default(1e-3) step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+            Differential_x_pow_4__3 = Diff_Backward(x => x * x * x * x, 3, 1e-6);
+            Console.WriteLine("Use 1e-6 step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+
+            Console.WriteLine("[Diff_Midden]");
+            Differential_x_pow_4__3 = Diff_Midden(x => x * x * x * x, 3);
+            Console.WriteLine("Use default(1e-3) step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+            Differential_x_pow_4__3 = Diff_Midden(x => x * x * x * x, 3, 1e-6);
+            Console.WriteLine("Use 1e-6 step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+
+            Console.WriteLine("[Diff_FivePointStencil]");
+            Differential_x_pow_4__3 = Diff_FivePointStencil(x => x * x * x * x, 3);
+            Console.WriteLine("Use default(1e-3) step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+            Differential_x_pow_4__3 = Diff_FivePointStencil(x => x * x * x * x, 3, 1e-6);
+            Console.WriteLine("Use 1e-6 step");
+            Console.WriteLine("Answer : " + Differential_x_pow_4__3);
+            Console.WriteLine("Delta : " + (Differential_x_pow_4__3 - 108));
+            Console.WriteLine();
+
+            Console.WriteLine();
+
             // Integral 3x^2 dx (4 to 10)
             // Answer is x^3, then (10)^3 - (4)^3 = 936
 
