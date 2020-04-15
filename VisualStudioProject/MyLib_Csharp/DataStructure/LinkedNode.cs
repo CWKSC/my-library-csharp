@@ -16,8 +16,7 @@ namespace MyLib_Csharp.DataStructure
 
         public void RemoveChild(LinkedNode<T> child) => children.Remove(child);
 
-
-
-
     }
+
+
 }
