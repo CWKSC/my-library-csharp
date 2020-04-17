@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
-    class LinkedNode<T>
+    public class LinkedNode<T>
     {
         public T data;
         public LinkedList<LinkedNode<T>> children = new LinkedList<LinkedNode<T>>();
@@ -16,7 +16,18 @@ namespace MyLib_Csharp.DataStructure
 
         public void RemoveChild(LinkedNode<T> child) => children.Remove(child);
 
-    }
 
+        public LinkedNode<T> ForEach(Action<LinkedNode<T>> forEach)
+        {
+            foreach (LinkedNode<T> child in children)
+            {
+                forEach(child);
+            }
+            return this;
+        }
+
+
+
+    }
 
 }
