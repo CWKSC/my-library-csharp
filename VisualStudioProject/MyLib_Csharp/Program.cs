@@ -10,7 +10,7 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            Graph<int>.Test();
+            Graph<string>.Test();
             //MyMath.CalculusTest();
         }
     }

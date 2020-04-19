@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
-    class Margin
+    public class Margin
     {
         public float top;
         public float bottom;

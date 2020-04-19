@@ -6,8 +6,55 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public partial class MyMath
+    partial class MyMath
     {
+
+        public static void ConvertTest()
+        {
+            // Cartesian to Polar //
+            Console.WriteLine("CartesianToPolar_Radians (1, 1) = " + CartesianToPolar_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_PI      (1, 1) = " + CartesianToPolar_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_Degrees (1, 1) = " + CartesianToPolar_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_Gradians(1, 1) = " + CartesianToPolar_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_Turns   (1, 1) = " + CartesianToPolar_Turns(1, 1));
+            Console.WriteLine();
+
+            // Cartesian to Polar (start at Up) //
+            Console.WriteLine("CartesianToPolar_startAtUp_Radians (1, 1) = " + CartesianToPolar_startAtUp_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_PI      (1, 1) = " + CartesianToPolar_startAtUp_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Degrees (1, 1) = " + CartesianToPolar_startAtUp_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Gradians(1, 1) = " + CartesianToPolar_startAtUp_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtUp_Turns   (1, 1) = " + CartesianToPolar_startAtUp_Turns(1, 1));
+            Console.WriteLine();
+
+            // Cartesian to Polar (start at Left) //
+            Console.WriteLine("CartesianToPolar_startAtLeft_Radians (1, 1) = " + CartesianToPolar_startAtLeft_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_PI      (1, 1) = " + CartesianToPolar_startAtLeft_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Degrees (1, 1) = " + CartesianToPolar_startAtLeft_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Gradians(1, 1) = " + CartesianToPolar_startAtLeft_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtLeft_Turns   (1, 1) = " + CartesianToPolar_startAtLeft_Turns(1, 1));
+            Console.WriteLine();
+
+            // Cartesian to Polar (start at Down) //
+            Console.WriteLine("CartesianToPolar_startAtDown_Radians (1, 1) = " + CartesianToPolar_startAtDown_Radians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_PI      (1, 1) = " + CartesianToPolar_startAtDown_PI(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Degrees (1, 1) = " + CartesianToPolar_startAtDown_Degrees(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Gradians(1, 1) = " + CartesianToPolar_startAtDown_Gradians(1, 1));
+            Console.WriteLine("CartesianToPolar_startAtDown_Turns   (1, 1) = " + CartesianToPolar_startAtDown_Turns(1, 1));
+            Console.WriteLine();
+
+            // Degress Convert //
+            Console.WriteLine("DegreesToRadians    (30) = " + DegreesToRadians(30));
+            Console.WriteLine("DegreesToPI         (30) = " + DegreesToPI(30));
+            Console.WriteLine("DegreesToGradians   (30) = " + DegreesToGradians(30));
+            Console.WriteLine("DegreesToTurns      (30) = " + DegreesToTurns(30));
+            Console.WriteLine("DegreesToVector2    (30) = " + DegreesToVector2(30));
+            Console.WriteLine("DegreesToUnitVector2(30) = " + DegreesToUnitVector2(30));
+            Console.WriteLine("DegreesToList       (30) = [" + DegreesToList(30)[0] + ", " + DegreesToList(30)[1] + "]");
+            Console.WriteLine("DegreesToUnitList   (30) = [" + DegreesToUnitList(30)[0] + ", " + DegreesToUnitList(30)[1] + "]");
+            Console.WriteLine();
+        }
+
 
 
         #region Cartesian to Polar
@@ -223,20 +270,6 @@ namespace MyLib_Csharp.CommonClass
         #endregion
 
 
-        #region Integral
-        public double Integral(Func<double, double> func, double lower, double upper, double step = 0.001)
-        {
-            double sum = 0;
-            for (double i = lower; i <= upper; i += step)
-            {
-                sum += func(i) * step;
-            }
-            return sum;
-        }
-        #endregion
-
-
-        #region Convert
 
         #region Degrees convert
         public static double DegreesToRadians(double degrees) => degrees * DegToRad;
@@ -251,6 +284,7 @@ namespace MyLib_Csharp.CommonClass
         public static Angle DegreesToAngle(double degrees) => new Angle(AngleType.Degrees, degrees);
         #endregion
 
+
         #region Radians convert
         public static double RadiansToDegrees(double radians) => radians * RadToDeg;
         public static double RadiansToPI(double radians) => radians * RadToPI;
@@ -263,6 +297,7 @@ namespace MyLib_Csharp.CommonClass
         /// <summary> return new Angle </summary>
         public static Angle RadiansToAngle(double radians) => new Angle(radians);
         #endregion
+
 
         #region PI convert
         public static double PIToDegrees(double pi) => pi * PIToDeg;
@@ -277,6 +312,7 @@ namespace MyLib_Csharp.CommonClass
         public static Angle PIToAngle(double pi) => new Angle(AngleType.Pi, pi);
         #endregion
 
+
         #region Gradians convert
         public static double GradiansToDegrees(double gradians) => gradians * GradToDeg;
         public static double GradiansToRadians(double gradians) => gradians * GradToRad;
@@ -290,6 +326,7 @@ namespace MyLib_Csharp.CommonClass
         public static Angle GradiansToAngle(double gradians) => new Angle(AngleType.Gradians, gradians);
         #endregion
 
+
         #region Turn convert
         public static double TurnsToDegrees(double turns) => turns * TurnToDeg;
         public static double TurnsToRadians(double turns) => turns * TurnToRad;
@@ -301,6 +338,7 @@ namespace MyLib_Csharp.CommonClass
         public static List<double> TurnsToUnitList(double turns) => RadiansToUnitList(TurnsToRadians(turns));
         public static Angle TurnsToAngle(double turns) => new Angle(AngleType.Turns, turns);
         #endregion
+
 
         #region Vector2 convert
         public static double Vector2ToDegrees(Vector2 vector2) => CartesianToPolar_Degrees(vector2);
@@ -317,6 +355,7 @@ namespace MyLib_Csharp.CommonClass
         public static Angle Vector2ToAngle(Vector2 vector2) => new Angle(vector2);
         #endregion
 
+
         #region UnitVector2 convert
         public static double UnitVector2ToDegrees(Vector2 unitVector2) => CartesianToPolar_Degrees(Vector2.Normalize(unitVector2));
         public static double UnitVector2ToRadians(Vector2 unitVector2) => CartesianToPolar_Radians(Vector2.Normalize(unitVector2));
@@ -330,13 +369,14 @@ namespace MyLib_Csharp.CommonClass
         public static Angle UnitVector2ToAngle(Vector2 unitVector2) => new Angle(Vector2.Normalize(unitVector2));
         #endregion
 
+
         #region List convert
         public static double ListToDegrees(List<double> list) => CartesianToPolar_Degrees(list);
         public static double ListToRadians(List<double> list) => CartesianToPolar_Radians(list);
         public static double ListToPI(List<double> list) => CartesianToPolar_PI(list);
         public static double ListToGradians(List<double> list) => CartesianToPolar_Gradians(list);
         public static double ListToTurns(List<double> list) => CartesianToPolar_Turns(list);
-        public static Vector2 ListToVector2(List<double> list) => new Vector2((float) list[0], (float) list[1]);
+        public static Vector2 ListToVector2(List<double> list) => new Vector2((float)list[0], (float)list[1]);
         /// <summary> return new Vector2 </summary>
         public static Vector2 ListToUnitVector2(List<double> list) => Vector2.Normalize(new Vector2((float)list[0], (float)list[1]));
         /// <summary> return new List </summary>
@@ -344,6 +384,7 @@ namespace MyLib_Csharp.CommonClass
         /// <summary> return new Angle </summary>
         public static Angle ListToAngle(List<double> list) => new Angle(list);
         #endregion
+
 
         #region UnitList convert
         public static double UnitListToDegrees(List<double> unitList) => CartesianToPolar_Degrees(NormalizeList(unitList));
@@ -358,65 +399,6 @@ namespace MyLib_Csharp.CommonClass
         public static List<double> UnitListToList(List<double> unitList) => new List<double>(NormalizeList(unitList));
         /// <summary> return new Angle </summary>
         public static Angle UnitListToAngle(List<double> unitList) => new Angle(NormalizeList(unitList));
-        #endregion
-
-        #endregion
-
-
-        #region Normalize
-
-        #region NormalizeList
-        /// <summary> return new List </summary>
-        public static List<double> NormalizeList(List<double> list) => UnitVector2ToList(ListToUnitVector2(list));
-        #endregion
-
-        #region Normalize angle
-
-        #region Normalize angle [0, fullTurn)
-        /// <summary> [0, 360) </summary>
-        public static double NormalizeDegrees_0_360(double degrees)
-        {
-            while (degrees >= TurnToDeg) degrees -= TurnToDeg;
-            while (degrees < 0) degrees += TurnToDeg;
-            return degrees;
-        }
-        /// <summary> [0, TwoPI) </summary>
-        public static double NormalizeRadians_0_TwoPI(double radians)
-        {
-            while (radians >= TurnToRad) radians -= TurnToRad;
-            while (radians < 0) radians += TurnToRad;
-            return radians;
-        }
-        /// <summary> [0, 400) </summary>
-        public static double NormalizeGradians_0_400(double gradians)
-        {
-            while (gradians >= TurnToGrad) gradians -= TurnToGrad;
-            while (gradians < 0) gradians += TurnToGrad;
-            return gradians;
-        }
-        /// <summary> [0, 1) </summary>
-        public static double NormalizeTurn_0_1(double turns)
-        {
-            while (turns >= 0) turns -= 1;
-            while (turns < 0) turns += 1;
-            return turns;
-        }
-        /// <summary> [0, fullTurn) , return new Angle</summary> 
-        public static Angle NormalizeAngle_0_fullTurn(Angle angle) => new Angle(angle).Normalize();
-        #endregion
-
-        #region Normalize angle [-halfTurn, halfTurn)
-        /// <summary> [-180, 180) </summary>
-        public static double NormalizeDegrees_neg180_180(double degrees)
-        {
-            while (degrees >= HalfTurnDeg) degrees -= TurnToDeg;
-            while( degrees < -HalfTurnDeg) degrees += TurnToDeg;
-            return degrees;
-        }
-        #endregion
-
-        #endregion
-
         #endregion
 
 
