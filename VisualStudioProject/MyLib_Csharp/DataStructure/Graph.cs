@@ -4,6 +4,8 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
+
+
     public partial class Graph<T>
     {
         public readonly LinkedList<GraphNode<T>> nodes = new LinkedList<GraphNode<T>>();
