@@ -28,6 +28,12 @@ namespace MyLib_Csharp.DataStructure
             return this;
         }
 
+        public Graph<T> AddEdge(GraphNode<T> a, GraphNode<T> b)
+        {
+            a.LinkTo(b);
+            return this;
+        }
+
         public Graph<T> ForEach(Action<GraphNode<T>> forEach)
         {
             foreach (GraphNode<T> node in nodes)
