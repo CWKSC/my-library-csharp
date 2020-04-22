@@ -11,5 +11,12 @@ namespace MyLib_Csharp.DataStructure
         public int b;
         public int a;
 
+        public void Invert()
+        {
+            r = 255 - r;
+            g = 255 - g;
+            b = 255 - b;
+        }
+
     }
 }
