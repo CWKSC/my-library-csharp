@@ -220,7 +220,6 @@ namespace MyLib_Csharp.CommonClass
 
             MyTest.SetTestSetting();
 
-
             /* Uncomment to see sorting flow
              * many Print and so dataLength = 10 is suitable 
              * (add "*" here to uncomment quickly) --> /

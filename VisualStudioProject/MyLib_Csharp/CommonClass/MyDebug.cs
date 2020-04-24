@@ -6,16 +6,16 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyDebug
+    public class MyDebug
     {
 
-        [Conditional("MyDebug")] public void Log(string msg) => Console.Write(msg);
-        [Conditional("MyDebug")] public void Logln(string msg) => Console.WriteLine(msg);
+        [Conditional("MyDebug")] public static void Log(string msg) => Console.Write(msg);
+        [Conditional("MyDebug")] public static void Logln(string msg) => Console.WriteLine(msg);
 
-        [Conditional("MyDebug")] public void Call(Action action) => action();
-        [Conditional("MyDebug")] public void Call(Action<object[]> action, params object[] parameters) => action(parameters);
-        [Conditional("MyDebug")] public void Call<T>(Func<T> func) => func();
-        [Conditional("MyDebug")] public void Call<T>(Func<object[], T> func, params object[] parameters) => func(parameters);
+        [Conditional("MyDebug")] public static void Call(Action action) => action();
+        [Conditional("MyDebug")] public static void Call(Action<object[]> action, params object[] parameters) => action(parameters);
+        [Conditional("MyDebug")] public static void Call<T>(Func<T> func) => func();
+        [Conditional("MyDebug")] public static void Call<T>(Func<object[], T> func, params object[] parameters) => func(parameters);
 
 
         // https://stackoverflow.com/a/171974/11693034

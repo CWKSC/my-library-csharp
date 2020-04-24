@@ -6,10 +6,10 @@ namespace MyLib_Csharp.DataStructure
 {
     class RGBA
     {
-        public int r;
-        public int g;
-        public int b;
-        public int a;
+        public int r = 255;
+        public int g = 255;
+        public int b = 255;
+        public int a = 255;
 
         public void Invert()
         {

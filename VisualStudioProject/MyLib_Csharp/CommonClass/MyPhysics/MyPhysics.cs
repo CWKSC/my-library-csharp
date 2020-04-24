@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyPhysics
+    public partial class MyPhysics
     {
         public static float Momentum(float mass, float velocity)
         {
@@ -43,6 +43,10 @@ namespace MyLib_Csharp.CommonClass
         if (a == null) return F / m;
         return null;
         */
+
+        public static void F_ma(out double F,     double m,     double a) => F = m * a;
+        public static void F_ma(    double F, out double m,     double a) => m = F / a;
+        public static void F_ma(    double F,     double m, out double a) => a = F / m;
 
 
     }

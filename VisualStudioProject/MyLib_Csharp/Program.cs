@@ -1,5 +1,6 @@
 ﻿using MyLib_Csharp.CommonClass;
 using MyLib_Csharp.DataStructure;
+using MyLib_Csharp.Tool;
 using System;
 
 
@@ -10,7 +11,7 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            Graph<string>.Test();
+            FSM.Test();
             //MyMath.CalculusTest();
         }
     }
