@@ -22,7 +22,7 @@ namespace MyLib_Csharp.Tool
         public void Update()
         {
             currentState.Enter();
-            (var isTransition, var targetState) = currentState.CheckTransition();
+            (var isTransition, var targetState) = currentState.CheckConditionTransition();
             if (isTransition)
             {
                 currentState.Exit();
@@ -40,6 +40,12 @@ namespace MyLib_Csharp.Tool
             currentState = targetState;
             currentState.Enter();
             currentState.update();
+        }
+
+        public void ReceiveMessage(string message)
+        {
+            (var isTransition, var targetState) = currentState.CheckMessageTransition(message);
+            if (isTransition) DirectTransition(targetState);
         }
 
     }
