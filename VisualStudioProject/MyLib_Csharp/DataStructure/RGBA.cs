@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
-    class RGBA
+    public class RGBA
     {
         public int r = 255;
         public int g = 255;

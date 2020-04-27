@@ -11,7 +11,7 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            RuleBasedSystem.Test();
+            LagrangeInterpolationGenerator.Test();
             //MyMath.CalculusTest();
         }
     }

@@ -1,7 +1,4 @@
-﻿using MyLib_Csharp.DataStructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MyLib_Csharp.Tool
 {
