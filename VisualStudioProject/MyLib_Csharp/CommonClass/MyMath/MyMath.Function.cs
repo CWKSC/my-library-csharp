@@ -39,5 +39,16 @@ namespace MyLib_Csharp.CommonClass
             z, 0, 100);
 
 
+        public static double XPow2_sub_0_5(double x)
+        {
+            return x * x - 0.5;
+        }
+
+        public static double XPow10_sub_1(double x)
+        {
+            return Pow(x, 10) - 1;
+        }
+
+
     }
 }
