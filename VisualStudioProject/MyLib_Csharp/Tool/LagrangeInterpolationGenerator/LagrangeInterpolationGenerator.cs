@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp.CommonClass;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -38,6 +39,25 @@ namespace MyLib_Csharp.Tool
 					Console.Write(yt == y ? $"({y})" : $"((x-{x})/({xt - x}))");
 				}
 			}
+		}
+
+
+
+		public static double Calc(int x, params (double x, double y)[] points) => 
+			MyMath.SumOf(
+				(j) => points[j].y * LagrangeBasisPolynomials(points, j, x, points.Length),
+				0, points.Length);
+
+		public static double LagrangeBasisPolynomials((double x, double y)[] points, int j, int x, int k) => 
+			MyMath.ProductOf(LagrangeBasisPolynomials_Func, new object[] { points , x, j},
+				0, k, (m) => m != j);
+
+		public static double LagrangeBasisPolynomials_Func(int m, object[] args)
+		{
+			(double x, double y)[] points = ((double x, double y)[])args[0];
+			double x = (double)args[1];
+			int j = (int)args[2];
+			return (x - points[m].x) / (points[j].x - points[m].x);
 		}
 
 

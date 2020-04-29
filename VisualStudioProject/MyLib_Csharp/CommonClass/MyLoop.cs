@@ -10,7 +10,8 @@ namespace MyLib_Csharp.CommonClass
 
         public static void Loop(this int times, Action action)
         {
-            for (int i = 0; i < times; i++) action();
+            for (int i = 0; i < times; i++)
+                action();
         }
 
 
