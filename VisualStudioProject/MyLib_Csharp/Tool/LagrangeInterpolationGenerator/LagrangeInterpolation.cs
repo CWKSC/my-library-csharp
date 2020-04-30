@@ -5,10 +5,17 @@ using System.Text;
 
 namespace MyLib_Csharp.Tool
 {
-    public partial class LagrangeInterpolationGenerator
+    public partial class LagrangeInterpolation
     {
+		public (double x, double y)[] points;
 
-		public static void Run(params (double x, double y)[] points)
+		public LagrangeInterpolation(params (double x, double y)[] points)
+		{
+			this.points = points;
+		}
+
+
+		public static void Generate(params (double x, double y)[] points)
 		{
 			int num = points.Length;
 			if (num < 2) return;
@@ -25,7 +32,7 @@ namespace MyLib_Csharp.Tool
 			}
 		}
 
-		public static void Run2(params (double x, double y)[] points)
+		public static void Generate2(params (double x, double y)[] points)
 		{
 			int num = points.Length;
 			if (num < 2) return;
@@ -43,19 +50,22 @@ namespace MyLib_Csharp.Tool
 
 
 
-		public static double Calc(int x, params (double x, double y)[] points) => 
-			MyMath.SumOf(
-				(j) => points[j].y * LagrangeBasisPolynomials(points, j, x, points.Length),
-				0, points.Length);
+		public static double Calc(int x, params (double x, double y)[] points)
+		{
+			int k = points.Length - 1;
+			return MyMath.SumOf(0, k,
+				(j, _) => points[j].y * LagrangeBasisPolynomials(points, j, x, k));
+		}
 
 		public static double LagrangeBasisPolynomials((double x, double y)[] points, int j, int x, int k) => 
-			MyMath.ProductOf(LagrangeBasisPolynomials_Func, new object[] { points , x, j},
-				0, k, (m) => m != j);
+			MyMath.ProductOf(0, k, 
+				LagrangeBasisPolynomials_Func, new object[] { points , x, j }, 
+				(m) => m != j);
 
 		public static double LagrangeBasisPolynomials_Func(int m, object[] args)
 		{
 			(double x, double y)[] points = ((double x, double y)[])args[0];
-			double x = (double)args[1];
+			int x = (int)args[1];
 			int j = (int)args[2];
 			return (x - points[m].x) / (points[j].x - points[m].x);
 		}

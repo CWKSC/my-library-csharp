@@ -18,6 +18,39 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
+
+        public static double SumOf(int start, int end, 
+            Func<int, object[], double> f, object[] args = null, 
+            Func<int, bool> condition = null)
+        {
+            double sum = 0;
+            for(int i = start; i <= end; i++)
+            {
+                if (condition == null || condition(i))
+                {
+                    sum += f(i, args);
+                }
+            }
+            return sum;
+        }
+
+        public static double ProductOf(int start, int end, 
+            Func<int, object[], double> f, object[] args = null, 
+            Func<int, bool> condition = null)
+        {
+            double productOf = 1;
+            for (int i = start; i <= end; i++)
+            {
+                if (condition == null || condition(i))
+                {
+                    productOf *= f(i, args);
+                }
+            }
+            return productOf;
+        }
+
+
+
         public static Func<int, T> ToIntFunc<T>(this Func<double, T> f) => x => f(x);
 
 
@@ -37,6 +70,17 @@ namespace MyLib_Csharp.CommonClass
         public static double Gamma(double z) => Integral(
             (t, z) => Pow(t, z - 1) / Exp(t),
             z, 0, 100);
+
+
+        public static double XPow2_sub_0_5(double x)
+        {
+            return x * x - 0.5;
+        }
+
+        public static double XPow10_sub_1(double x)
+        {
+            return Pow(x, 10) - 1;
+        }
 
 
     }

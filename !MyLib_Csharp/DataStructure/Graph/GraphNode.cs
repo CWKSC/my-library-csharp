@@ -13,6 +13,11 @@ namespace MyLib_Csharp.DataStructure
 
         public GraphNode(params GraphNode<T>[] childs) : base(childs) { }
 
+        public void LinkTo(GraphNode<T> other)
+        {
+            AddChild(other);
+            other.AddChild(this);
+        }
 
     }
 }

@@ -4,6 +4,8 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
+
+
     public partial class Graph<T>
     {
         public readonly LinkedList<GraphNode<T>> nodes = new LinkedList<GraphNode<T>>();
@@ -25,6 +27,12 @@ namespace MyLib_Csharp.DataStructure
         public Graph<T> RemoveNode(GraphNode<T> node)
         {
             nodes.Remove(node);
+            return this;
+        }
+
+        public Graph<T> AddEdge(GraphNode<T> a, GraphNode<T> b)
+        {
+            a.LinkTo(b);
             return this;
         }
 

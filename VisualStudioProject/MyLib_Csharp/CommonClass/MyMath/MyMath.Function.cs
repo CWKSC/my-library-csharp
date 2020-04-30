@@ -19,20 +19,24 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static double SumOf(Func<int, double> f, int start, int end, Func<bool> condition = null)
+        public static double SumOf(int start, int end, 
+            Func<int, object[], double> f, object[] args = null, 
+            Func<int, bool> condition = null)
         {
             double sum = 0;
             for(int i = start; i <= end; i++)
             {
-                if (condition == null || condition())
+                if (condition == null || condition(i))
                 {
-                    sum += f(i);
+                    sum += f(i, args);
                 }
             }
             return sum;
         }
 
-        public static double ProductOf(Func<int, object[], double> f, object[] args, int start, int end, Func<int, bool> condition = null)
+        public static double ProductOf(int start, int end, 
+            Func<int, object[], double> f, object[] args = null, 
+            Func<int, bool> condition = null)
         {
             double productOf = 1;
             for (int i = start; i <= end; i++)

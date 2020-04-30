@@ -20,6 +20,12 @@ namespace MyLib_Csharp.DataStructure
 
         public void RemoveChild(LinkedNode child) => childrens.Remove(child);
 
+        public void LinkTo(LinkedNode other)
+        {
+            AddChild(other);
+            other.AddChild(this);
+        }
+
         public LinkedNode ForEach(Action<LinkedNode> forEach)
         {
             foreach (LinkedNode child in childrens)
@@ -49,6 +55,11 @@ namespace MyLib_Csharp.DataStructure
 
         public void RemoveChild(LinkedNode<T> child) => childrens.Remove(child);
 
+        public void LinkTo(LinkedNode<T> other)
+        {
+            AddChild(other);
+            other.AddChild(this);
+        }
 
         public LinkedNode<T> ForEach(Action<LinkedNode<T>> forEach)
         {

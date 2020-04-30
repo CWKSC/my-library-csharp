@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    class MyFormat
+    public class MyFormat
     {
 
         /// <summary>
