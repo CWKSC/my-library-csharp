@@ -49,6 +49,29 @@ namespace MyLib_Csharp.Tool
 		}
 
 
+		public static void Generate3(params (double x, double y)[] points)
+		{
+			int num = points.Length;
+			if (num < 2) return;
+			MyFunction.JoinFunc(points, (pointT, t) =>
+				MyFunction.JoinFunc(points, (pointI, i) => 
+					Console.Write(t == i ? $"({pointI.y})" : $"((x-{pointI.x})/({pointT.x - pointI.x}))")
+				, () => Console.Write("*"))
+			, () => Console.Write("+"));
+		}
+
+		public static void Generate4(params (double x, double y)[] points)
+		{
+			int num = points.Length;
+			if (num < 2) return;
+			points.JoinPrint((pointT, t) =>
+				points.JoinPrint((pointI, i) =>
+					t == i ? $"({pointI.y})" : $"((x-{pointI.x})/({pointT.x - pointI.x}))"
+			   , "*")
+			, "+");
+		}
+
+		 
 
 		public static double Calc(int x, params (double x, double y)[] points)
 		{
