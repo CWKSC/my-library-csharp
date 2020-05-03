@@ -53,8 +53,8 @@ namespace MyLib_Csharp.Tool
 		{
 			int num = points.Length;
 			if (num < 2) return;
-			MyFunction.JoinFunc(points, (pointT, t) =>
-				MyFunction.JoinFunc(points, (pointI, i) => 
+			JoinFunction.JoinFunc(points, (pointT, t) =>
+				JoinFunction.JoinFunc(points, (pointI, i) => 
 					Console.Write(t == i ? $"({pointI.y})" : $"((x-{pointI.x})/({pointT.x - pointI.x}))")
 				, () => Console.Write("*"))
 			, () => Console.Write("+"));
