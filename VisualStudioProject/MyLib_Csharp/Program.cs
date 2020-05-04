@@ -2,7 +2,8 @@
 using MyLib_Csharp.DataStructure;
 using MyLib_Csharp.Tool;
 using System;
-
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MyLib_Csharp
 {
@@ -11,7 +12,7 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            LagrangeInterpolation.Test();
+            RuleBasedSystem.Test();
             //MyMath.CalculusTest();
         }
     }

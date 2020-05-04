@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MyLib_Csharp.Tool
 {
@@ -16,24 +18,12 @@ namespace MyLib_Csharp.Tool
             Ifs.Add(If);
             Thens.Add(Then);
         }
-        public Rule((Fact, Fact) If, params Fact[] Then)
+        public Rule(ITuple If, params Fact[] Then)
         {
-            Ifs.AddRange(new Fact[] { If.Item1, If.Item2 });
-            Thens.AddRange(Then);
-        }
-        public Rule((Fact, Fact, Fact) If, params Fact[] Then)
-        {
-            Ifs.AddRange(new Fact[] { If.Item1, If.Item2, If.Item3 });
-            Thens.AddRange(Then);
-        }
-        public Rule((Fact, Fact, Fact, Fact) If, params Fact[] Then)
-        {
-            Ifs.AddRange(new Fact[] { If.Item1, If.Item2, If.Item3, If.Item4 });
-            Thens.AddRange(Then);
-        }
-        public Rule((Fact, Fact, Fact, Fact, Fact) If, params Fact[] Then)
-        {
-            Ifs.AddRange(new Fact[] { If.Item1, If.Item2, If.Item3, If.Item4, If.Item5 });
+            for (int i = 0; i < If.Length; i++)
+            {
+                Ifs.Add((Fact)If[i]);
+            }
             Thens.AddRange(Then);
         }
 
