@@ -12,7 +12,8 @@ namespace MyLib_Csharp
 
         static void Main(string[] args)
         {
-            RuleBasedSystem.Test();
+            FSM.Test();
+            FSM_Start_Resume_Pause_Stop.Test();
             //MyMath.CalculusTest();
         }
     }

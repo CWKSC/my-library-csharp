@@ -124,7 +124,7 @@ namespace MyLib_Csharp.Tool
             Resume.AddTransition(PauseMessage_ToPause, StopMessage_ToStop);
             Stop.AddTransition(StartMessage_ToStart);
 
-            FSM fsm = new FSM(Stop, Start, Pause);
+            FSM fsm = new FSM(initState: Stop, Start, Resume, Pause);
 
             Console.WriteLine("[Test the correct flow]");
             Console.WriteLine();
@@ -206,8 +206,6 @@ namespace MyLib_Csharp.Tool
             Console.WriteLine("[ReceiveMessage Stop (Receive Stop again, no change)]");
             fsm.ReceiveMessage("Stop");
             Console.WriteLine();
-
-
 
         }
 

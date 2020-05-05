@@ -8,6 +8,7 @@ namespace MyLib_Csharp.Tool
         public List<FSMState> states = new List<FSMState>();
         public FSMState currentState;
 
+        public FSM() { }
         public FSM(FSMState initState, params FSMState[] state)
         {
             currentState = initState;

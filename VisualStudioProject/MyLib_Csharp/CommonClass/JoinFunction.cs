@@ -15,6 +15,7 @@ namespace MyLib_Csharp.CommonClass
 
         public static string JoinString<T>(this T[] array, Func<T, int, string> work, string joinString)
         {
+            if (array.Length == 0) return null;
             StringBuilder result = new StringBuilder();
             result.Append(work(array[0], 0));
             (1, array.Length).Loop((i) =>
@@ -27,8 +28,29 @@ namespace MyLib_Csharp.CommonClass
 
 
 
+        public static void JoinPrint<T>(this List<T> list, Action<T> work, string joinString) =>
+            JoinPrint(list, (ele, __) => work(ele), () => joinString);
+
+        public static void JoinPrint<T>(this List<T> list, Action<T, int> work, string joinString) =>
+            JoinPrint(list, (ele, i) => work(ele, i), () => joinString);
+
+        public static void JoinPrint<T>(this List<T> list, Action<T, int> work, Func<string> joinAction) =>
+            JoinPrint(list, (ele, i) => { work(ele, i); return ""; }, (__, ___) => joinAction());
+
+
+        public static void JoinPrint<T>(this List<T> list, Func<T, int, string> work, string joinString) =>
+                JoinPrint(list, work, (__, ___) => joinString);
+
+        public static void JoinPrint<T>(this List<T> list, Func<T, int, string> work, Func<string> joinAction) =>
+            JoinPrint(list, work, (__, ___) => joinAction());
+
+        public static void JoinPrint<T>(this List<T> list, Func<T, int, string> work, Func<T, int, string> joinAction) =>
+            JoinPrint(list.ToArray(), work, joinAction);
+
+
+
         public static void JoinPrint<T>(this T[] array, Action<T, int> work, string joinString) =>
-            JoinPrint(array, (ele, i) => { work(ele, i); return ""; }, (__, ___) => joinString);
+            JoinPrint(array, (ele, i) => work(ele, i), () => joinString);
 
         public static void JoinPrint<T>(this T[] array, Action<T, int> work, Func<string> joinAction) =>
             JoinPrint(array, (ele, i) => { work(ele, i); return ""; }, (__, ___) => joinAction());
@@ -40,10 +62,9 @@ namespace MyLib_Csharp.CommonClass
         public static void JoinPrint<T>(this T[] array, Func<T, int, string> work, Func<string> joinAction) =>
             JoinPrint(array, work, (__, ___) => joinAction());
 
-
-
         public static void JoinPrint<T>(this T[] array, Func<T, int, string> work, Func<T, int, string> joinAction)
         {
+            if (array.Length == 0) return;
             Console.Write(work(array[0], 0));
             (1, array.Length).Loop((i) =>
             {
@@ -82,6 +103,7 @@ namespace MyLib_Csharp.CommonClass
 
         public static void JoinFunc<T>(T[] array, Action<T, int> work, Action<T, int> joinAction)
         {
+            if (array.Length == 0) return;
             work(array[0], 0);
             (1, array.Length).Loop((i) =>
             {
