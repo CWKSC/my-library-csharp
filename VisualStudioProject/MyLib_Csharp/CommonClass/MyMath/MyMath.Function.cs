@@ -64,32 +64,17 @@ namespace MyLib_Csharp.CommonClass
         /// <summary>
         /// [start, end]
         /// </summary>
-        public static void Tabling_Func<T>(Func<int, T> f, int start, int end)
-        {
-            Console.Write(f(start));
-            for (int i = start + 1; i <= end; i++)
-            {
-                Console.Write(", " + f(i));
-            }
-        }
+        public static void Tabling_Func<T>(Func<int, T> f, int start, int end) => 
+            (start, end).JoinPrint((i) => f(i).ToString(), " , ");
 
 
+        public static double Gamma(double z) => Integral(0, 100,
+            (t) => Pow(t, z - 1) / Exp(t));
 
 
-        public static double Gamma(double z) => Integral(
-            (t, z) => Pow(t, z - 1) / Exp(t),
-            z, 0, 100);
+        public static double XPow2_sub_0_5(double x) => x * x - 0.5;
 
-
-        public static double XPow2_sub_0_5(double x)
-        {
-            return x * x - 0.5;
-        }
-
-        public static double XPow10_sub_1(double x)
-        {
-            return Pow(x, 10) - 1;
-        }
+        public static double XPow10_sub_1(double x) => Pow(x, 10) - 1;
 
 
     }

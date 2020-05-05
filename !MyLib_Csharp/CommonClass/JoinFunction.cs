@@ -27,6 +27,19 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
+        public static void JoinPrint(this (int start, int end) args, Func<int, string> work, string joinString) =>
+            JoinPrint(args, work, (__) => joinString);
+
+        public static void JoinPrint(this (int start, int end) args, Func<int, string> work, Func<int, string> joinAction)
+        {
+            Console.Write(work(args.start));
+            (args.start + 1, args.end).Loop((i) =>
+            {
+                Console.Write(joinAction(i));
+                Console.Write(work(i));
+            });
+        }
+
 
         public static void JoinPrint<T>(this List<T> list, Action<T> work, string joinString) =>
             JoinPrint(list, (ele, __) => work(ele), () => joinString);
@@ -75,13 +88,13 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static void JoinFunc(int times, Action<int> work, Action<int> joinAction) =>
-            JoinFunc(0, times, work, joinAction);
+        public static void JoinFunc(this int times, Action<int> work, Action<int> joinAction) =>
+            JoinFunc((0, times - 1), work, joinAction);
 
-        public static void JoinFunc(int start, int end, Action<int> work, Action<int> joinAction)
+        public static void JoinFunc(this (int start, int end) args, Action<int> work, Action<int> joinAction)
         {
-            work(start);
-            (start + 1, end).Loop((i) =>
+            work(args.start);
+            (args.start + 1, args.end).Loop((i) =>
             {
                 joinAction(i);
                 work(i);

@@ -166,8 +166,9 @@ namespace MyLib_Csharp.CommonClass
             return sum;
         }
 
-        public static double Integral<T>(Func<double, T, double> f, T otherParameter, 
-            double lower, double upper, double step = 1e-3)
+        public static double Integral<T>(double lower, double upper,
+            Func<double, T, double> f, T otherParameter, 
+            double step = 1e-3)
         {
             double sum = 0;
             for (double i = lower; i <= upper; i += step)

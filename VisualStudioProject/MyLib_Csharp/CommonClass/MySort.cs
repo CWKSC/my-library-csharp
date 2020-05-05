@@ -32,6 +32,7 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
         public static T[] BubbleSort_Debug<T>(this T[] array) where T : IComparable
         {
             int ifCount = 0, matchIfCount = 0, swapCount = 0;
@@ -57,6 +58,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("Swap (Red) times: " + swapCount);
             return result;
         }
+#endif
 
 
         public static T[] SelectionSort<T>(this T[] array) where T : IComparable
@@ -76,6 +78,7 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
         public static T[] SelectionSort_Debug<T>(this T[] array) where T : IComparable
         {
             int ifCount = 0, matchIfCount = 0, swapCount = 0;
@@ -103,6 +106,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("Swap (Red) times: " + swapCount);
             return result;
         }
+#endif
 
         /// <summary>[min, max]</summary>
         public static int[] CountingSort(this int[] array, int min, int max)
