@@ -1,4 +1,6 @@
 ﻿
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+
 /* https://github.com/silkfire/Pastel */
 
 namespace Pastel
@@ -213,3 +215,5 @@ namespace Pastel
         }
     }
 }
+
+#endif

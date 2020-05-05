@@ -84,13 +84,13 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine();
 
             Console.WriteLine("[Integral]");
-            double Integral_3x_pow_2__4_10 = Integral(x => 3*x*x, 4, 10);
+            double Integral_3x_pow_2__4_10 = Integral(4, 10, x => 3*x*x);
             Console.WriteLine("Use default(1e-3) step");
             Console.WriteLine("Answer : " + Integral_3x_pow_2__4_10);
             Console.WriteLine("Delta : " + (Integral_3x_pow_2__4_10 - 936));
             Console.WriteLine();
 
-            Integral_3x_pow_2__4_10 = Integral(x => 3 * x * x, 4, 10, 1e-6);
+            Integral_3x_pow_2__4_10 = Integral(4, 10, x => 3 * x * x, 1e-6);
             Console.WriteLine("Use 1e-6 step");
             Console.WriteLine("Answer : " + Integral_3x_pow_2__4_10);
             Console.WriteLine("Delta : " + (Integral_3x_pow_2__4_10 - 936));
@@ -143,13 +143,25 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static double Integral(Func<double, double> f, 
-            double lower, double upper, double step = 1e-3)
+        public static double Integral(double lower, double upper,
+            Func<double, double> f, double step = 1e-3)
         {
             double sum = 0;
             for (double i = lower; i <= upper; i += step)
             {
                 sum += f(i) * step;
+            }
+            return sum;
+        }
+
+        public static double Integral(double lower, double upper,
+            Func<double, object[], double> f, object[] args = null,
+            double step = 1e-3)
+        {
+            double sum = 0;
+            for (double i = lower; i <= upper; i += step)
+            {
+                sum += f(i, args) * step;
             }
             return sum;
         }

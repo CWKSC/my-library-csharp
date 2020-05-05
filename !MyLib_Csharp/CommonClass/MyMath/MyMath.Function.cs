@@ -12,12 +12,16 @@ namespace MyLib_Csharp.CommonClass
 
         public static void FunctionTest()
         {
-            
-            Tabling_Func(((Func<double, double>)Gamma).ToIntFunc(), 1, 10);
+
+            Tabling_Func((x) => Gamma(x), 1, 10); ;
 
         }
 
 
+
+        public static double SumOf(int start, int end,
+            Func<int, double> f,
+            Func<int, bool> condition = null) =>  SumOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
 
         public static double SumOf(int start, int end, 
             Func<int, object[], double> f, object[] args = null, 
@@ -33,6 +37,11 @@ namespace MyLib_Csharp.CommonClass
             }
             return sum;
         }
+
+
+        public static double ProductOf(int start, int end,
+            Func<int, double> f,
+            Func<int, bool> condition = null) => ProductOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
 
         public static double ProductOf(int start, int end, 
             Func<int, object[], double> f, object[] args = null, 
@@ -51,8 +60,6 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static Func<int, T> ToIntFunc<T>(this Func<double, T> f) => x => f(x);
-
 
         /// <summary>
         /// [start, end]
@@ -65,6 +72,8 @@ namespace MyLib_Csharp.CommonClass
                 Console.Write(", " + f(i));
             }
         }
+
+
 
 
         public static double Gamma(double z) => Integral(
