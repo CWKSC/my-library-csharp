@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Drawing;
-using System.Text;
-using System.Threading;
+#endif
+
 
 namespace MyLib_Csharp.CommonClass
 {

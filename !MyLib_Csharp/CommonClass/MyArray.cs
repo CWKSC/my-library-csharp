@@ -1,7 +1,10 @@
-﻿using Pastel;
-using System;
-using System.Drawing;
+﻿using System;
 using System.Linq;
+
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+using System.Drawing;
+using Pastel;
+#endif
 
 namespace MyLib_Csharp.CommonClass
 {
@@ -59,6 +62,8 @@ namespace MyLib_Csharp.CommonClass
             Console.Write('\n');
         }
 
+
+#if !UNITY_EDITOR || DEVELOPMENT_BUILD
         /// <summary>
         /// Mark color of some index
         /// </summary>
@@ -77,6 +82,7 @@ namespace MyLib_Csharp.CommonClass
             }
             Console.Write('\n');
         }
+#endif
 
         public static void Print<T>(T[,] array)
         {
