@@ -10,7 +10,9 @@ namespace MyLib_Csharp
     class Program
     {
 
-        static void Main(string[] args)
+
+
+        public static void Main(string[] args)
         {
             //FSM.Test();
             //FSM_Start_Resume_Pause_Stop.Test();
