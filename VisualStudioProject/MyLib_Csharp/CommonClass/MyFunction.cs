@@ -8,6 +8,8 @@ namespace MyLib_Csharp.CommonClass
     {
 
 
+        public delegate T ParamsFunc<T>(params object[] args);
+
 
         public static Func<int, object[], double> ToNoArgsLoopFunc(this Func<int, double> f) => (x, _) => f(x);
 
