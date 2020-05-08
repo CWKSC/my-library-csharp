@@ -71,7 +71,16 @@ namespace MyLib_Csharp.Tool
 			, "+");
 		}
 
-		 
+		public static void Generate5(params (double x, double y)[] points)
+		{
+			int num = points.Length;
+			if (num < 2) return;
+			points.JoinPrintSumOf((pointT, t) =>
+				points.JoinPrintProductOf((pointI, i) =>
+					t == i ? $"({pointI.y})" : $"((x-{pointI.x})/({pointT.x - pointI.x}))" ));
+		}
+
+
 
 		public static double Calc(int x, params (double x, double y)[] points)
 		{

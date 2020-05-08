@@ -79,12 +79,23 @@ namespace MyLib_Csharp.CommonClass
         {
             if (array.Length == 0) return;
             Console.Write(work(array[0], 0));
-            (1, array.Length).Loop((i) =>
+            (1, array.Length - 1).Loop((i) =>
             {
                 Console.Write(joinAction(array[i], i));
                 Console.Write(work(array[i], i));
             });
         }
+
+
+        public static void JoinPrintSumOf<T>(this T[] array, Action<T, int> work) =>
+            JoinPrint(array, work, "+");
+        public static void JoinPrintSumOf<T>(this T[] array, Func<T, int, string> work) =>
+            JoinPrint(array, work, "+");
+
+        public static void JoinPrintProductOf<T>(this T[] array, Action<T, int> work) =>
+            JoinPrint(array, work, "*");
+        public static void JoinPrintProductOf<T>(this T[] array, Func<T, int, string> work) =>
+            JoinPrint(array, work, "*");
 
 
 
@@ -118,7 +129,7 @@ namespace MyLib_Csharp.CommonClass
         {
             if (array.Length == 0) return;
             work(array[0], 0);
-            (1, array.Length).Loop((i) =>
+            (1, array.Length - 1).Loop((i) =>
             {
                 joinAction(array[i], i);
                 work(array[i], i);
