@@ -8,7 +8,8 @@ namespace MyLib_Csharp.CommonClass
     {
 
 
-
+        public static void Print<T>(this T value) => Console.Write(value);
+        public static void Println<T>(this T value) => Console.WriteLine(value);
 
 
 

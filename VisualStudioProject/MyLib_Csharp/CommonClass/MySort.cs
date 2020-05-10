@@ -1,6 +1,7 @@
 ﻿using System;
 
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+// Not Unity 
+#if !UNITY_5_3_OR_NEWER
 using System.Drawing;
 #endif
 
@@ -32,7 +33,8 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Not Unity 
+#if !UNITY_5_3_OR_NEWER
         public static T[] BubbleSort_Debug<T>(this T[] array) where T : IComparable
         {
             int ifCount = 0, matchIfCount = 0, swapCount = 0;
@@ -78,7 +80,8 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Not Unity 
+#if !UNITY_5_3_OR_NEWER
         public static T[] SelectionSort_Debug<T>(this T[] array) where T : IComparable
         {
             int ifCount = 0, matchIfCount = 0, swapCount = 0;
