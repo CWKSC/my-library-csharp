@@ -4,6 +4,14 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
+
+    public class GraphNode : LinkedNode
+    {
+        public GraphNode visitedFrom;
+        public bool visited = false;
+    }
+
+
     public class GraphNode<T> : LinkedNode<T, GraphNode<T>>
     {
         public bool visited = false;
