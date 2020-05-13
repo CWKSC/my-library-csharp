@@ -10,12 +10,12 @@ namespace MyLib_Csharp
     class Program
     {
 
-
-
         public static void Main(string[] args)
         {
-            Monitor.Test();
+            LagrangeInterpolation.Test();
             //MyMath.Integral(0, Math.PI, x => x * Math.Sin(x) / (1 + Math.Pow(Math.Cos(x), 2)), 0.0005).Print();
         }
+
     }
+
 }

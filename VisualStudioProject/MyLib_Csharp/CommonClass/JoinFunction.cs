@@ -78,12 +78,15 @@ namespace MyLib_Csharp.CommonClass
         public static void JoinPrint<T>(this T[] array, Func<T, int, string> work, Func<T, int, string> joinAction)
         {
             if (array.Length == 0) return;
-            Console.Write(work(array[0], 0));
-            (1, array.Length - 1).Loop((i) =>
-            {
-                Console.Write(joinAction(array[i], i));
-                Console.Write(work(array[i], i));
-            });
+            JoinFunc(array, 
+                (ele, i) => Console.Write(work(ele, i)), 
+                (ele, i) => Console.Write(joinAction(ele, i)));
+            //Console.Write(work(array[0], 0));
+            //(1, array.Length - 1).Loop((i) =>
+            //{
+            //    Console.Write(joinAction(array[i], i));
+            //    Console.Write(work(array[i], i));
+            //});
         }
 
 

@@ -32,4 +32,20 @@ namespace MyLib_Csharp.CommonClass
         }
 
     }
+
+    public class Monitor_Fast<T>
+    {
+        public T target;
+        public Monitor_Fast(T init) => target = init;
+        public bool IsChange(T input)
+        {
+            bool result = !target.Equals(input);
+            target = input;
+            return result;
+        }
+    }
+
+
+
+
 }

@@ -2,7 +2,7 @@
 
 namespace MyLib_Csharp.Tool
 {
-    public class FSMTransition
+    public abstract class FSMTransition
     {
         public FSMState targetState;
         public FSMTransition(FSMState targetState) => this.targetState = targetState;
@@ -19,6 +19,7 @@ namespace MyLib_Csharp.Tool
                 state.AddTransition(this);
             }
         }
+
     }
 
 
