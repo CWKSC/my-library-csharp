@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
-    public partial class Graph<T>
+    public partial class Graph
     {
 
         public static void Test()

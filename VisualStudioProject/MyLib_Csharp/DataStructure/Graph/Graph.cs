@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
-    public class Graph
+    public partial class Graph
     {
         public readonly List<GraphNode> nodes = new List<GraphNode>();
         public Graph(params GraphNode[] nodes) => this.nodes.AddRange(nodes);
