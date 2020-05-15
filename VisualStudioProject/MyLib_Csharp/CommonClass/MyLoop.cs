@@ -12,35 +12,32 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static void Loop(this int times, Action action)
-        {
-            for (int i = 0; i < times; i++)
-                action();
-        }
-        public static void Loop(this int times, Action<int> action)
-        {
-            for (int i = 0; i < times; i++)
-                action(i);
-        }
+        public static void Loop(this int times, Action action, Predicate<int> condition = null) =>
+            times.Loop((__) => action(), condition);
+
+        public static void Loop(this int times, Action<int> action, Predicate<int> condition = null) =>
+            (0, times - 1).Loop(action, condition);
 
 
-        public static void Loop(this (int start, int end) args, Action action) => 
-            Loop(args, (_) => action());
+
+        public static void Loop(this (int start, int end) args, Action action, Predicate<int> condition = null) => 
+            Loop(args, (__) => action(), condition);
 
         /// <summary> [start, end] </summary>
-        public static void Loop(this (int start, int end) args, Action<int> action)
-        {
-            for (int i = args.start; i <= args.end; i++)
-                action(i);
-        }
+        public static void Loop(this (int start, int end) args, Action<int> action, Predicate<int> condition = null) =>
+            (args.start, args.end, 1).Loop(action, condition);
 
-        public static void Loop(this (int start, int end, int step) args, Action action) => 
-            Loop(args, (_) => action());
 
-        public static void Loop(this (int start, int end, int step) args, Action<int> action)
+
+
+        public static void Loop(this (int start, int end, int step) args, Action action, Predicate<int> condition = null) => 
+            Loop(args, (_) => action(), condition);
+
+        public static void Loop(this (int start, int end, int step) args, Action<int> action, Predicate<int> condition = null)
         {
             for (int i = args.start; i <= args.end; i += args.step)
-                action(i);
+                if(condition == null || condition(i))
+                    action(i);
         }
 
 

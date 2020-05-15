@@ -12,49 +12,45 @@ namespace MyLib_Csharp.CommonClass
 
         public static void FunctionTest()
         {
+            typeof(void).Printlnln();
 
-            Tabling_Func((x) => Gamma(x), 1, 10); ;
+            "Sum of 1 to 100".Println();
+            SumOf(1, 100, (i) => i).Printlnln();
+
+            "Tabling Gamma Function 1 to 10".Println();
+            Tabling_Func((x) => Gamma(x), 1, 10); MyPrint.ln(ValueTuple.Create());
 
         }
+
 
 
 
         public static double SumOf(int start, int end,
             Func<int, double> f,
-            Func<int, bool> condition = null) =>  SumOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
+            Predicate<int> condition = null) =>  SumOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
 
         public static double SumOf(int start, int end, 
-            Func<int, object[], double> f, object[] args = null, 
-            Func<int, bool> condition = null)
+            Func<int, object[], double> f, object[] args = null,
+            Predicate<int> condition = null)
         {
             double sum = 0;
-            for(int i = start; i <= end; i++)
-            {
-                if (condition == null || condition(i))
-                {
-                    sum += f(i, args);
-                }
-            }
+            (start, end).Loop((i) => sum += f(i, args), condition);
             return sum;
         }
 
 
+
         public static double ProductOf(int start, int end,
             Func<int, double> f,
-            Func<int, bool> condition = null) => ProductOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
+            Predicate<int> condition = null) => 
+                ProductOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
 
         public static double ProductOf(int start, int end, 
             Func<int, object[], double> f, object[] args = null, 
-            Func<int, bool> condition = null)
+            Predicate<int> condition = null)
         {
             double productOf = 1;
-            for (int i = start; i <= end; i++)
-            {
-                if (condition == null || condition(i))
-                {
-                    productOf *= f(i, args);
-                }
-            }
+            (start, end).Loop((i) => productOf *= f(i, args), condition);
             return productOf;
         }
 
@@ -65,7 +61,7 @@ namespace MyLib_Csharp.CommonClass
         /// [start, end]
         /// </summary>
         public static void Tabling_Func<T>(Func<int, T> f, int start, int end) => 
-            (start, end).JoinPrint((i) => f(i).ToString(), " , ");
+            (start, end).JoinPrint((i) => f(i).ToString(), ", ");
 
 
         public static double Gamma(double z) => Integral(0, 100,
