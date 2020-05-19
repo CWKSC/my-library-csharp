@@ -1,6 +1,7 @@
 ﻿using MyLib_Csharp.CommonClass;
 using System;
 using System.Runtime.CompilerServices;
+using static MyLib_Csharp.CommonClass.MyAction;
 using static MyLib_Csharp.CommonClass.MyFunction;
 
 namespace MyLib_Csharp
@@ -19,8 +20,23 @@ namespace MyLib_Csharp
         public static void Foo<IN, OUT>(ParamsFunc<IN, OUT> refFunc) { }
 
 
+        public static RefFunc<T, RefFunc<T, RefFunc<T, RefFunc<T, R>>>> Boo<T, R>(ref T t)
+        {
+            return (ref T x) => Boo<T, R>(ref x)(ref x);
+        }
+
+
         public static void Main(string[] args)
         {
+            int x = 1;
+            int y = 2;
+            int z = 3;
+            int a = 4;
+            int b = 5;
+            int c = 6;
+            int d = 7;
+            Boo<int, Func<int, int>>(ref x)(ref y)(ref z)(ref a)(ref b);
+
             Foo(() => { });
             Foo(((double, long, string) a) => { });
             Foo(() => (1, 2.3));
