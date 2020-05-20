@@ -7,6 +7,6 @@ namespace MyLib_Csharp.CommonClass
     public partial class MyMath
     {
 
-
+         
     }
 }
