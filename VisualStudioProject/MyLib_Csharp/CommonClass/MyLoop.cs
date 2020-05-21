@@ -9,6 +9,7 @@ namespace MyLib_Csharp.CommonClass
 
 
         public static void ForEach<T>(this T[] array, Action<T> action) => array.Length.Loop(i => action(array[i]));
+        public static void ForEach<T>(this T[] array, Action<T, int> action) => array.Length.Loop(i => action(array[i], i));
 
 
         public static void Loop(this int times, Action action, Predicate<int> condition = null) =>
