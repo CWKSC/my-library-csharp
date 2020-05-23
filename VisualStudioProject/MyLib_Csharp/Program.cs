@@ -1,9 +1,4 @@
-﻿using MyLib_Csharp.CommonClass;
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using static MyLib_Csharp.CommonClass.MyAction;
+﻿using System;
 using static MyLib_Csharp.CommonClass.MyFunction;
 
 namespace MyLib_Csharp
@@ -11,14 +6,16 @@ namespace MyLib_Csharp
     class Program
     {
 
-        public static Func<T, int> GetFunc<T>(Func<T, int> func) => func;
-
-        public static int Work(int input) { return 1; }
-
+        public static RecursionRefFunc<T> Foo<T>(ref T input)
+        {
+            Console.WriteLine(input);
+            return (ref T t) => { Foo(ref t); return Foo; };
+        }
 
         public static void Main(string[] args)
         {
-            Delegate @delegate = Delegate.CreateDelegate(typeof(int));
+            int x1 = 1, x2 = 2, x3 = 3, x4 = 4, x5 = 5;
+            Foo(ref x1)(ref x2)(ref x3)(ref x4)(ref x5);
         }
 
     }
