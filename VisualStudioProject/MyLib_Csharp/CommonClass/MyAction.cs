@@ -15,10 +15,6 @@ namespace MyLib_Csharp.CommonClass
         public delegate void InAction<IN>(in IN arg);
 
 
-        public delegate ParamsAction<RecursionParamsAction<T>> RecursionParamsAction<T>(params T[] args);
-        public delegate RefAction<RecursionRefAction<T>> RecursionRefAction<T>(ref T arg);
-        public delegate OutAction<RecursionOutAction<T>> RecursionOutAction<T>(out T arg);
-        public delegate InAction<RecursionInAction<T>> RecursionInAction<T>(in T arg);
 
         public static ParamsAction CallerLayer<T>(params T[] args) => (args2) => BodyLayer(args, args2);
         public static void BodyLayer<T>(T[] args, object[] args2) { /* ... */ }
