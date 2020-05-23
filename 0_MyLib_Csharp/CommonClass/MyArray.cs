@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+// Not Unity 
+#if !UNITY_5_3_OR_NEWER
 using System.Drawing;
 using Pastel;
 #endif
@@ -63,7 +64,8 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Not Unity 
+#if !UNITY_5_3_OR_NEWER
         /// <summary>
         /// Mark color of some index
         /// </summary>

@@ -1,9 +1,18 @@
-﻿using System;
+﻿using MyLib_Csharp.CommonClass;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MyLib_Csharp.DataStructure
 {
+    public partial class Graph
+    {
+        public readonly List<GraphNode> nodes = new List<GraphNode>();
+        public Graph(params GraphNode[] nodes) => this.nodes.AddRange(nodes);
+        public void AddNode(params GraphNode[] nodes) => this.nodes.AddRange(nodes);
+        public void RemoveNode(params GraphNode[] nodes) => nodes.ForEach(ele => this.nodes.Remove(ele));
+        public void AddEdge(GraphNode a, GraphNode b) => a.LinkTo(b);
+    }
 
 
     public partial class Graph<T>

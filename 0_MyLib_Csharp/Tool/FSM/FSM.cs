@@ -30,7 +30,6 @@ namespace MyLib_Csharp.Tool
             currentState.update();
         }
 
-
         public void DirectTransition(FSMState targetState)
         {
             currentState.Enter();

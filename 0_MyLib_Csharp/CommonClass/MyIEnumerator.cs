@@ -4,13 +4,11 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public static class MyString
+    public class MyIEnumerator
     {
 
 
 
 
     }
-
-
 }

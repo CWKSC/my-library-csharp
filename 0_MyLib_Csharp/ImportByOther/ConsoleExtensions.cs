@@ -1,5 +1,6 @@
 ﻿
-#if !UNITY_EDITOR || DEVELOPMENT_BUILD
+// Not Unity 
+#if !UNITY_5_3_OR_NEWER
 
 /* https://github.com/silkfire/Pastel */
 

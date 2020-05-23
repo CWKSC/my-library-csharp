@@ -8,7 +8,7 @@ namespace MyLib_Csharp
 
         public static RecursionRefFunc<T> Foo<T>(ref T input)
         {
-            Console.WriteLine(input);
+            Console.WriteLine(input); // Work in here
             return (ref T t) => { Foo(ref t); return Foo; };
         }
 

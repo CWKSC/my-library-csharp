@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp.CommonClass;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -7,41 +8,22 @@ namespace MyLib_Csharp.DataStructure
 {
     public class LinkedNode
     {
-        public LinkedList<LinkedNode> childrens = new LinkedList<LinkedNode>();
-        public LinkedNode(params LinkedNode[] childs)
-        {
-            for (int i = 0; i < childs.Length; i++)
-            {
-                childrens.AddLast(childs[i]);
-            }
-        }
-
-        public void AddChild(LinkedNode child) => childrens.AddLast(child);
-
-        public void RemoveChild(LinkedNode child) => childrens.Remove(child);
-
+        public List<LinkedNode> childrens = new List<LinkedNode>();
+        public LinkedNode(params LinkedNode[] childs) => childrens.AddRange(childs);
+        public void AddChild(params LinkedNode[] childs) => childrens.AddRange(childs);
+        public void RemoveChild(params LinkedNode[] childs) => childs.ForEach(ele => childrens.Remove(ele));
         public void LinkTo(LinkedNode other)
         {
             AddChild(other);
             other.AddChild(this);
-        }
-
-        public LinkedNode ForEach(Action<LinkedNode> forEach)
-        {
-            foreach (LinkedNode child in childrens)
-            {
-                forEach(child);
-            }
-            return this;
         }
     }
 
 
     public class LinkedNode<T>
     {
-        public T data;
         public LinkedList<LinkedNode<T>> childrens = new LinkedList<LinkedNode<T>>();
-
+        public T data;
         public LinkedNode(T data) => this.data = data;
         public LinkedNode(params LinkedNode<T>[] childs)
         {
