@@ -11,6 +11,11 @@ namespace MyLib_Csharp.DataStructure
         public bool visited = false;
     }
 
+    //public class GraphNode<T>
+    //{
+
+    //}
+
 
     public class GraphNode<T> : LinkedNode<T, GraphNode<T>>
     {

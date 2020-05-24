@@ -1,5 +1,6 @@
 ﻿using MyLib_Csharp.CommonClass;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using static MyLib_Csharp.CommonClass.MyFunction;
 
 namespace MyLib_Csharp
@@ -7,8 +8,6 @@ namespace MyLib_Csharp
     class Program
     {
 
-
-        public delegate RecursionRefFunc<T> RecursionRefFunc<T>(ref T arg);
 
         public static RecursionRefFunc<T> Boo<T>(ref T input)
         {
