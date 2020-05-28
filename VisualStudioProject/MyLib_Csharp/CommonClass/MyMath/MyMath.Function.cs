@@ -18,7 +18,7 @@ namespace MyLib_Csharp.CommonClass
             SumOf(1, 100, (i) => i).Printlnln();
 
             "Tabling Gamma Function 1 to 10".Println();
-            Tabling_Func((x) => Gamma(x), 1, 10); MyPrint.ln(ValueTuple.Create());
+            Tabling_Func((x) => Gamma(x), 1, 10); MyPrint.ln();
 
         }
 

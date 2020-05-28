@@ -171,6 +171,69 @@ namespace MyLib_Csharp.CommonClass
             return result;
         }
 
+        public static T[] QuickSort<T>(this T[] array) where T : IComparable
+        {
+            T[] result = (T[])array.Clone();
+            QuickSort(result, 0, result.Length - 1);
+            return result;
+        }
+        public static void QuickSort<T>(this T[] array, int left, int right) where T : IComparable
+        {
+            if (left >= right) return;
+            T pivot = array[left];
+            int i = left + 1;
+            int j = right;
+            while (true)
+            {
+                while (i != j && array[j].CompareTo(pivot) > 0) j--;
+                while (i != j && array[i].CompareTo(pivot) < 0) i++;
+                if (i == j) break;
+                Swap(ref array[i], ref array[j]);
+            }
+            if (pivot.CompareTo(array[i]) > 0)
+                Swap(ref array[left], ref array[i]);
+            QuickSort(array, left, i - 1);
+            QuickSort(array, i + 1, right);
+        }
+
+        public static T[] QuickSort_Debug<T>(this T[] array) where T : IComparable
+        {
+            T[] result = (T[])array.Clone();
+            QuickSort_Debug(result, 0, result.Length - 1);
+            return result;
+        }
+        public static void QuickSort_Debug<T>(this T[] array, int left, int right) where T : IComparable
+        {
+            if (left >= right) return;
+            T pivot = array[left];
+            int i = left + 1;
+            int j = right;
+            while (i != j)
+            {
+                while (i != j && array[j].CompareTo(pivot) > 0)
+                {
+                    MyArray.Println(array, Color.LightGreen, j, left);
+                    j--;
+                }
+                MyArray.Println(array, Color.Yellow, j, left);
+                while (i != j && array[i].CompareTo(pivot) < 0)
+                {
+                    MyArray.Println(array, Color.LightGreen, i, left);
+                    i++;
+                }
+                MyArray.Println(array, Color.LightYellow, i, left);
+                if (i == j) break;
+                Swap(ref array[i], ref array[j]);
+                MyArray.Println(array, Color.Red, i, j);
+            }
+            if(pivot.CompareTo(array[i]) > 0)
+                Swap(ref array[left], ref array[i]);
+            MyArray.Println(array, Color.Red, left, i);
+            QuickSort_Debug(array, left, i - 1);
+            QuickSort_Debug(array, i + 1, right);
+        }
+
+
         public static void PrintIsSorted_ascending<T>(this T[] array) where T : IComparable
         {
             if (IsSorted_ascending(array))
@@ -229,23 +292,25 @@ namespace MyLib_Csharp.CommonClass
 
             /* Uncomment to see sorting flow
              * many Print and so dataLength = 10 is suitable 
-             * (add "*" here to uncomment quickly) --> /
+             * (add "*" here to uncomment quickly) -->*/
             
             Console.WriteLine("Start sorting flow / correctness test");
 
             // BubbleSort //
             MyTest.TestExecutionTime(BubbleSort_Debug, allRangeIntArray).PrintIsSorted_ascending();
             MyTest.TestExecutionTime(BubbleSort_Debug, inRangeIntArray).PrintIsSorted_ascending();
-            Console.WriteLine();
-
+            MyPrint.ln();
             // SelectionSort //
             MyTest.TestExecutionTime(SelectionSort_Debug, allRangeIntArray).PrintIsSorted_ascending();
             MyTest.TestExecutionTime(SelectionSort_Debug, inRangeIntArray).PrintIsSorted_ascending();
-            Console.WriteLine();
-
+            MyPrint.ln();
             // CountingSort //
             MyTest.TestExecutionTime(CountingSort_Debug, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
-            Console.WriteLine();
+            MyPrint.ln();
+            // QuickSort //
+            MyTest.TestExecutionTime(QuickSort_Debug, allRangeIntArray).Print().PrintIsSorted_ascending();
+            MyTest.TestExecutionTime(QuickSort_Debug, inRangeIntArray).Print().PrintIsSorted_ascending();
+            MyPrint.ln();
 
             //*/
 
@@ -257,6 +322,10 @@ namespace MyLib_Csharp.CommonClass
             MyTest.TestExecutionTime(SelectionSort, inRangeIntArray);
             // CountingSort //
             MyTest.TestExecutionTime(CountingSort, inRangeIntArray, dataMin, dataMax);
+
+            // QuickSort //
+            MyTest.TestExecutionTime(QuickSort, allRangeIntArray);
+            MyTest.TestExecutionTime(QuickSort, inRangeIntArray);
         }
     }
 }

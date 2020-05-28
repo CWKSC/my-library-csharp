@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "32jp/U3SJeEwpNeA38o7PnVTj3GT/d1jBRck55k0tuFuwCPYSjweq8ajjnpoj6/M3F7bkX88Zu0LSYY6o4A8nw==",
+  "dgSpecHash": "G6x0H1xSF1hqio0gCMN09sy5QqaHo82OAt4qpPPLL2t0xvUytc1G5KuP/ZP9Ky+5dUnKn9f9m4wYi8ymJGhl6Q==",
   "success": true,
   "projectFilePath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sam97\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }
