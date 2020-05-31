@@ -7,9 +7,10 @@ namespace MyLib_Csharp
     class Program
     {
 
+
         public static void Main(string[] args)
         {
-            MySort.Test();
+            MyAlgorithm.MySort.Test();
         }
 
     }
