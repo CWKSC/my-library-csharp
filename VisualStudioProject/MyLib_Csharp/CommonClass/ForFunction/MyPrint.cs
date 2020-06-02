@@ -37,5 +37,24 @@ namespace MyLib_Csharp.CommonClass
             return array;
         }
 
+        public static string Print_dontMoveCursor(this string str) {
+            Console.Write(str);
+            MyConsole.MoveCursorLeft(str.Length);
+            return str;
+        }
+
+
+        public static string[] Print(this string[] strArray)
+        {
+            strArray.ForEach(ele =>
+            {
+                ele.Print_dontMoveCursor();
+                MyConsole.MoveCursorDown();
+            });
+            return strArray;
+        }
+
+
+
     }
 }

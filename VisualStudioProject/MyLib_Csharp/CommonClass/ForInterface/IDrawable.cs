@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.Tool.Canvas
+namespace MyLib_Csharp.CommonClass
 {
     public interface IDrawable
     {

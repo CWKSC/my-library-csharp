@@ -11,7 +11,7 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            //MyAlgorithm.MySort.Test();
+            MyConsole.Test();
         }
 
     }
