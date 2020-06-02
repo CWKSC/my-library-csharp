@@ -33,6 +33,7 @@ namespace MyLib_Csharp.CommonClass
 
     }
 
+
     public class Monitor_Fast<T>
     {
         public T target;
