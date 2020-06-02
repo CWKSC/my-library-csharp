@@ -11,6 +11,9 @@ namespace MyLib_Csharp.CommonClass
 {
     public static partial class MyAlgorithm
     {
+
+        // It one is wrong //
+
         public static T[] QuickSort<T>(this T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();

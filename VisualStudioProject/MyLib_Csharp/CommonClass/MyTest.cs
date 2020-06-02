@@ -30,10 +30,7 @@ namespace MyLib_Csharp.CommonClass
             "Warmup".Println();
             Stopwatch stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
-            while (stopwatch.ElapsedMilliseconds < 1200)
-            {
-                action();
-            }
+            while (stopwatch.ElapsedMilliseconds < 1200) action();
             stopwatch.Stop();
             "Warmup finish".Println();
         }
@@ -42,10 +39,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine("Warmup");
             Stopwatch stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
-            while (stopwatch.ElapsedMilliseconds < 1200)
-            {
-                func();
-            }
+            while (stopwatch.ElapsedMilliseconds < 1200) func();
             stopwatch.Stop();
         }
 

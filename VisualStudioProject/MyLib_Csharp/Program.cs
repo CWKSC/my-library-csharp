@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using static MyLib_Csharp.CommonClass.MyFunction;
+
 namespace MyLib_Csharp
 {
     class Program
@@ -10,7 +11,7 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            MyAlgorithm.MySort.Test();
+            //MyAlgorithm.MySort.Test();
         }
 
     }
