@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.Tool.Canvas
+namespace MyLib_Csharp.Tool
 {
     public partial class Canvas
     {
@@ -21,7 +21,7 @@ namespace MyLib_Csharp.Tool.Canvas
 
         public static void Test()
         {
-
+            Canvas canvas = new Canvas();
         }
 
 
