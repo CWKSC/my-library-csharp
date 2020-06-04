@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 using static System.Math;
+using static MyLib_Csharp.CommonClass.MyCalculus;
 
 namespace MyLib_Csharp.CommonClass
 {
+
     public static partial class MyMath
     {
 
@@ -53,6 +55,22 @@ namespace MyLib_Csharp.CommonClass
             (start, end).Loop((i) => productOf *= f(i, args), condition);
             return productOf;
         }
+
+
+
+
+        public static double RecurrenceRelation(Func<double, int, List<double>, double> recurrenceRelation, double initValue, int n)
+        {
+            List<double> preResult = new List<double>() { initValue };
+            double result = recurrenceRelation(initValue, 0, preResult);
+            for (int i = 0; i < n; i++)
+            {
+                result = recurrenceRelation(result, 0, preResult);
+                preResult.Add(result);
+            }
+            return result;
+        }
+
 
 
 

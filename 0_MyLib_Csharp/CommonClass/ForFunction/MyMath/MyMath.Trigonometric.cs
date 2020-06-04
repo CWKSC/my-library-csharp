@@ -12,9 +12,9 @@ namespace MyLib_Csharp.CommonClass
 
         public static void TrigonometricTest()
         {
-            Console.WriteLine("Sin(30) = " + Sin(30));
-            Console.WriteLine("Cos(60) = " + Sin(30));
-            Console.WriteLine("Tan(45) = " + Sin(30));
+            ("Sin(30) = " + Sin(30)).Println();
+            ("Cos(60) = " + Sin(30)).Println();
+            ("Tan(45) = " + Sin(30)).Println();
             Console.WriteLine();
         }
 

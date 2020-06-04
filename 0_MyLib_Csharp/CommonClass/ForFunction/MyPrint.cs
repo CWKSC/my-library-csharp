@@ -10,9 +10,15 @@ namespace MyLib_Csharp.CommonClass
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
         public static void ln() => Console.WriteLine();
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
+        public static void ln(int times) => Console.Write(new string('\n', times));
+
+
         public static T Print<T>(this T value) { Console.Write(value); return value; }
         public static T Println<T>(this T value) { Console.WriteLine(value); return value; }
         public static T Printlnln<T>(this T value) { Console.WriteLine(value + "\n"); return value; }
+
+        public static T Printlnlnln<T>(this T value) { Console.WriteLine(value + "\n\n"); return value; }
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
