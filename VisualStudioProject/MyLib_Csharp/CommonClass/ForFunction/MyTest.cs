@@ -258,7 +258,7 @@ namespace MyLib_Csharp.CommonClass
         {
             for (int i = 0; i < short.MaxValue; i++)
             {
-                if (MyMath.IsPrime_normal(i) ^ isPrime(i))
+                if (MyPrime.IsPrime_normal(i) ^ isPrime(i))
                 {
                     Console.WriteLine(isPrime.Method.Name.PadRight(20, ' ') + "fail in " + i + ", because isPrime(" + i + ") = " + isPrime(i));
                     return false;
@@ -271,7 +271,7 @@ namespace MyLib_Csharp.CommonClass
         {
             for (int i = 0; i < short.MaxValue; i++)
             {
-                if (MyMath.IsPrime_normal(i) ^ isPrime(i))
+                if (MyPrime.IsPrime_normal(i) ^ isPrime(i))
                 {
                     Console.WriteLine(isPrime.Method.Name.PadRight(20, ' ') + "fail in " + i + ", because isPrime(" + i + ") = " + isPrime(i));
                     return false;
