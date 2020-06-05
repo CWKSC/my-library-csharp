@@ -11,6 +11,9 @@ namespace MyLib_Csharp.CommonClass
         public static void ln() => Console.WriteLine();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
+        public static void lnln() => Console.WriteLine('\n');
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
         public static void ln(int times) => Console.Write(new string('\n', times));
 
 

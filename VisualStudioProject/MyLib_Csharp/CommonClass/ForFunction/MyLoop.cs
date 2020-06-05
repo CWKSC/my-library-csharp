@@ -15,6 +15,7 @@ namespace MyLib_Csharp.CommonClass
         public static void Loop(this int times, Action action, Predicate<int> condition = null) =>
             times.Loop((__) => action(), condition);
 
+        /// <summary> [0, times) </summary>
         public static void Loop(this int times, Action<int> action, Predicate<int> condition = null) =>
             (0, times - 1).Loop(action, condition);
 
