@@ -63,7 +63,7 @@ namespace MyLib_Csharp.CommonClass
                 }
                 ++j;
             }
-            MyArray.Println(result);
+            result.Println();
             return result;
         }
 

@@ -10,7 +10,7 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            MyMath.FunctionTest();
+            MyFunction.Test();
         }
 
     }

@@ -39,18 +39,18 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-        public static void Print<T>(T[] array)
-        {
-            foreach(T element in array)
-            {
-                Console.Write(element + " ");
-            }
-        }
-        public static void Println<T>(this T[] array)
-        {
-            Print(array);
-            Console.Write('\n');
-        }
+        //public static void Print<T>(T[] array)
+        //{
+        //    foreach(T element in array)
+        //    {
+        //        Console.Write(element + " ");
+        //    }
+        //}
+        //public static void Println<T>(this T[] array)
+        //{
+        //    Print(array);
+        //    Console.Write('\n');
+        //}
 
 
         // Not Unity 
