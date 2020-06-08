@@ -4,8 +4,9 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public static class JoinFunction
+    public static partial class JoinFunction
     {
+
 
         public static string JoinString<T>(this T[] array, Func<string> work, string joinString) =>
             JoinString(array, (__, ___) => work(), joinString);
@@ -145,6 +146,14 @@ namespace MyLib_Csharp.CommonClass
         }
 
         
-
+        public static void JoinFunc(this int times, Action A, Action B)
+        {
+            A();
+            times.Loop(() =>
+            {
+                B();
+                A();
+            });
+        }
     }
 }

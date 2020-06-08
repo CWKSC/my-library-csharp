@@ -8,6 +8,37 @@ namespace MyLib_Csharp.CommonClass
     public static class MyFunction
     {
 
+        public static void Test()
+        {
+            static RecursionRefFunc<T> TestRecursionRefFunc<T>(ref T input)
+            {
+                input = default;
+                return TestRecursionRefFunc;
+            }
+            static RecursionOutFunc<int> TestRecursionOutFunc(out int input)
+            {
+                input = 1;
+                return TestRecursionOutFunc;
+            }
+            static RecursionParamsFunc<int> TestRecursionParamsFunc<T>(params T[] args)
+            {
+                args.Println();
+                return TestRecursionParamsFunc;
+            }
+
+            int x1 = 1, x2 = 2, x3 = 3, x4 = 4, x5 = 5;
+
+            (x1, x2, x3, x4, x5).Println();
+            TestRecursionRefFunc(ref x1)(ref x2)(ref x3)(ref x4)(ref x5);
+            (x1, x2, x3, x4, x5).Println();
+
+            TestRecursionOutFunc(out int x6)(out int x7)(out int x8);
+            (x6, x7, x8).Println();
+
+            TestRecursionParamsFunc(1)(2, 3)(4, 5, 6);
+        }
+
+
         public delegate OUT ParamsFunc<OUT>(params object[] args);
         public delegate OUT ParamsFunc<IN, OUT>(params IN[] args);
         public delegate OUT RefFunc<IN, OUT>(ref IN arg);
@@ -28,38 +59,7 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static RecursionRefFunc<T> TestRecursionRefFunc<T>(ref T input)
-        {
-            input = default;
-            return TestRecursionRefFunc;
-        }
 
-        public static RecursionOutFunc<int> TestRecursionOutFunc(out int input)
-        {
-            input = 1;
-            return TestRecursionOutFunc;
-        }
-
-
-        public static RecursionParamsFunc<int> TestRecursionParamsFunc<T>(params T[] args)
-        {
-            args.Println();
-            return TestRecursionParamsFunc;
-        }
-
-        public static void Test()
-        {
-            int x1 = 1, x2 = 2, x3 = 3, x4 = 4, x5 = 5;
-
-            (x1, x2, x3, x4, x5).Println();
-            TestRecursionRefFunc(ref x1)(ref x2)(ref x3)(ref x4)(ref x5);
-            (x1, x2, x3, x4, x5).Println();
-
-            TestRecursionOutFunc(out int x6)(out int x7)(out int x8);
-            (x6, x7, x8).Println();
-
-            TestRecursionParamsFunc(1)(2, 3)(4, 5, 6);
-        }
 
 
     }
