@@ -13,6 +13,7 @@ namespace MyLib_Csharp.CommonClass
     {
 
         // It one is wrong //
+        // don't use //
 
         public static T[] QuickSort<T>(this T[] array) where T : IComparable
         {
