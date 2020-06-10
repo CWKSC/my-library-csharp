@@ -10,7 +10,14 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            MyFunction.Test();
+            //int[] A = { 1, 5, 9, 100, 101, 102, 103};
+            //int[] B = { 2, 3, 4, 11, 54, 86};
+
+            //A.Println().PrintIsSorted_ascending();
+            //B.Println().PrintIsSorted_ascending();
+            //MyAlgorithm.SortTwoSortedArray(A, B).Println().PrintIsSorted_ascending();
+            MyAlgorithm.MySort.Test();
+
         }
 
     }

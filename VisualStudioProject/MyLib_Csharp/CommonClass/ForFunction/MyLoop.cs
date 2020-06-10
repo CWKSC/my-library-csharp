@@ -43,5 +43,16 @@ namespace MyLib_Csharp.CommonClass
 
 
 
+        public static void LoopIndex(int index, Action<int> action, Func<int, bool> moveLeftCondition, Func<int, bool> moveRightCondition, Func<int, bool> breakCondition)
+        {
+            while (true)
+            {
+                if (breakCondition(index)) break;
+                if (moveLeftCondition(index)) --index;
+                if (moveRightCondition(index)) ++index;
+                action(index);
+            }
+        }
+
     }
 }

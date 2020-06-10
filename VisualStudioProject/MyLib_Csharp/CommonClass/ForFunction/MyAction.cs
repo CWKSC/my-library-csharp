@@ -8,6 +8,8 @@ namespace MyLib_Csharp.CommonClass
     public static class MyAction
     {
 
+        public static Action Nothing = () => { };
+
         public delegate void ParamsAction(params object[] args);
         public delegate void ParamsAction<IN>(params IN[] args);
         public delegate void RefAction<IN>(ref IN arg);
