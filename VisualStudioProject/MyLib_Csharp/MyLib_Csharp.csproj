@@ -6,8 +6,4 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="CommonClass\ForInheritance\" />
-  </ItemGroup>
-
 </Project>
