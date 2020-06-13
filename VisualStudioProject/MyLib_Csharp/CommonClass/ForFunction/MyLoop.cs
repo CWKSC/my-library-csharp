@@ -54,5 +54,13 @@ namespace MyLib_Csharp.CommonClass
             }
         }
 
+
+
+        public static void LoopCombination<T>(this T[] array, Action<T, T> action) => 
+            (0, array.Length).Loop(i => 
+                (i + 1, array.Length).Loop(j =>
+                    action(array[i], array[j]) ) );
+
+
     }
 }
