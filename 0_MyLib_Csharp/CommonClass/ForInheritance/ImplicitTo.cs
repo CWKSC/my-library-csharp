@@ -4,13 +4,8 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public static class MyString
+    public abstract class ImplicitTo<T>
     {
-
-
-
-
+        public static implicit operator T(ImplicitTo<T> thisObject) => default;
     }
-
-
 }

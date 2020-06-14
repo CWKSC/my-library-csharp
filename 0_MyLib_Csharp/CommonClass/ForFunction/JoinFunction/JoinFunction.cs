@@ -4,8 +4,9 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public static class JoinFunction
+    public static partial class JoinFunction
     {
+
 
         public static string JoinString<T>(this T[] array, Func<string> work, string joinString) =>
             JoinString(array, (__, ___) => work(), joinString);
@@ -60,6 +61,11 @@ namespace MyLib_Csharp.CommonClass
         public static void JoinPrint<T>(this List<T> list, Func<T, int, string> work, Func<T, int, string> joinAction) =>
             JoinPrint(list.ToArray(), work, joinAction);
 
+
+        public static void JoinPrint<T>(this T[] array, string joinString) => 
+            array.JoinFunc(
+                ele => ele.Print(), 
+                () => joinString.Print());
 
 
         public static void JoinPrint<T>(this T[] array, Action<T, int> work, string joinString) =>
@@ -116,19 +122,19 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-        public static void JoinFunc<T>(T[] array, Action<T> work, Action joinAction) =>
+        public static void JoinFunc<T>(this T[] array, Action<T> work, Action joinAction) =>
             JoinFunc(array, (ele, __) => work(ele), (__, ___) => joinAction());
 
-        public static void JoinFunc<T>(T[] array, Action<T> work, Action<T> joinAction) =>
+        public static void JoinFunc<T>(this T[] array, Action<T> work, Action<T> joinAction) =>
             JoinFunc(array, (ele, __) => work(ele), (ele, __) => joinAction(ele));
 
 
-        public static void JoinFunc<T>(T[] array, Action<T, int> work, Action joinAction) =>
+        public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action joinAction) =>
             JoinFunc(array, work, (__, ___) => joinAction());
-        public static void JoinFunc<T>(T[] array, Action<T, int> work, Action<T> joinAction) =>
+        public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action<T> joinAction) =>
             JoinFunc(array, work, (ele, __) => joinAction(ele));
 
-        public static void JoinFunc<T>(T[] array, Action<T, int> work, Action<T, int> joinAction)
+        public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action<T, int> joinAction)
         {
             if (array.Length == 0) return;
             work(array[0], 0);
@@ -140,6 +146,14 @@ namespace MyLib_Csharp.CommonClass
         }
 
         
-
+        public static void JoinFunc(this int times, Action A, Action B)
+        {
+            A();
+            times.Loop(() =>
+            {
+                B();
+                A();
+            });
+        }
     }
 }

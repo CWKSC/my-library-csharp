@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using static System.Math;
 using static MyLib_Csharp.CommonClass.MyCalculus;
+using static MyLib_Csharp.CommonClass.MyPrint;
 
 namespace MyLib_Csharp.CommonClass
 {
@@ -14,14 +17,37 @@ namespace MyLib_Csharp.CommonClass
 
         public static void FunctionTest()
         {
-            typeof(void).Printlnln();
 
             "Sum of 1 to 100".Println();
             SumOf(1, 100, (i) => i).Printlnln();
 
             "Tabling Gamma Function 1 to 10".Println();
-            Tabling_Func((x) => Gamma(x), 1, 10); MyPrint.ln();
+            Tabling_Func((x) => Gamma(x), 1, 10); ln(2);
 
+            ITuple initValue = (0, 1);
+            static double recurrenceRelationFunc(List<double> T, int n) => T[n - 1] + T[n - 2];
+            double Fibonacci(int n) => initValue.RecurrenceRelation(recurrenceRelationFunc, n);
+            void PrintFibonacci(int n) => ($"Fibonacci({n}) : " + Fibonacci(n)).Println();
+            (0, 7).Loop(n => PrintFibonacci(n));
+            PrintFibonacci(100);
+
+            /*
+            Sum of 1 to 100
+            5050
+
+            Tabling Gamma Function 1 to 10
+            1.0005000833332944, 0.9999999166666648, 1.9999999999999267, 5.9999999999994955, 23.999999999996597, 119.99999999998577, 719.9999999999474, 5040.000000000014, 40320.000000003434, 362880.00000005425
+
+            Fibonacci(0) : 0
+            Fibonacci(1) : 1
+            Fibonacci(2) : 1
+            Fibonacci(3) : 2
+            Fibonacci(4) : 3
+            Fibonacci(5) : 5
+            Fibonacci(6) : 8
+            Fibonacci(7) : 13
+            Fibonacci(100) : 3.54224848179262E+20
+            */
         }
 
 
@@ -59,16 +85,15 @@ namespace MyLib_Csharp.CommonClass
 
 
 
-        public static double RecurrenceRelation(Func<double, int, List<double>, double> recurrenceRelation, double initValue, int n)
+        /// <summary>
+        /// (t0, t1, ...).RecurrenceRelation((T, n) => /* ... */, n);
+        /// </summary>
+        public static double RecurrenceRelation(this ITuple initValue, Func<List<double>, int, double> recurrenceRelationFunc, int n)
         {
-            List<double> preResult = new List<double>() { initValue };
-            double result = recurrenceRelation(initValue, 0, preResult);
-            for (int i = 0; i < n; i++)
-            {
-                result = recurrenceRelation(result, 0, preResult);
-                preResult.Add(result);
-            }
-            return result;
+            if (initValue.Length > n) return initValue[n].Cast<double>();
+            List<double> sequence = new List<double>(initValue.ToArray<double>());
+            (initValue.Length, n).Loop(i => sequence.Add(recurrenceRelationFunc(sequence, i)));
+            return sequence[n];
         }
 
 

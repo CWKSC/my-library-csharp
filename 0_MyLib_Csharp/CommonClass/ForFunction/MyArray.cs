@@ -12,19 +12,8 @@ namespace MyLib_Csharp.CommonClass
     public static class MyArray
     {
 
-        public static int[] GenerateRandIntArray(int n)
-        {
-            int[] result = new int[n];
-            Random random = new Random();
-            for (int i = 0; i < result.Length; i++)
-            {
-                result[i] = random.Next(int.MinValue, int.MaxValue);
-            }
-            return result;
-        }
-
         /// <summary>[min, max)</summary>
-        public static int[] GenerateRandIntArray(int n, int min, int max)
+        public static int[] GenerateRandIntArray(int n, int min = int.MinValue, int max = int.MaxValue)
         {
             int[] result = new int[n];
             Random random = new Random();
@@ -50,18 +39,18 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
-        public static void Print<T>(T[] array)
-        {
-            foreach(T element in array)
-            {
-                Console.Write(element + " ");
-            }
-        }
-        public static void Println<T>(this T[] array)
-        {
-            Print(array);
-            Console.Write('\n');
-        }
+        //public static void Print<T>(T[] array)
+        //{
+        //    foreach(T element in array)
+        //    {
+        //        Console.Write(element + " ");
+        //    }
+        //}
+        //public static void Println<T>(this T[] array)
+        //{
+        //    Print(array);
+        //    Console.Write('\n');
+        //}
 
 
         // Not Unity 

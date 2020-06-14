@@ -12,7 +12,7 @@ namespace MyLib_Csharp.CommonClass
         public static void SetTestSetting()
         {
             SetProcessPriority();
-            Warmup(() => { });
+            Warmup(MyAction.Nothing);
         }
 
         public static void SetProcessPriority()
@@ -132,48 +132,6 @@ namespace MyLib_Csharp.CommonClass
             stopwatch.Stop();
             Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
         }
-        public static void TestExecutionTime<P1>(this Action<Parameter<P1>> action, Parameter<P1> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
-        public static void TestExecutionTime<P1, P2>(this Action<Parameter<P1, P2>> action, Parameter<P1, P2> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
-        public static void TestExecutionTime<P1, P2, P3>(this Action<Parameter<P1, P2, P3>> action, Parameter<P1, P2, P3> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
-        public static void TestExecutionTime<P1, P2, P3, P4>(this Action<Parameter<P1, P2, P3, P4>> action, Parameter<P1, P2, P3, P4> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
-        public static void TestExecutionTime<P1, P2, P3, P4, P5>(this Action<Parameter<P1, P2, P3, P4, P5>> action, Parameter<P1, P2, P3, P4, P5> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
-        public static void TestExecutionTime<P1, P2, P3, P4, P5, P6>(this Action<Parameter<P1, P2, P3, P4, P5, P6>> action, Parameter<P1, P2, P3, P4, P5, P6> parameter)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            action(parameter);
-            stopwatch.Stop();
-            Console.WriteLine(action.Method.Name + " run " + stopwatch.MyToString());
-        }
 
 
 
@@ -251,6 +209,7 @@ namespace MyLib_Csharp.CommonClass
             Console.WriteLine(func.Method.Name.PadRight(20, ' ') + "run " + stopwatch.MyToString());
             return output;
         }
+
 
 
         // Prime Test //

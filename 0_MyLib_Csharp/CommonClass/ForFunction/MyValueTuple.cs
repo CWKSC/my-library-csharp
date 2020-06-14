@@ -8,6 +8,7 @@ namespace MyLib_Csharp.CommonClass
     public static class MyValueTuple
     {
 
+
         public static object[] ToObjectArray<T>(this ValueTuple<T> tuple) => new object[] { tuple.Item1 };
         public static object[] ToObjectArray<T1, T2>(this (T1, T2) tuple) => new object[] { tuple.Item1, tuple.Item2 };
         public static object[] ToObjectArray<T1, T2, T3>(this (T1, T2, T3) tuple) => new object[] { tuple.Item1, tuple.Item2, tuple.Item3 };
@@ -24,7 +25,7 @@ namespace MyLib_Csharp.CommonClass
         public static T[] ToArray<T>(this ITuple tuple)
         {
             T[] result = new T[tuple.Length];
-            tuple.Length.Loop((i) => result[i] = (T)tuple[i]);
+            tuple.Length.Loop(i => result[i] = tuple[i].Cast<T>());
             return result;
         }
 

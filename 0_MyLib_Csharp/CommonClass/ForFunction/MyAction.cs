@@ -8,6 +8,8 @@ namespace MyLib_Csharp.CommonClass
     public static class MyAction
     {
 
+        public static Action Nothing = () => { };
+
         public delegate void ParamsAction(params object[] args);
         public delegate void ParamsAction<IN>(params IN[] args);
         public delegate void RefAction<IN>(ref IN arg);
@@ -15,9 +17,15 @@ namespace MyLib_Csharp.CommonClass
         public delegate void InAction<IN>(in IN arg);
 
 
+        public static Action<T> _<T>(Action<T> action) => action;
+        public static Action _(Action action) => action;
+
 
         public static ParamsAction CallerLayer<T>(params T[] args) => (args2) => BodyLayer(args, args2);
-        public static void BodyLayer<T>(T[] args, object[] args2) { /* ... */ }
+        public static void BodyLayer<T>(T[] args, object[] args2) {
+            args.Println();
+            args2.Println();
+        }
 
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp.DataStructure;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,20 +13,19 @@ namespace MyLib_Csharp.CommonClass
         {
             int[] result = (int[])array.Clone();
             int[] countArray = new int[max - min + 1];
-            int absMin = Math.Abs(min);
             for (int i = 0; i < result.Length; i++)
             {
-                ++countArray[result[i] + absMin];
+                ++countArray[result[i] - min];
             }
 
             int j = 0;
             int index = min;
             while (j < result.Length)
             {
-                if (countArray[index + absMin] != 0)
+                if (countArray[index - min] != 0)
                 {
                     result[j] = index;
-                    --countArray[index + absMin];
+                    --countArray[index - min];
                 }
                 else
                 {
@@ -36,25 +36,45 @@ namespace MyLib_Csharp.CommonClass
             }
             return result;
         }
+
+        /// <summary>[min, max]</summary>
+        public static int[] CountingSort2(this int[] array, int min, int max)
+        {
+            int[] result = (int[])array.Clone();
+            CountingArray countingArray = new CountingArray(min, max, result);
+
+            int resultIndex = 0;
+            MyLoop.LoopIndex(min, index =>
+            {
+                result[resultIndex++] = index;
+                --countingArray[index];
+            }, 
+            _ => false, 
+            index => countingArray[index] == 0, 
+            _ => resultIndex == result.Length);
+            return result;
+        }
+
+
+
         /// <summary>[min, max]</summary>
         public static int[] CountingSort_Debug(this int[] array, int min, int max)
         {
             int[] result = (int[])array.Clone();
             int[] countArray = new int[max - min + 1];
-            int absMin = Math.Abs(min);
             for (int i = 0; i < result.Length; i++)
             {
-                ++countArray[result[i] + absMin];
+                ++countArray[result[i] - min];
             }
 
             int j = 0;
             int index = min;
             while (j < result.Length)
             {
-                if (countArray[index + absMin] != 0)
+                if (countArray[index - min] != 0)
                 {
                     result[j] = index;
-                    --countArray[index + absMin];
+                    --countArray[index - min];
                 }
                 else
                 {
@@ -63,7 +83,7 @@ namespace MyLib_Csharp.CommonClass
                 }
                 ++j;
             }
-            MyArray.Println(result);
+            result.Println();
             return result;
         }
 

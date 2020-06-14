@@ -36,11 +36,13 @@ namespace MyLib_Csharp.CommonClass
                 ln();
                 // CountingSort //
                 MyTest.TestExecutionTime(CountingSort_Debug, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
+                MyTest.TestExecutionTime(CountingSort2, inRangeIntArray, dataMin, dataMax).PrintIsSorted_ascending();
+                MyTest.TestExecutionTime(CountingSort2, inRangeIntArray, dataMin, dataMax);
                 ln();
                 // QuickSort //
-                MyTest.TestExecutionTime(QuickSort_Debug, allRangeIntArray).Print().PrintIsSorted_ascending();
-                MyTest.TestExecutionTime(QuickSort_Debug, inRangeIntArray).Print().PrintIsSorted_ascending();
-                ln();
+                //MyTest.TestExecutionTime(QuickSort_Debug, allRangeIntArray).Print().PrintIsSorted_ascending();
+                //MyTest.TestExecutionTime(QuickSort_Debug, inRangeIntArray).Print().PrintIsSorted_ascending();
+                //ln();
 
                 //*/
 
@@ -52,10 +54,11 @@ namespace MyLib_Csharp.CommonClass
                 MyTest.TestExecutionTime(SelectionSort, inRangeIntArray);
                 // CountingSort //
                 MyTest.TestExecutionTime(CountingSort, inRangeIntArray, dataMin, dataMax);
+                MyTest.TestExecutionTime(CountingSort2, inRangeIntArray, dataMin, dataMax);
 
                 // QuickSort //
-                MyTest.TestExecutionTime(QuickSort, allRangeIntArray);
-                MyTest.TestExecutionTime(QuickSort, inRangeIntArray);
+                //MyTest.TestExecutionTime(QuickSort, allRangeIntArray);
+                //MyTest.TestExecutionTime(QuickSort, inRangeIntArray);
             }
 
         }

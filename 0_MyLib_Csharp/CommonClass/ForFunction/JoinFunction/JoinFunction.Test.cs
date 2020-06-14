@@ -4,11 +4,13 @@ using System.Text;
 
 namespace MyLib_Csharp.CommonClass
 {
-    public class MyIEnumerator
+    public static partial class JoinFunction
     {
 
+        public static void Test()
+        {
 
+        }
 
     }
-
 }
