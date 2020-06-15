@@ -9,9 +9,9 @@ namespace MyLib_Csharp.CommonClass
 
         public static void FindRootTest()
         {
-            Console.WriteLine(FindRootNum_Linear(XPow2_sub_0_5, -10, 10, 100));
+            FindRootNum_Linear(XPow2_sub_0_5, -10, 10, 100).Println();
             (double start, double end) = BisectionMethod(XPow2_sub_0_5, -10, 10, 100);
-            Console.WriteLine(start + " < x < " + end);
+            (start + " < x < " + end).Println();
         }
 
 

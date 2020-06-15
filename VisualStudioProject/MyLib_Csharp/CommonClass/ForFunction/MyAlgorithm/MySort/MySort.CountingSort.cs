@@ -56,6 +56,10 @@ namespace MyLib_Csharp.CommonClass
         }
 
 
+        // TODO: try to use hash table in Counting Sort
+        // write in 16/6/2020
+
+
 
         /// <summary>[min, max]</summary>
         public static int[] CountingSort_Debug(this int[] array, int min, int max)

@@ -12,6 +12,16 @@ namespace MyLib_Csharp.CommonClass
         {
             public static void Test()
             {
+
+                // Sort two sorted array //
+                int[] A = { 1, 5, 9, 100, 101, 102, 103 };
+                int[] B = { 2, 3, 4, 11, 54, 86 };
+
+                A.Println().PrintIsSorted_ascending();
+                B.Println().PrintIsSorted_ascending();
+                SortTwoSortedArray(A, B).Println().PrintIsSorted_ascending();
+
+
                 const int dataLength = 10;
                 const int dataMin = -500;
                 const int dataMax = 500;
