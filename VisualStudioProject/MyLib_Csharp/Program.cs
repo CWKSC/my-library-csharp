@@ -1,7 +1,6 @@
-﻿using MyLib_Csharp.CommonClass;
+﻿using MyLib_Csharp.CommonClass.MyType;
 using System;
-using System.Diagnostics.CodeAnalysis;
-using static MyLib_Csharp.CommonClass.MyFunction;
+
 
 namespace MyLib_Csharp
 {
@@ -10,8 +9,8 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            MultipleInheritance.Test();
-
+            MyAction.Test();
+            //MultipleInheritance.Test();
         }
 
     }

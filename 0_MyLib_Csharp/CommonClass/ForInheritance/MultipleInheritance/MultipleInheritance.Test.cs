@@ -26,10 +26,25 @@ namespace MyLib_Csharp.CommonClass
         }
 
         public class Foo : 
-            MultipleInheritance<ClassA, ClassB> { }
+            MultipleInheritance<ClassA, ClassB> {
+
+            public Foo()
+            {
+                a = new ClassA();
+                b = new ClassB();
+            }
+        }
 
         public class Boo : 
-            MultipleInheritance<ClassA, ClassB, ClassC> { }
+            MultipleInheritance<ClassA, ClassB, ClassC> {
+
+            public Boo()
+            {
+                a = new ClassA();
+                b = new ClassB();
+                c = new ClassC();
+            }
+        }
 
         public static void Test()
         {
