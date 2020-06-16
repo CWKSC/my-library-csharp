@@ -11,7 +11,7 @@ namespace MyLib_Csharp.Type
         public static void Foo(Func<bool> func) => func();
 
 
-        public static void Foo(MyFunc<int, bool> func) => func.funcTR(1);
+        public static void Foo(MyFunc<int, bool> func) => func.Invoke(1);
 
         public static void Test()
         {

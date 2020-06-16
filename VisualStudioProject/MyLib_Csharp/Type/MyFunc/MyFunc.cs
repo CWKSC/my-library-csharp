@@ -6,23 +6,17 @@ namespace MyLib_Csharp.Type
 {
     public partial class MyFunc<T, R>
     {
-        public Func<T, R> funcTR;
-        public Func<R> funcR;
+        public Func<T, R> func;
 
-        public MyFunc(Func<T, R> funcTR)
-        {
-            this.funcTR = funcTR;
-        }
-        public MyFunc(Func<R> funcR)
-        {
-            this.funcR = funcR;
-        }
+        public MyFunc(Func<T, R> func) => this.func = func;
+        public MyFunc(Func<R> func) => this.func = _ => func();
+        public MyFunc(R value) => func = _ => value;
 
-        public static implicit operator Func<T, R>(MyFunc<T, R> thisObject) => thisObject.funcTR;
-        public static implicit operator Func<R>(MyFunc<T, R> thisObject) => thisObject.funcR;
+        public R Invoke(T input) => func(input);
 
         public static implicit operator MyFunc<T, R>(Func<T, R> funcTR) => new MyFunc<T, R>(funcTR);
         public static implicit operator MyFunc<T, R>(Func<R> funcR) => new MyFunc<T, R>(funcR);
+        public static implicit operator MyFunc<T, R>(R value) => new MyFunc<T, R>(value);
 
 
     }
