@@ -90,7 +90,7 @@ namespace MyLib_Csharp.CommonClass
         /// </summary>
         public static double RecurrenceRelation(this ITuple initValue, Func<List<double>, int, double> recurrenceRelationFunc, int n)
         {
-            if (initValue.Length > n) return initValue[n].Cast<double>();
+            if (initValue.Length > n) return initValue[n].To<double>();
             List<double> sequence = new List<double>(initValue.ToArray<double>());
             (initValue.Length, n).Loop(i => sequence.Add(recurrenceRelationFunc(sequence, i)));
             return sequence[n];

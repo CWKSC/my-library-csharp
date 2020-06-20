@@ -25,7 +25,7 @@ namespace MyLib_Csharp.CommonClass
         public static T[] ToArray<T>(this ITuple tuple)
         {
             T[] result = new T[tuple.Length];
-            tuple.Length.Loop(i => result[i] = tuple[i].Cast<T>());
+            tuple.Length.Loop(i => result[i] = tuple[i].To<T>());
             return result;
         }
 

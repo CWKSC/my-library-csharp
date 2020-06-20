@@ -8,7 +8,7 @@ using System.Text;
 namespace MyLib_Csharp.CommonClass
 {
 
-    public partial class MyVoid 
+    public partial class MyVoid
     {
 
     }
