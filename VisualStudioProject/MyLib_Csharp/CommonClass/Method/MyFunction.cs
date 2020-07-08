@@ -53,6 +53,9 @@ namespace MyLib_Csharp.CommonClass
         public delegate RecursionInFunc<T> RecursionInFunc<T>(in T arg);
 
 
+        public static Func<int, T> ToFunc<T>(this T[] array) => 
+            i => array[i];
+
 
         public static Func<T> ToFunc<T>(this T value) => () => value;
 

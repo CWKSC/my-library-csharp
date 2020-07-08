@@ -1,6 +1,7 @@
-﻿using MyLib_Csharp.CommonClass.MyType;
+﻿using MyLib_Csharp.CommonClass;
 using System;
-using System.Linq.Expressions;
+
+using static MyLib_Csharp.CommonClass.ProgrammaticProgram;
 
 namespace MyLib_Csharp
 {
@@ -8,9 +9,30 @@ namespace MyLib_Csharp
     {
 
 
+
+
+        public delegate MyVoid FuncR<R>(out R returnValue);
+
+        public R GetReturnValueOfFuncR<R>(FuncR<R> actionR) => 
+            actionR(out R returnValue).Return(returnValue);
+
+
+        public ReturnValue<MyVoid> Foo() => Return();
+
+
+        public void Bar(Func<int, int> func)
+        {
+
+        }
+
+
         public static void Main(string[] args)
         {
-            MyAction.Test();
+            int[] dataSet = {1, 2, 3};
+            dataSet.Map(x => x*3).Print();
+
+            ((Func<int, int>)(i => dataSet[i])).Map(x => x * 3);
+            //MyAction.Test();
             //MultipleInheritance.Test();
         }
 

@@ -30,7 +30,7 @@ namespace MyLib_Csharp.CommonClass.MyType
 
             // Use adapter //
             Foo(3, _(() => "3".Print())); ln();    // 333
-            Foo(3, _<int>(i => i.Print())); ln();  // 012
+            Foo(3, _((int i) => i.Print())); ln();  // 012
             Foo(3, _("5")); ln();                  // 555
         }
 

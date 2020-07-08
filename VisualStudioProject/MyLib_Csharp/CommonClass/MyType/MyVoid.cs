@@ -11,5 +11,14 @@ namespace MyLib_Csharp.CommonClass
     public partial class MyVoid
     {
 
+        public static readonly MyVoid defalutVoid;
+
+        public R Return<R>(R expression) => expression;
+
+    }
+
+    public static class MyVoidExtension
+    {
+
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 
+using static MyLib_Csharp.CommonClass.MyPrint;
+
 namespace MyLib_Csharp.Tool
 {
     public partial class LagrangeInterpolation
@@ -9,14 +11,14 @@ namespace MyLib_Csharp.Tool
         {
             (double x, double y)[] points = { (2, 7), (0, -9), (3, -3), (4, 6), (-5, 3), (1, 5), (-6, 2) };
             Generate(points);
-            Console.WriteLine();
+            ln();
             Generate3(points);
-            Console.WriteLine();
+            ln();
             Generate4(points);
-            Console.WriteLine();
-            Generate5(points);
-            Console.WriteLine();
-            Console.WriteLine(Calc(5, points));
+            ln();
+            Generate(points);
+            ln();
+            Calc(5, points).Println();
         }
 
     }
