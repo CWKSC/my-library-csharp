@@ -1,12 +1,16 @@
-﻿using System;
+﻿using MyLib_Csharp_Beta.ProgrammingPattern;
+using System;
 
 namespace MyLib_Csharp_Beta
 {
-    class Program
+
+    public class Program
     {
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Looping.Test();
+            //ProgramStructure.Test();
         }
     }
 }

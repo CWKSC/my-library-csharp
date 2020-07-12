@@ -7,14 +7,17 @@ namespace MyLib_Csharp_Alpha.CommonClass
     public static class MyPrint
     {
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
-        public static void ln() => Console.WriteLine();
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
-        public static void lnln() => Console.WriteLine('\n');
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:命名樣式", Justification = "<暫止>")]
+#pragma warning disable IDE1006 // 命名樣式
+        public static void ln() => ln(1);
+        public static void lnln() => ln(2);
+        public static void lnlnln() => ln(3);
+        public static void ln<T>(T _) => ln();
+        public static void lnln<T>(T _) => lnln();
+        public static void lnlnln<T>(T _) => lnlnln();
         public static void ln(int times) => Console.Write(new string('\n', times));
+
+#pragma warning restore IDE1006 // 命名樣式
 
 
         public static T Print<T>(this T value) { Console.Write(value); return value; }

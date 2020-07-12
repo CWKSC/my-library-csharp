@@ -6,13 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommonMethod\" />
-    <Folder Include="Math\" />
     <Folder Include="DataStructure\" />
-    <Folder Include="CommonType\" />
+    <Folder Include="Math\" />
     <Folder Include="Algorithm\" />
     <Folder Include="Tool\" />
-    <Folder Include="ProgrammingPattern\" />
   </ItemGroup>
 
 </Project>
