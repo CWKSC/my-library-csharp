@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.MyType
+namespace MyLib_Csharp_Alpha.MyType
 {
     public partial class RGBA
     {

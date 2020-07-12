@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static class MyConsole
     {

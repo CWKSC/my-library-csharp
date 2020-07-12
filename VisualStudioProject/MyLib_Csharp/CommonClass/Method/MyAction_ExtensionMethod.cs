@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MyLib_Csharp_Alpha.CommonClass.MyType;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
-    public static class MyAction
+    public static class MyAction_ExtensionMethod
     {
 
         public static Action Nothing = () => { };
@@ -17,13 +18,13 @@ namespace MyLib_Csharp.CommonClass
         public delegate void InAction<IN>(in IN arg);
 
 
-        public static Action ToAction<T>(this T value) => () => value.Print();
+        public static Action ToPrintAction<T>(this T value) => () => value.Print();
 
-
+        public static MyAction<T> ToMyAction<T>(this Action action) => action;
 
         public static Action<T> _<T>(Action<T> action) => action;
         public static Action _(Action action) => action;
-        public static Action _<T>(T value) => value.ToAction();
+        public static Action _<T>(T value) => value.ToPrintAction();
 
 
 

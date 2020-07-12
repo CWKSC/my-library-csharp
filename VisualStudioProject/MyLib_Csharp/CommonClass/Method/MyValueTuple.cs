@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static class MyValueTuple
     {

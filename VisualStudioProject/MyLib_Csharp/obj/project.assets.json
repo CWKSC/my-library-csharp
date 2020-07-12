@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp.csproj",
-      "projectName": "MyLib_Csharp",
-      "projectPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp.csproj",
+      "projectUniqueName": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp_Alpha.csproj",
+      "projectName": "MyLib_Csharp_Alpha",
+      "projectPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\MyLib_Csharp_Alpha.csproj",
       "packagesPath": "C:\\Users\\sam97\\.nuget\\packages\\",
       "outputPath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\MyLib_Csharp\\obj\\",
       "projectStyle": "PackageReference",

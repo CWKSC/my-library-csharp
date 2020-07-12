@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public class MyDebug
     {

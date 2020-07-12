@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyLib_Csharp.Tool
+namespace MyLib_Csharp_Alpha.Tool
 {
     public class FSMState
     {

@@ -1,9 +1,9 @@
-﻿using MyLib_Csharp.DataStructure;
+﻿using MyLib_Csharp_Alpha.DataStructure;
 using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static class MyTest
     {
@@ -12,7 +12,7 @@ namespace MyLib_Csharp.CommonClass
         public static void SetTestSetting()
         {
             SetProcessPriority();
-            Warmup(MyAction.Nothing);
+            Warmup(MyAction_ExtensionMethod.Nothing);
         }
 
         public static void SetProcessPriority()

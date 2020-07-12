@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 using static System.Math;
-using static MyLib_Csharp.CommonClass.MyCalculus;
-using static MyLib_Csharp.CommonClass.MyPrint;
+using static MyLib_Csharp_Alpha.CommonClass.MyCalculus;
+using static MyLib_Csharp_Alpha.CommonClass.MyPrint;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
 
     public static partial class MyMath
@@ -70,7 +70,7 @@ namespace MyLib_Csharp.CommonClass
 
         public static double ProductOf(int start, int end,
             Func<int, double> f,
-            Predicate<int> condition = null) => 
+            Predicate<int> condition) => 
                 ProductOf(start, end, f.ToNoArgsLoopFunc(), null, condition);
 
         public static double ProductOf(int start, int end, 

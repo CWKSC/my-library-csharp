@@ -1,9 +1,9 @@
-﻿using MyLib_Csharp.CommonClass;
+﻿using MyLib_Csharp_Alpha.CommonClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.Tool
+namespace MyLib_Csharp_Alpha.Tool
 {
     public partial class Canvas
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-using static MyLib_Csharp.CommonClass.MyAction;
-using static MyLib_Csharp.CommonClass.MyPrint;
+using static MyLib_Csharp_Alpha.CommonClass.MyAction_ExtensionMethod;
+using static MyLib_Csharp_Alpha.CommonClass.MyPrint;
 
-namespace MyLib_Csharp.CommonClass.MyType
+namespace MyLib_Csharp_Alpha.CommonClass.MyType
 {
-    public partial class MyAction
+    public partial class MyAction<T>
     {
 
         public static void Foo(int n, MyAction<int> myAction)

@@ -1,10 +1,10 @@
-﻿using MyLib_Csharp.DataStructure;
-using MyLib_Csharp.MyType;
+﻿using MyLib_Csharp_Alpha.DataStructure;
+using MyLib_Csharp_Alpha.MyType;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static class MyConvert
     {

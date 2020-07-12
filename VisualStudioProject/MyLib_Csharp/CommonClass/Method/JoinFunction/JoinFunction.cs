@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static partial class JoinFunction
     {
@@ -16,7 +16,7 @@ namespace MyLib_Csharp.CommonClass
 
         public static string JoinString<T>(this T[] array, Func<T, int, string> work, string joinString)
         {
-            if (array.Length == 0) return null;
+            if (array.Length == 0) return "";
             StringBuilder result = new StringBuilder();
             result.Append(work(array[0], 0));
             (1, array.Length).Loop((i) =>
@@ -29,7 +29,7 @@ namespace MyLib_Csharp.CommonClass
 
 
         public static void JoinPrint(this (int start, int end) args, Func<int, string> work, string joinString) =>
-            JoinPrint(args, work, (__) => joinString);
+            JoinPrint(args, work, (_) => joinString);
 
         public static void JoinPrint(this (int start, int end) args, Func<int, string> work, Func<int, string> joinAction)
         {
@@ -107,14 +107,21 @@ namespace MyLib_Csharp.CommonClass
             JoinPrint(array, work, "*");
 
 
+        public static string JoinStringSumOf<T>(this T[] array, Func<T, int, string> work) =>
+            JoinString(array, work, "+");
+        public static string JoinStringProductOf<T>(this T[] array, Func<T, int, string> work) =>
+            JoinString(array, work, "*");
+
+
 
         public static void JoinFunc(this int times, Action<int> work, Action<int> joinAction) =>
-            JoinFunc((0, times - 1), work, joinAction);
+            (0, times - 1).JoinFunc(work, joinAction);
 
+        /// <summary> [start, end] </summary>
         public static void JoinFunc(this (int start, int end) args, Action<int> work, Action<int> joinAction)
         {
             work(args.start);
-            (args.start + 1, args.end).Loop((i) =>
+            (args.start + 1, args.end).Loop(i =>
             {
                 joinAction(i);
                 work(i);
@@ -123,37 +130,28 @@ namespace MyLib_Csharp.CommonClass
 
 
         public static void JoinFunc<T>(this T[] array, Action<T> work, Action joinAction) =>
-            JoinFunc(array, (ele, __) => work(ele), (__, ___) => joinAction());
+            JoinFunc(array, (ele, _) => work(ele), (_, __) => joinAction());
 
         public static void JoinFunc<T>(this T[] array, Action<T> work, Action<T> joinAction) =>
-            JoinFunc(array, (ele, __) => work(ele), (ele, __) => joinAction(ele));
+            JoinFunc(array, (ele, _) => work(ele), (ele, _) => joinAction(ele));
 
 
         public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action joinAction) =>
-            JoinFunc(array, work, (__, ___) => joinAction());
+            JoinFunc(array, work, (_, __) => joinAction());
         public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action<T> joinAction) =>
-            JoinFunc(array, work, (ele, __) => joinAction(ele));
+            JoinFunc(array, work, (ele, _) => joinAction(ele));
 
         public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action<T, int> joinAction)
         {
             if (array.Length == 0) return;
             work(array[0], 0);
-            (1, array.Length - 1).Loop((i) =>
+            (1, array.Length - 1).Loop(i =>
             {
                 joinAction(array[i], i);
                 work(array[i], i);
             });
         }
 
-        
-        public static void JoinFunc(this int times, Action A, Action B)
-        {
-            A();
-            times.Loop(() =>
-            {
-                B();
-                A();
-            });
-        }
+
     }
 }

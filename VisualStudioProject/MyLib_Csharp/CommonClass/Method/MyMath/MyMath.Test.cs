@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using static MyLib_Csharp.CommonClass.MyCalculus;
-using static MyLib_Csharp.CommonClass.MyPrime;
+using static MyLib_Csharp_Alpha.CommonClass.MyCalculus;
+using static MyLib_Csharp_Alpha.CommonClass.MyPrime;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public partial class MyMath
     {

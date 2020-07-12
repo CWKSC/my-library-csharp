@@ -4,7 +4,7 @@ using System.Text;
 
 using static System.Math;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public partial class MyCalculus
     {

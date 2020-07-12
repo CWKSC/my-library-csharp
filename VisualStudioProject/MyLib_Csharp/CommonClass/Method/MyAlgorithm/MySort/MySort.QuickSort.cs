@@ -7,7 +7,7 @@ using System.Text;
 using System.Drawing;
 #endif
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static partial class MyAlgorithm
     {

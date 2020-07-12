@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyLib_Csharp.Tool
+namespace MyLib_Csharp_Alpha.Tool
 {
 
     public partial class RuleBasedSystem

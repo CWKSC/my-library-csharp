@@ -1,9 +1,9 @@
-﻿using MyLib_Csharp.DataStructure;
+﻿using MyLib_Csharp_Alpha.DataStructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static partial class MyAlgorithm
     {

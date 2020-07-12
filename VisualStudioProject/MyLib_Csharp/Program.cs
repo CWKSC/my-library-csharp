@@ -1,15 +1,13 @@
-﻿using MyLib_Csharp.CommonClass;
+﻿using MyLib_Csharp_Alpha.CommonClass;
+using MyLib_Csharp_Alpha.Tool;
 using System;
 
-using static MyLib_Csharp.CommonClass.ProgrammaticProgram;
+using static MyLib_Csharp_Alpha.CommonClass.ProgrammaticProgram;
 
-namespace MyLib_Csharp
+namespace MyLib_Csharp_Alpha
 {
     class Program
     {
-
-
-
 
         public delegate MyVoid FuncR<R>(out R returnValue);
 
@@ -28,11 +26,11 @@ namespace MyLib_Csharp
 
         public static void Main(string[] args)
         {
-            int[] dataSet = {1, 2, 3};
-            dataSet.Map(x => x*3).Print();
+            //int[] dataSet = {1, 2, 3};
+            //dataSet.Map(x => x*3).Print();
 
-            ((Func<int, int>)(i => dataSet[i])).Map(x => x * 3);
-            //MyAction.Test();
+            //((Func<int, int>)(i => dataSet[i])).Map(x => x * 3);
+            LagrangeInterpolationPolynomial.Test();
             //MultipleInheritance.Test();
         }
 

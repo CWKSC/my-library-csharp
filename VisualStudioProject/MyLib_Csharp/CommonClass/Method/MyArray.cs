@@ -7,7 +7,7 @@ using System.Drawing;
 using Pastel;
 #endif
 
-namespace MyLib_Csharp.CommonClass
+namespace MyLib_Csharp_Alpha.CommonClass
 {
     public static class MyArray
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp.DataStructure
+namespace MyLib_Csharp_Alpha.DataStructure
 {
     public partial class Graph
     {

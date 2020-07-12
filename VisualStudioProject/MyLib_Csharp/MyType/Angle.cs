@@ -1,9 +1,9 @@
-﻿using MyLib_Csharp.CommonClass;
+﻿using MyLib_Csharp_Alpha.CommonClass;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace MyLib_Csharp.MyType
+namespace MyLib_Csharp_Alpha.MyType
 {
     public enum AngleType
     {

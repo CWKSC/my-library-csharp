@@ -1,10 +1,10 @@
-﻿using MyLib_Csharp.CommonClass;
+﻿using MyLib_Csharp_Alpha.CommonClass;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MyLib_Csharp.DataStructure
+namespace MyLib_Csharp_Alpha.DataStructure
 {
     /// <summary> [min, max] </summary>
     public class CountingArray
