@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLib_Csharp_Alpha", "MyLib_Csharp\MyLib_Csharp_Alpha.csproj", "{678E223B-58EF-4D48-9E5B-A68F68607978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLib_Csharp_Alpha", "MyLib_Csharp_Alpha\MyLib_Csharp_Alpha.csproj", "{678E223B-58EF-4D48-9E5B-A68F68607978}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib_Csharp_Beta", "MyLib_Csharp_Beta\MyLib_Csharp_Beta.csproj", "{3E8E47AE-03F4-4269-A057-020AE89B146C}"
 EndProject
