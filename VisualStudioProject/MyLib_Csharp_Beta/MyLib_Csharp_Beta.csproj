@@ -9,6 +9,8 @@
     <Folder Include="DataStructure\" />
     <Folder Include="Math\" />
     <Folder Include="Algorithm\" />
+    <Folder Include="ProgrammingPattern\JoinString\" />
+    <Folder Include="ProgrammingPattern\JoinPrint\" />
     <Folder Include="Tool\" />
   </ItemGroup>
 

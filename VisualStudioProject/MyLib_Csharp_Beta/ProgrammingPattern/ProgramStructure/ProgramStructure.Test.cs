@@ -8,14 +8,13 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     {
 
         public static MyVoid Test() =>
-            Delcare(out bool condition).
-            Delcare(out Func<bool> isIfElseReach, () =>
+            _(out bool condition).
+            _(out Func<bool> isIfElseReach, () =>
                 condition.
                     If(() => "If is reach".Println()).
                     Else(() => "Else is reach".Println()) ).
-            Delcare(out Func<string> printCondition, () => 
-                ("condition variable : " + condition)
-                    .Println()).
+            _(out Func<string> printCondition, () => 
+                ("condition variable : " + condition).Println() ).
             Call(printCondition).
             Call(isIfElseReach).
             _(condition = true).
