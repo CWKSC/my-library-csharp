@@ -15,11 +15,11 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public static MyVoid ln() => ln(1);
         public static MyVoid lnln() => ln(2);
         public static MyVoid lnlnln() => ln(3);
-        public static MyVoid ln<Any>(this Any _) => ln();
-        public static MyVoid lnln<Any>(this Any _) => lnln();
-        public static MyVoid lnlnln<Any>(this Any _) => lnlnln();
-        public static MyVoid ln<Any>(this Any _, int times) => ln(times);
-        public static MyVoid ln(int times) => ReturnVoid(() => new string('\n', times).Print());
+        public static Any ln<Any>(this Any _) { ln(); return _; }
+        public static Any lnln<Any>(this Any _) { lnln(); return _; }
+        public static Any lnlnln<Any>(this Any _) { lnlnln(); return _; }
+        public static Any ln<Any>(this Any _, int times) { ln(times); return _; }
+        public static MyVoid ln(int times) => new string('\n', times).Print().ReturnVoid();
 
 #pragma warning restore IDE1006 // 命名樣式
 

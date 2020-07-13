@@ -18,14 +18,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
         /// <summary> int i = args.start; i <= args.end; i += args.step </summary>
-        public static MyVoid Loop(this (int start, int end, int step) args, Action<int> action) =>
+        public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action) =>
             args.For(action);
 
         /// <summary>
         /// <para> int i = args.start; i <= args.end; i += args.step </para>
         /// <para> i => { if (condition) action(i); </para>
         /// </summary>
-        public static MyVoid Loop(this (int start, int end, int step) args, Action<int> action, Predicate<int> condition = null) => 
+        public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action, Predicate<int> condition = null) => 
             args.Loop(i => { 
                 if (condition == null || condition(i))
                     action(i);
@@ -33,16 +33,19 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
         /// <summary> [start, end] </summary>
-        public static MyVoid Loop(this (int start, int end) args, Action<int> action, Predicate<int> condition = null) =>
+        public static (int start, int end) Loop(this (int start, int end) args, Action<int> action, Predicate<int> condition = null)
+        {
             (args.start, args.end, 1).Loop(action, condition);
+            return args;
+        }
 
 
         /// <summary> Loop n times </summary>
-        public static MyVoid Loop(this int times, Action<int> action, Predicate<int> condition = null) =>
+        public static int Loop(this int times, Action<int> action, Predicate<int> condition = null)
+        {
             (0, times - 1).Loop(action, condition);
-
-
-
+            return times;
+        }
 
 
     }

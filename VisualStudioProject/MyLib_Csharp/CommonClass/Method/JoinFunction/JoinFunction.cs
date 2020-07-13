@@ -143,7 +143,6 @@ namespace MyLib_Csharp_Alpha.CommonClass
 
         public static void JoinFunc<T>(this T[] array, Action<T, int> work, Action<T, int> joinAction)
         {
-            if (array.Length == 0) return;
             work(array[0], 0);
             (1, array.Length - 1).Loop(i =>
             {

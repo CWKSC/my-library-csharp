@@ -1,8 +1,6 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 using MyLib_Csharp_Beta.CommonType;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
@@ -13,27 +11,23 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             Delcare(out bool condition).
             Delcare(out Func<bool> isIfElseReach, () =>
                 condition.
-                If(() => "If is reach".Println()).
-                Else(() => "Else is reach".Println()) ).
+                    If(() => "If is reach".Println()).
+                    Else(() => "Else is reach".Println()) ).
             Delcare(out Func<string> printCondition, () => 
-                ("condition variable : " + condition).Println()).
+                ("condition variable : " + condition)
+                    .Println()).
             Call(printCondition).
             Call(isIfElseReach).
-            Expression(condition = true).
+            _(condition = true).
             Call(printCondition).
-            Call(isIfElseReach);
+            Call(isIfElseReach).
+            ReturnVoid();
 
-        /*
-        bool condition = default;
-        Func<bool> isIfElseReach = () => {
-            if (condition) { Console.WriteLine("If is reach"); }
-            else {  Console.WriteLine("Else is reach"); }
-        };
-        Console.WriteLine("condition variable : " + condition);
-        isIfElseReach2();
-        condition = true;
-        Console.WriteLine("condition variable : " + condition);
-        isIfElseReach2();
+        /* Output
+        condition variable : False
+        Else is reach
+        condition variable : True
+        If is reach
         */
 
     }
