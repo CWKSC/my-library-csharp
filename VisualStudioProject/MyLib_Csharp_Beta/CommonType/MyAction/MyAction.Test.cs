@@ -31,6 +31,20 @@ namespace MyLib_Csharp_Beta.CommonType
             Foo(3, _a(() => "3".Print())).ln();     // 333
             Foo(3, _a((int i) => i.Print())).ln();  // 012
             Foo(3, "5").ln();                       // 555
+
+            // You can see that Action<int, int>, Action<int>, Action and string //
+            // all can implicit convert to MyAction<int, int> 
+            // Generally, it means Action<T1, T2>, Action<T1>, Action and string can convert to MyAction<T1, T2>
+            // Note that string is special for convert to MyAction type
+            Action<int, int> actionTT = (x1, x2) => { };
+            Action<int> actionT = x => { };
+            Action action = () => { };
+            string value = "";
+            MyAction<int, int> myAction;
+            myAction = actionTT;
+            myAction = actionT;
+            myAction = action;
+            myAction = value;
         }
         /* Output
         000
