@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using static MyLib_Csharp_Beta.CommonMethod.MyPrint;
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
@@ -14,7 +12,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static void Test()
         {
-            // (int, int) JoinFunc(this (int, int) args, MyAction<int> work, MyAction<int> joinAction) //
+            // (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, MyAction<int> joinAction) //
             (1, 5).JoinFunc(i => i.Print(), _ => ", ".Print()).ln();
             (1, 5).JoinFunc(PrintI, _ => ", ".Print()).ln();
             (1, 5).JoinFunc(i => i.Print(), ", ").ln();

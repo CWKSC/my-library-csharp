@@ -1,4 +1,5 @@
 ﻿using MyLib_Csharp_Beta.CommonType;
+using MyLib_Csharp_Beta.ProgrammingPattern;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,6 @@ namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static class MyPrint
     {
-
 
 #pragma warning disable IDE1006 // 命名樣式
         public static MyVoid ln() => ln(1);
@@ -38,7 +38,8 @@ namespace MyLib_Csharp_Beta.CommonMethod
 #pragma warning restore IDE1006 // 命名樣式
 
 
-
+        public static T[] Print<T>(this T[] array) => 
+            array.JoinFunc((ele, _) => ele.Print(), ", ");
 
 
     }

@@ -9,7 +9,6 @@ namespace MyLib_Csharp_Beta.CommonType
     {
 
 
-
         public static double Foo(int n, MyFunc<double, double> func)
         {
             double sum = 0;
@@ -19,9 +18,11 @@ namespace MyLib_Csharp_Beta.CommonType
             }
             return sum;
         }
+
         // If no overload function is provided
         // Users need to use an adapter to convert lambda to func
         public static double Foo(int n, Func<double, double> func) => Foo(n, (MyFunc<double, double>)func);
+
 
         public static void Test()
         {
@@ -43,6 +44,7 @@ namespace MyLib_Csharp_Beta.CommonType
         2 + 2 + 2 + 4 = 8
         7 + 7 + 7 + 7 = 28
         */
+
 
     }
 

@@ -14,10 +14,11 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            JoinFunction.Test();
+            JoinString.Test();
             //MyAction.Test();
             //Looping.Test();
             //ProgramStructure.Test();
         }
     }
+
 }

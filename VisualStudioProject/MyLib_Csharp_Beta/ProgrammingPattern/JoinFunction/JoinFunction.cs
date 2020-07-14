@@ -3,21 +3,61 @@ using System;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
+
+    /// <summary>
+    /// There are three main functions here:
+    /// <code> (int start, int end) JoinFunc(this (int start, int end) args, MyAction&lt;int&gt; work, MyAction&lt;int&gt; join) </code>
+    /// <code> int JoinFunc(this int times, MyAction&lt;int&gt; work, MyAction&lt;int&gt; join) </code>
+    /// <code> T[] JoinFunc&lt;T&gt;(this T[] array, MyAction&lt;T, int&gt; work, MyAction&lt;T, int&gt; join) </code>
+    /// </summary>
     public static partial class JoinFunction
     {
 
+        // [Some Note here for JoinFunc idea]
+        // 
+        // define f(x) = print x
+        // define g(x) = print ", "
+        //
+        // // Pattern A //
+        // /*g(0)*/ f(0) g(1) f(1) g(2) f(2) ... g(i) f(i)
+        //
+        // // Pattern B //
+        // f(0) g(0) f(1) g(1) f(2) g(2) ... f(i) /*g(i)*/
+        //
+        // x = {1, 2, 3}
+        // 
+        // // Pattern A //
+        // , 1, 2, 3
+        // 
+        // (0, array.length - 1).Loop(i => {
+        //     ", ".Print();
+        //     array[i].Print();
+        // })
+        // 
+        // // Pattern B //
+        // 1, 2, 3, 
+        // 
+        // (0, array.length - 1).Loop(i => {
+        //     array[i].Print();
+        //     ", ".Print();
+        // })
+        // 
+
+
+
+
         /// <summary>
-        /// JoinFunc for start to end, range is [start, end]
+        /// JoinFunc from start to end, range is [start, end]
         /// <code>(1, 5).JoinFunc(i => i.Print(), _ => ", ".Print()).ln();</code>
         /// Output:
         /// <code>1, 2, 3, 4, 5</code>
         /// </summary>
-        public static (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, MyAction<int> joinAction)
+        public static (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, MyAction<int> join)
         {
             work.Invoke(args.start);
             (args.start + 1, args.end).Loop(i =>
             {
-                joinAction.Invoke(i);
+                join.Invoke(i);
                 work.Invoke(i);
             });
 
@@ -32,35 +72,13 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
             return args;
         }
-        public static (int start, int end) JoinFunc(this (int start, int end) args, Action<int> work, MyAction<int> joinAction) =>
-            args.JoinFunc((MyAction<int>)work, joinAction);
-        public static (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, Action<int> joinAction) =>
-            args.JoinFunc(work, (MyAction<int>)joinAction);
-        public static (int start, int end) JoinFunc(this (int start, int end) args, Action<int> work, Action<int> joinAction) =>
-            args.JoinFunc((MyAction<int>)work, (MyAction<int>)joinAction);
+        public static (int start, int end) JoinFunc(this (int start, int end) args, Action<int> work, MyAction<int> join) =>
+            args.JoinFunc((MyAction<int>)work, join);
+        public static (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, Action<int> join) =>
+            args.JoinFunc(work, (MyAction<int>)join);
+        public static (int start, int end) JoinFunc(this (int start, int end) args, Action<int> work, Action<int> join) =>
+            args.JoinFunc((MyAction<int>)work, (MyAction<int>)join);
 
-        // [Some Note here for JoinFunc]
-        // 
-        // , 1, 2, 3
-        // 
-        // (0, array.length - 1).Loop(i => {
-        //     ", ".Print();
-        //     array[i].Print();
-        // })
-        // 
-        // 
-        // 1, 2, 3, 
-        // 
-        // (0, array.length - 1).Loop(i => {
-        //     array[i].Print();
-        //     ", ".Print();
-        // })
-        // 
-        // f(x) = print x
-        // g(x) = print ", "
-        //
-        // /*g(0)*/ f(0) g(1) f(1) g(2) f(2) ... g(i) f(i)
-        // f(0) g(0) f(1) g(1) f(2) g(2) ... f(i) /*g(i)*/
 
 
 
@@ -70,17 +88,17 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         /// Output:
         /// <code>0, 1, 2</code>
         /// </summary>
-        public static int JoinFunc(this int times, MyAction<int> work, MyAction<int> joinAction)
+        public static int JoinFunc(this int times, MyAction<int> work, MyAction<int> join)
         {
-            (0, times - 1).JoinFunc(work, joinAction);
+            (0, times - 1).JoinFunc(work, join);
             return times;
         }
-        public static int JoinFunc(this int times, Action<int> work, MyAction<int> joinAction) =>
-            times.JoinFunc((MyAction<int>)work, joinAction);
-        public static int JoinFunc(this int times, MyAction<int> work, Action<int> joinAction) =>
-            times.JoinFunc(work, (MyAction<int>)joinAction);
-        public static int JoinFunc(this int times, Action<int> work, Action<int> joinAction) =>
-            times.JoinFunc((MyAction<int>)work, (MyAction<int>)joinAction);
+        public static int JoinFunc(this int times, Action<int> work, MyAction<int> join) =>
+            times.JoinFunc((MyAction<int>)work, join);
+        public static int JoinFunc(this int times, MyAction<int> work, Action<int> join) =>
+            times.JoinFunc(work, (MyAction<int>)join);
+        public static int JoinFunc(this int times, Action<int> work, Action<int> join) =>
+            times.JoinFunc((MyAction<int>)work, (MyAction<int>)join);
 
 
         /// <summary> 
@@ -90,19 +108,19 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         /// Output:
         /// <code>12, 34, 56, 78, 910</code>
         /// </summary>
-        public static T[] JoinFunc<T>(this T[] array, MyAction<T, int> work, MyAction<T, int> joinAction)
+        public static T[] JoinFunc<T>(this T[] array, MyAction<T, int> work, MyAction<T, int> join)
         {
             array.Length.JoinFunc(
                 (MyAction<int>)(i => work.Invoke(array[i], i) ),
-                (MyAction<int>)(i => joinAction.Invoke(array[i], i)) );
+                (MyAction<int>)(i => join.Invoke(array[i], i)) );
             return array;
         }
-        public static T[] JoinFunc<T>(this T[] array, Action<T, int> work, MyAction<T, int> joinAction) =>
-            array.JoinFunc((MyAction<T, int>)work, joinAction);
-        public static T[] JoinFunc<T>(this T[] array, MyAction<T, int> work, Action<T, int> joinAction) =>
-            array.JoinFunc(work, (MyAction<T, int>)joinAction);
-        public static T[] JoinFunc<T>(this T[] array, Action<T, int> work, Action<T, int> joinAction) =>
-            array.JoinFunc((MyAction<T, int>)work, (MyAction<T, int>)joinAction);
+        public static T[] JoinFunc<T>(this T[] array, Action<T, int> work, MyAction<T, int> join) =>
+            array.JoinFunc((MyAction<T, int>)work, join);
+        public static T[] JoinFunc<T>(this T[] array, MyAction<T, int> work, Action<T, int> join) =>
+            array.JoinFunc(work, (MyAction<T, int>)join);
+        public static T[] JoinFunc<T>(this T[] array, Action<T, int> work, Action<T, int> join) =>
+            array.JoinFunc((MyAction<T, int>)work, (MyAction<T, int>)join);
 
 
 
