@@ -1,7 +1,5 @@
 ﻿using MyLib_Csharp_Beta.CommonType;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
@@ -25,6 +23,10 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             variable = init;
         public static T Delcare<Any, T>(this Any _, out T variable, T init = default) =>
             variable = init;
+        public static T _<T>(out T variable, T init = default) =>
+            variable = init;
+        public static T _<Any, T>(this Any _, out T variable, T init = default) =>
+            variable = init;
 
 
         // Expression //
@@ -33,7 +35,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         public static T _<Any, T>(this Any _, T expression) =>
             expression;
 
+
 #pragma warning disable IDE1006 // 命名樣式
+
+        // Adapter //
+        // If function not provide overloading function for adapt MyAction/MyFunc Type parameter
+        // You need to use Action/Func Adapter
+        // Adapter use for convert lambda to Action/Func 
+        // Then Action/Func can implicit convert to MyAction/MyFunc 
 
         // Action Adapter //
         public static Action _a(Action action) =>
@@ -42,15 +51,18 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             actionT;
         public static Action<T1, T2> _a<T1, T2>(Action<T1, T2> actionTT) =>
             actionTT;
+        public static Action<T1, T2, T3> _a<T1, T2, T3>(Action<T1, T2, T3> actionTTT) =>
+            actionTTT;
 
         // Func Adapter //
-
         public static Func<R> _f<R>(Func<R> func) =>
             func;
         public static Func<T, R> _f<T, R>(Func<T, R> funcT) =>
             funcT;
         public static Func<T1, T2, R> _f<T1, T2, R>(Func<T1, T2, R> funcTT) =>
             funcTT;
+        public static Func<T1, T2, T3, R> _f<T1, T2, T3, R>(Func<T1, T2, T3, R> funcTTT) =>
+            funcTTT;
 
 #pragma warning restore IDE1006 // 命名樣式
 
@@ -79,6 +91,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         public static bool Else(this bool condition, Action action) =>
             If(!condition, action);
 
+
         // For //
         public static (int start, int end, int step) For(this (int start, int end, int step) args, Action<int> action)
         {
@@ -86,6 +99,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                 action(i);
             return args;
         }
+
 
         // While //
         public static Func<bool> While(this Func<bool> condition, Action action)

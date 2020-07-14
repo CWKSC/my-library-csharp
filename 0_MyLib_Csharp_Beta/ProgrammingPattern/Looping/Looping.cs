@@ -1,9 +1,4 @@
-﻿using MyLib_Csharp_Beta.CommonType;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
+﻿using System;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
@@ -17,12 +12,12 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
 
-        /// <summary> int i = args.start; i <= args.end; i += args.step </summary>
+        /// <summary> int i = args.start; i &lt;= args.end; i += args.step </summary>
         public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action) =>
             args.For(action);
 
         /// <summary>
-        /// <para> int i = args.start; i <= args.end; i += args.step </para>
+        /// <para> int i = args.start; i &lt;= args.end; i += args.step </para>
         /// <para> i => { if (condition) action(i); </para>
         /// </summary>
         public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action, Predicate<int> condition = null) => 
