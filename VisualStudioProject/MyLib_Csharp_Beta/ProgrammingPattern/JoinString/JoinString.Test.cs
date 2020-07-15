@@ -18,6 +18,19 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         /// </summary>
         public static void Test()
         {
+            // Some Advanced Usage //
+            (1, 5).JoinStr(
+                i => "(" + (1, i).JoinStr(i => i.ToString(), " + ") + ")",
+                " * \n"
+            ).Printlnln();
+            /* Output
+            (1) *
+            (1 + 2) *
+            (1 + 2 + 3) *
+            (1 + 2 + 3 + 4) *
+            (1 + 2 + 3 + 4 + 5)
+            */
+
             // string JoinStr(this (int start, int end) args, MyFunc<int, string> work, MyFunc<int, string> join) //
             (1, 5).JoinStr(i => i.ToString(), _ => ", ").Println();
             (1, 5).JoinStr(StringI, _ => ", ").Println();
@@ -57,6 +70,12 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         }
         /* Output
+        (1) *
+        (1 + 2) *
+        (1 + 2 + 3) *
+        (1 + 2 + 3 + 4) *
+        (1 + 2 + 3 + 4 + 5)
+
         1, 2, 3, 4, 5
         1, 2, 3, 4, 5
         1, 2, 3, 4, 5

@@ -14,7 +14,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            JoinString.Test();
+            JoinMath.Test();
             //MyAction.Test();
             //Looping.Test();
             //ProgramStructure.Test();
