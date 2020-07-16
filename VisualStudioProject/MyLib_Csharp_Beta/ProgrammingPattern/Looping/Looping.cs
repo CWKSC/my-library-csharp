@@ -12,13 +12,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
 
-        /// <summary> int i = args.start; i &lt;= args.end; i += args.step </summary>
+        /// <summary> <code> int i = args.start; i &lt;= args.end; i += args.step </code>> </summary>
         public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action) =>
             args.For(action);
 
         /// <summary>
-        /// <para> int i = args.start; i &lt;= args.end; i += args.step </para>
-        /// <para> i => { if (condition) action(i); </para>
+        /// <code>
+        /// int i = args.start; i &lt;= args.end; i += args.step <br />
+        /// i => { if (condition) action(i); </code>
         /// </summary>
         public static (int start, int end, int step) Loop(this (int start, int end, int step) args, Action<int> action, Predicate<int> condition = null) => 
             args.Loop(i => { 
