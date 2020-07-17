@@ -28,7 +28,7 @@ namespace MyLib_Csharp_Alpha.Tool
 		//			t == i ? $"({pointI.y})" : $"((x-{pointI.x})/({pointT.x - pointI.x}))"));
 
 		public double Invoke(int x) =>
-			SumOf(0, points.Length - 1,
+			SumOf(0, points.Length - 1, 
 				(j, _) => points[j].y *
 				ProductOf(0, points.Length - 1,
 					m => (x - points[m].x) / (points[j].x - points[m].x),

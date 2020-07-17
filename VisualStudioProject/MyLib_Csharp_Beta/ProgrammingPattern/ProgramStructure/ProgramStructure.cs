@@ -3,9 +3,11 @@ using System;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
+    /// <summary>
+    /// Please note that this part is experimental and not considered in great detail
+    /// </summary>
     public static partial class ProgramStructure
     {
-
 
         // Return MyVoid //
         public static MyVoid ReturnVoid() => MyVoid.instance;
@@ -36,9 +38,10 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             expression;
 
 
+
 #pragma warning disable IDE1006 // 命名樣式
 
-        // Adapter //
+        //// Adapter ////
         // If function not provide overloading function for adapt MyAction/MyFunc Type parameter
         // You need to use Action/Func Adapter
         // Adapter use for convert lambda to Action/Func 
@@ -73,32 +76,47 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             action();
             return _;
         }
+        public static Any Call<Any>(this Any _, params Action[] action)
+        {
+            action.ForEach(ele => ele());
+            return _;
+        }
         public static R Call<T, R>(this T input, Func<T, R> func) => 
             func(input);
-        public static Any Call<Any, R>(this Any _, Func<R> func)
-        {
+        public static R Call<Any, R>(this Any _, Func<R> func) =>
             func();
+        public static Any Call<Any, R>(this Any _, params Func<R>[] func)
+        {
+            func.ForEach(ele => ele());
             return _;
         }
 
 
-        // If Else //
-        public static bool If(this bool condition, Action action)
+        // If //
+        public static bool If(this bool condition, MyAction action)
         {
-            if (condition) action();
+            if (condition) action.Invoke();
             return condition;
         }
-        public static bool Else(this bool condition, Action action) =>
+        public static bool If(this bool condition, Action action) =>
+            condition.If((MyAction)action);
+
+        // Else //
+        public static bool Else(this bool condition, MyAction action) =>
             If(!condition, action);
+        public static bool Else(this bool condition, Action action) =>
+            condition.Else((MyAction)action);
 
 
         // For //
-        public static (int start, int end, int step) For(this (int start, int end, int step) args, Action<int> action)
+        public static (int start, int end, int step) For(this (int start, int end, int step) args, MyAction<int> action)
         {
             for (int i = args.start; i <= args.end; i += args.step)
-                action(i);
+                action.Invoke(i);
             return args;
         }
+        public static (int start, int end, int step) For(this (int start, int end, int step) args, Action<int> action) =>
+            args.For((MyAction<int>)action);
 
 
         // While //

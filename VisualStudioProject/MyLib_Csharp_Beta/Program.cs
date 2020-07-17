@@ -13,7 +13,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            JoinMath.Test();
+            ProgramStructure.Test();
             //MyAction.Test();
             //Looping.Test();
             //ProgramStructure.Test();

@@ -11,9 +11,7 @@
 
   <ItemGroup>
     <Folder Include="DataStructure\" />
-    <Folder Include="Math\" />
     <Folder Include="Algorithm\" />
-    <Folder Include="Tool\" />
   </ItemGroup>
 
 </Project>

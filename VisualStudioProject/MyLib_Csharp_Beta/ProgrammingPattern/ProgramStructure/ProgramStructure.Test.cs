@@ -9,17 +9,13 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static MyVoid Test() =>
             _(out bool condition).
-            _(out Func<bool> isIfElseReach, () =>
-                condition.
-                    If(() => "If is reach".Println()).
-                    Else(() => "Else is reach".Println()) ).
-            _(out Func<string> printCondition, () => 
+            _(out Action isIfElseReach, () =>
+                condition.If("If is reach\n").Else("Else is reach\n") ).
+            _(out Action printCondition, () => 
                 ("condition variable : " + condition).Println() ).
-            Call(printCondition).
-            Call(isIfElseReach).
+            Call(printCondition, isIfElseReach).
             _(condition = true).
-            Call(printCondition).
-            Call(isIfElseReach).
+            Call(printCondition, isIfElseReach).
             ReturnVoid();
 
         /* Output
