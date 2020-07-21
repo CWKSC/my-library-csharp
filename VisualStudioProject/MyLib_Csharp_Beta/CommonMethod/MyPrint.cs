@@ -1,8 +1,6 @@
 ﻿using MyLib_Csharp_Beta.CommonType;
 using MyLib_Csharp_Beta.ProgrammingPattern;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
 
@@ -10,6 +8,9 @@ namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static class MyPrint
     {
+
+
+        //// ln ////
 
 #pragma warning disable IDE1006 // 命名樣式
         public static MyVoid ln() => ln(1);
@@ -23,12 +24,15 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 #pragma warning restore IDE1006 // 命名樣式
 
+        //// Print ////
 
         public static T Print<T>(this T value) { Console.Write(value); return value; }
-        public static T Println<T>(this T value) { value.Print().ln(); return value; }
-        public static T Printlnln<T>(this T value) { value.Println().ln(); return value; }
-        public static T Printlnlnln<T>(this T value) { value.Printlnln().ln(); return value; }
+        public static T Println<T>(this T value) => value.Print().ln(); 
+        public static T Printlnln<T>(this T value) => value.Println().ln(); 
+        public static T Printlnlnln<T>(this T value) => value.Printlnln().ln();
 
+
+        //// lnPrint ////
 
 #pragma warning disable IDE1006 // 命名樣式
         public static T lnPrint<T>(this T value) { ("\n" + value).Print(); return value; }
@@ -38,8 +42,16 @@ namespace MyLib_Csharp_Beta.CommonMethod
 #pragma warning restore IDE1006 // 命名樣式
 
 
-        public static T[] Print<T>(this T[] array) => 
-            array.JoinFunc((ele, _) => ele.Print(), ", ");
+        //// Print for T[] ////
+
+        public static T[] Print<T>(this T[] array)
+        {
+            array.JoinPrint((ele, _) => ele.ToString(), ", ");
+            return array;
+        }
+        public static T[] Println<T>(this T[] array) => array.Print().ln();
+        public static T[] Printlnln<T>(this T[] array) => array.Println().ln();
+        public static T[] Printlnlnln<T>(this T[] array) => array.Printlnln().ln();
 
 
     }

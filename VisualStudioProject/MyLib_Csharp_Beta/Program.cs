@@ -4,6 +4,8 @@ using System;
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
 using static MyLib_Csharp_Beta.CommonMethod.MyPrint;
 using MyLib_Csharp_Beta.CommonType;
+using MyLib_Csharp_Beta.Math;
+using MyLib_Csharp_Beta.Tool;
 
 namespace MyLib_Csharp_Beta
 {
@@ -13,10 +15,8 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            ProgramStructure.Test();
-            //MyAction.Test();
-            //Looping.Test();
-            //ProgramStructure.Test();
+            LagrangePolynomial.Test();
+
         }
     }
 
