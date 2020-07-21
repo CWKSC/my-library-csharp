@@ -4,12 +4,26 @@ using System;
 
 namespace MyLib_Csharp_Beta.CommonType
 {
+
+    public partial class MyAction
+    {
+        public Action action;
+
+        public MyAction(Action action) => this.action = action;
+        public MyAction(string value) : this(() => value.Print()) { }
+
+        public void Invoke() => action();
+
+        public static implicit operator MyAction(Action action) => new MyAction(action);
+        public static implicit operator MyAction(string value) => new MyAction(value);
+    }
+
     public partial class MyAction<T>
     {
         public Action<T> action;
 
         public MyAction(Action<T> actionT) => action = actionT;
-        public MyAction(Action action) => this.action = _ => action();
+        public MyAction(Action action) : this(_ => action()) { }
         public MyAction(string value) : this(() => value.Print()) { }
 
         public void Invoke(T input) => action(input);
@@ -25,8 +39,8 @@ namespace MyLib_Csharp_Beta.CommonType
         public Action<T1, T2> action;
 
         public MyAction(Action<T1, T2> actionTT) => action = actionTT;
-        public MyAction(Action<T1> actionT) => action = (t1, _) => actionT(t1);
-        public MyAction(Action action) => this.action = (_, __) => action();
+        public MyAction(Action<T1> actionT) : this((t1, _) => actionT(t1)) { }
+        public MyAction(Action action) : this(_ => action()) { }
         public MyAction(string value) : this(() => value.Print()) { }
 
         public void Invoke(T1 p1, T2 p2) => action(p1, p2);

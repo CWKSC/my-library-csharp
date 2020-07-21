@@ -78,7 +78,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
             Predicate<int> condition = null)
         {
             double productOf = 1;
-            (start, end).Loop((i) => productOf *= f(i, args), condition);
+            (start, end).Loop(i => productOf *= f(i, args), condition);
             return productOf;
         }
 
@@ -104,11 +104,12 @@ namespace MyLib_Csharp_Alpha.CommonClass
         /// [start, end]
         /// </summary>
         public static void Tabling_Func<T>(Func<int, T> f, int start, int end) => 
-            (start, end).JoinPrint((i) => f(i).ToString(), ", ");
+            (start, end).JoinPrint(i => f(i).ToString(), ", ");
 
 
-        public static double Gamma(double z) => Integral(0, 100,
-            (t) => Pow(t, z - 1) / Exp(t));
+        public static double Gamma(double z) => 
+            Integral(0, 100,
+                t => Pow(t, z - 1) / Exp(t));
 
 
         public static double XPow2_sub_0_5(double x) => x * x - 0.5;

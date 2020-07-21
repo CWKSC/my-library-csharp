@@ -34,6 +34,19 @@ namespace MyLib_Csharp_Beta.CommonType
             ("0 + 1 + 2 + 3 = " + Foo(4, _f((double i) => i)) ).Println();
             ("2 + 2 + 2 + 4 = " + Foo(4, _f<double>(() => 2)) ).Println();
             ("7 + 7 + 7 + 7 = " + Foo(4, 7)).Println();
+
+            // You can see that Func<int, int, int>, Func<int, int>, Func<int> and int //
+            // all can implicit convert to MyFunc<int, int, int> 
+            // Generally, it means Func<T1, T2, R>, Func<T1, R>, Func<R> and R can convert to MyFunc<T1, T2, R>
+            Func<int, int, int> funcTT = (x1, x2) => 1;
+            Func<int, int> funcT = x => 1;
+            Func<int> func = () => 1;
+            int value = 1;
+            MyFunc<int, int, int> myFunc;
+            myFunc = funcTT;
+            myFunc = funcT;
+            myFunc = func;
+            myFunc = value;
         }
         /* Output
         0 + 1 + 2 = 3

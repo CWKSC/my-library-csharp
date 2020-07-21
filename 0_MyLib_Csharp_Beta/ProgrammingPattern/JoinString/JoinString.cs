@@ -1,6 +1,5 @@
 ﻿using MyLib_Csharp_Beta.CommonType;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
@@ -17,6 +16,25 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     {
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string JoinStr(this (int start, int end, int step) args, MyFunc<int, string> work, MyFunc<int, string> join)
+        {
+            StringBuilder result = new StringBuilder();
+            args.JoinFunc(
+                i => result.Append(work.Invoke(i)),
+                i => result.Append(join.Invoke(i)));
+            return result.ToString();
+        }
+        public static string JoinStr(this (int start, int end, int step) args, Func<int, string> work, MyFunc<int, string> join) =>
+            args.JoinStr((MyFunc<int, string>)work, join);
+        public static string JoinStr(this (int start, int end, int step) args, MyFunc<int, string> work, Func<int, string> join) =>
+            args.JoinStr(work, (MyFunc<int, string>)join);
+        public static string JoinStr(this (int start, int end, int step) args, Func<int, string> work, Func<int, string> join) =>
+            args.JoinStr((MyFunc<int, string>)work, (MyFunc<int, string>)join);
+
+
 
         /// <summary>
         /// JoinStr from start to end, range is [start, end]
@@ -24,14 +42,8 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         /// Output:
         /// <code>1, 2, 3, 4, 5</code>
         /// </summary>
-        public static string JoinStr(this (int start, int end) args, MyFunc<int, string> work, MyFunc<int, string> join)
-        {
-            StringBuilder result = new StringBuilder();
-            args.JoinFunc(
-                i => result.Append(work.Invoke(i)), 
-                i => result.Append(join.Invoke(i)) );
-            return result.ToString();
-        }
+        public static string JoinStr(this (int start, int end) args, MyFunc<int, string> work, MyFunc<int, string> join) => 
+            (args.start, args.end, 1).JoinStr(work, join);
         public static string JoinStr(this (int start, int end) args, Func<int, string> work, MyFunc<int, string> join) => 
             args.JoinStr((MyFunc<int, string>)work, join);
         public static string JoinStr(this (int start, int end) args, MyFunc<int, string> work, Func<int, string> join) =>
