@@ -78,7 +78,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         }
         public static Any Call<Any>(this Any _, params Action[] action)
         {
-            action.ForEach(ele => ele());
+            action.Loop(ele => ele());
             return _;
         }
         public static R Call<T, R>(this T input, Func<T, R> func) => 
@@ -87,7 +87,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             func();
         public static Any Call<Any, R>(this Any _, params Func<R>[] func)
         {
-            func.ForEach(ele => ele());
+            func.Loop(ele => ele());
             return _;
         }
 

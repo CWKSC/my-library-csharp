@@ -1,10 +1,5 @@
 ﻿using MyLib_Csharp_Alpha.CommonClass.MyType;
-using MyLib_Csharp_Alpha.MyType;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using static MyLib_Csharp_Alpha.CommonClass.MyAction_ExtensionMethod;
 
 namespace MyLib_Csharp_Alpha.CommonClass
 {

@@ -2,7 +2,7 @@
 using MyLib_Csharp_Beta.ProgrammingPattern;
 using System;
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
-using static MyLib_Csharp_Beta.CommonMethod.MyPrint;
+using static MyLib_Csharp_Beta.CommonMethod.Printing;
 
 namespace MyLib_Csharp_Beta.CommonType
 {

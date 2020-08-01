@@ -26,6 +26,16 @@ namespace MyLib_Csharp_Alpha.CommonClass
             return result;
         }
 
+        public static T[] Map<T>(this T[] dataSet, Func<T, T> operation)
+        {
+            T[] result = new T[dataSet.Length];
+            dataSet.ForEach((ele, i) => result[i] = operation(ele));
+            return result;
+        }
+
+
+
+
 
         public static Func<T, R> Map<T, R>(this Func<T, R> func, Func<R, R> operation) => 
             x => operation(func(x));

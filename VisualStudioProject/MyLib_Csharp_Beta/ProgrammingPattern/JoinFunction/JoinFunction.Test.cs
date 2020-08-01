@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using static MyLib_Csharp_Beta.CommonMethod.MyPrint;
+using static MyLib_Csharp_Beta.CommonMethod.Printing;
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern

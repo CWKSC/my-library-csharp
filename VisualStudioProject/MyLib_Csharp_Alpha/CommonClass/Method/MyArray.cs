@@ -24,6 +24,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
             return result;
         }
 
+
         public static int[,] GenerateRandInt2dArray(int n, int m)
         {
             int[,] result = new int[n, m];

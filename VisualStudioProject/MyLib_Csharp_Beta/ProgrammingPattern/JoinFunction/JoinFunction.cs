@@ -78,22 +78,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         /// </summary>
         public static (int start, int end) JoinFunc(this (int start, int end) args, MyAction<int> work, MyAction<int> join)
         {
-            work.Invoke(args.start);
-            (args.start + 1, args.end).Loop(i =>
-            {
-                join.Invoke(i);
-                work.Invoke(i);
-            });
-
-            // [Another Version]
-            // 
-            //(args.start, args.end - 1).Loop(i =>
-            //{
-            //    work.Invoke(i);
-            //    joinAction.Invoke(i);
-            //});
-            //work.Invoke(args.end);
-
+            (args.start, args.end, 1).JoinFunc(work, join);
             return args;
         }
         public static (int start, int end) JoinFunc(this (int start, int end) args, Action<int> work, MyAction<int> join) =>
