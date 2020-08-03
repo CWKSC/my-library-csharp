@@ -6,7 +6,7 @@ using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
 
 namespace MyLib_Csharp_Beta.CommonMethod
 {
-    public static class MyPrint
+    public static partial class Printing
     {
 
 

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLib_Csharp_Alpha", "MyLib_Csharp_Alpha\MyLib_Csharp_Alpha.csproj", "{678E223B-58EF-4D48-9E5B-A68F68607978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib_Csharp_Beta", "MyLib_Csharp_Beta\MyLib_Csharp_Beta.csproj", "{3E8E47AE-03F4-4269-A057-020AE89B146C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLib_Csharp_Beta", "MyLib_Csharp_Beta\MyLib_Csharp_Beta.csproj", "{3E8E47AE-03F4-4269-A057-020AE89B146C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Useless_Backup_Testing", "Useless_Backup_Testing\Useless_Backup_Testing.csproj", "{E5A53970-04E9-4B0E-A6BE-5777378EC1C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3E8E47AE-03F4-4269-A057-020AE89B146C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8E47AE-03F4-4269-A057-020AE89B146C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8E47AE-03F4-4269-A057-020AE89B146C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A53970-04E9-4B0E-A6BE-5777378EC1C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A53970-04E9-4B0E-A6BE-5777378EC1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A53970-04E9-4B0E-A6BE-5777378EC1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A53970-04E9-4B0E-A6BE-5777378EC1C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

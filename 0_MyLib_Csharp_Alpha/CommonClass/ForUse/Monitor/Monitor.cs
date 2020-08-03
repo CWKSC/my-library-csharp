@@ -11,7 +11,6 @@ namespace MyLib_Csharp_Alpha.CommonClass
         public bool firstTime = true;
 
         public Monitor() { }
-
         public Monitor(T init)
         {
             target = init;
