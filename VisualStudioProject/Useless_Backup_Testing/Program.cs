@@ -11,66 +11,25 @@ namespace Useless_Backup_Testing
     class Program
     {
 
-        public enum TokenType
-        {
-            Symbol, End
-        }
-
-        public class Token
-        {
-            public TokenType tokenType;
-            public string body;
-            public int line;
-
-
-            public Token(string body, int line, TokenType tokenType = TokenType.Symbol)
-            {
-                this.tokenType = tokenType;
-                this.body = body;
-                this.line = line;
-            }
-        }
-
-
-
-
-        public static List<Token> LineTokenize(string source, int lineCount)
-        {
-            List<Token> result = new List<Token>();
-            string[] tokens = source.TrimStart(' ').Split(' ');
-            for (int i = 0; i < tokens.Length; i++)
-            {
-                //tokens[i].Println();
-                result.Add(new Token(tokens[i], lineCount));
-            }
-            return result;
-        }
-
-        public static List<Token> Tokenize(string source)
-        {
-            List<Token> result = new List<Token>();
-            string[] lineSource = source.Split("\r\n");
-            for (int i = 0; i < lineSource.Length; i++)
-            {
-                //lineSource[i].Println();
-                result.AddRange(LineTokenize(lineSource[i], i));
-            }
-            return result;
-        }
 
         public static void Main(string[] args)
         {
-            string source = 
-@"foo . 2 .
-boo x y .
+            string source =
+@"boo x y .
+foo . 2 .
     x + y .
 emptythenexpend arg .
-    ifEmpty args 123 .";
+    ifEmpty args 123 .
+// until \n args .  ";
 
-            List<Token> tokenList = Tokenize(source);
-            Token[] tokens = tokenList.ToArray().Loop((token, i) => (token.body, token.line).Println());
-            string marcoName = tokenList[0].body;
-            
+            Compiler compiler = new Compiler();
+
+            compiler.Compile(source);
+            List<Token> tokenList = compiler.tokenList;
+            //Token[] tokens = tokenList.ToArray().Loop((token, i) => (token.body, token.line).Println());
+
+            compiler.GetStartTokenUntilEnd(0).ToArray().Loop((token, i) => (token.body, token.line).Println());
+
             //PowerX.Test();
         }
 
