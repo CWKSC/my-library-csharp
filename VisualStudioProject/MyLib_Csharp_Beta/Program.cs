@@ -7,6 +7,7 @@ using MyLib_Csharp_Beta.CommonType;
 using MyLib_Csharp_Beta.Math;
 using MyLib_Csharp_Beta.Tool;
 using static MyLib_Csharp_Beta.Math.SumOf_ProductOf;
+using MyLib_Csharp_Beta.CommonMethod;
 
 namespace MyLib_Csharp_Beta
 {
@@ -17,7 +18,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            Monitor.Test();
+            MyDebug.Test();
         }
 
 
