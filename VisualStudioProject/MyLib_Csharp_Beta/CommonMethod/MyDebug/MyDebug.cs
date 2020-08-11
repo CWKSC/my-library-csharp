@@ -6,6 +6,9 @@ namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static partial class MyDebug
     {
+        /// Why don't use msg.Print() to implemenet ?
+        /// Conditional must be use void return 
+        /// So I can't use MyVoid or string or msg.Print() to be return value
 
         [Conditional("MyDebug")] public static void Log(string msg) => Console.Write(msg);
         [Conditional("MyDebug")] public static void Logln(string msg) => Console.WriteLine(msg);

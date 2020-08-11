@@ -23,7 +23,7 @@ namespace Useless_Backup_Testing
         public TokenType tokenType;
         public string body;
         public int line;
-
+        public string tag;
 
         public Token(string body, int line, TokenType tokenType = TokenType.Symbol)
         {
