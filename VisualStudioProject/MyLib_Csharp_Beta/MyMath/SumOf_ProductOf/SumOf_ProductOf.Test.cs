@@ -1,6 +1,6 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 
-namespace MyLib_Csharp_Beta.Math
+namespace MyLib_Csharp_Beta.MyMath
 {
     public static partial class SumOf_ProductOf
     {
