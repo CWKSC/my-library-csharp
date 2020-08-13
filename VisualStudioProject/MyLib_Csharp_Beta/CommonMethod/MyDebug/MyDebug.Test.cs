@@ -45,7 +45,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         Into A
         Into B
 
-        // When MyDebug is define
+        // When MyDebug is define //
         123
         456
         789
