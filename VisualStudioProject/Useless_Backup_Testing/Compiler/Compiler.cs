@@ -11,7 +11,8 @@ namespace Useless_Backup_Testing
 
         private void LineTokenize(string source, int lineCount)
         {
-            string[] tokens = source.TrimStart(' ').Split(' ');
+            if (source == "") return;
+            string[] tokens = source.Trim(' ').Split(' ');
             for (int i = 0; i < tokens.Length; i++)
                 tokenList.Add(new Token(tokens[i], lineCount));
         }
@@ -22,6 +23,25 @@ namespace Useless_Backup_Testing
             for (int i = 0; i < lineSource.Length; i++)
                 LineTokenize(lineSource[i], i);
         }
+
+        private string TagToken(string token)
+        {
+            switch (token)
+            {
+                case "": return "";
+                case ".": return "";
+                default:
+                    break;
+            }
+            return null;
+        }
+
+        public void Compile(string source)
+        {
+            Tokenize(source);
+        }
+
+
 
         public List<Token> GetStartTokenUntilEnd(int index)
         {
@@ -34,12 +54,6 @@ namespace Useless_Backup_Testing
             }
             return tokenSeq;
         }
-
-        public void Compile(string source)
-        {
-            Tokenize(source);
-        }
-
 
     }
 }
