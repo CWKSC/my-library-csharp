@@ -18,9 +18,8 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            MyDebug.Test();
+            GenerateCode.Test();
         }
-
 
 
     }
