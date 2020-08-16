@@ -32,12 +32,10 @@ namespace MyLib_Csharp_Beta.Tool
                 indexs[^1]++;
                 for (int i = indexArray.Length - 1; i >= 0; i--)
                 {
-                    if (indexs[i] >= indexArray[i])
-                    {
-                        if (i == 0) return;
-                        indexs[i] = 0;
-                        indexs[i - 1]++;
-                    }
+                    if (indexs[i] < indexArray[i]) break;
+                    if (i == 0) return;
+                    indexs[i] = 0;
+                    indexs[i - 1]++;
                 }
             };
         }
@@ -46,8 +44,9 @@ namespace MyLib_Csharp_Beta.Tool
         {
             StringBuilder stringBuilder = new StringBuilder();
             int[] refer = new int[set.Length];
-            set.Length.Loop(i => refer[i] = set[i].Length);
-            refer.Println();
+            refer.Map((ele, i) => set[i].Length);
+            //set.Length.Loop(i => refer[i] = set[i].Length);
+            //refer.Println();
             refer.CombinationLoop(indexs =>
             {
                 string temp = template;
