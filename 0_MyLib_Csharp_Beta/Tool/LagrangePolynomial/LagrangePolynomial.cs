@@ -1,5 +1,5 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
-using MyLib_Csharp_Beta.Math;
+using MyLib_Csharp_Beta.MyMath;
 using MyLib_Csharp_Beta.ProgrammingPattern;
 
 namespace MyLib_Csharp_Beta.Tool

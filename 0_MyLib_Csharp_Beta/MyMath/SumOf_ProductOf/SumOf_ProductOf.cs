@@ -2,7 +2,7 @@
 using MyLib_Csharp_Beta.ProgrammingPattern;
 using System;
 
-namespace MyLib_Csharp_Beta.Math
+namespace MyLib_Csharp_Beta.MyMath
 {
 
     /// <summary>
