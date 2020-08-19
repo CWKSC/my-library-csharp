@@ -24,23 +24,6 @@ namespace MyLib_Csharp_Beta.Tool
         //    return stringBuilder.ToString();
         //}
 
-        public static void CombinationLoop(this int[] indexArray, Action<int[]> action)
-        {
-            int[] indexs = new int[indexArray.Length];
-            while (true)
-            {
-                action(indexs);
-                indexs[^1]++;
-                for (int i = indexArray.Length - 1; i >= 0; i--)
-                {
-                    if (indexs[i] < indexArray[i]) break;
-                    if (i == 0) return;
-                    indexs[i] = 0;
-                    indexs[i - 1]++;
-                }
-            };
-        }
-
 
         public static int[] GetRowLengthArray<T>(this T[][] array)
         {
@@ -68,18 +51,18 @@ namespace MyLib_Csharp_Beta.Tool
                 });
             });
 
-        public static string Generate(string template, params ITuple[] args) =>
+        public static string GenerateByGroup(string template, params string[][][] args) =>
             BuildString(builder =>
             {
                 
-                int[] refer = new int[args.Length];
-                //refer.Map((ele, i) => args[i].set.Length);
-                refer.CombinationLoop(indexs =>
-                {
-                    string temp = template;
-                    //indexs.Loop((index, i) => temp = temp.Replace($"<{i}>", set[i][index]));
-                    builder.Append(temp);
-                });
+                //int[] refer = new int[args.Length];
+                ////refer.Map((ele, i) => args[i].set.Length);
+                //refer.CombinationLoop(indexs =>
+                //{
+                //    string temp = template;
+                //    //indexs.Loop((index, i) => temp = temp.Replace($"<{i}>", set[i][index]));
+                //    builder.Append(temp);
+                //});
             });
 
 
