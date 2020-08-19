@@ -10,6 +10,9 @@ namespace MyLib_Csharp_Alpha.CommonClass
     {
         public static partial class MySort
         {
+            // Not Unity 
+#if !UNITY_5_3_OR_NEWER
+
             public static void Test()
             {
 
@@ -70,6 +73,8 @@ namespace MyLib_Csharp_Alpha.CommonClass
                 //MyTest.TestExecutionTime(QuickSort, allRangeIntArray);
                 //MyTest.TestExecutionTime(QuickSort, inRangeIntArray);
             }
+
+#endif
 
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyLib_Csharp_Beta.ProgrammingPattern.AdvancedLooping
+namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
     public static partial class AdvancedLooping
     {

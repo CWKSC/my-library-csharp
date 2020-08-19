@@ -40,6 +40,8 @@ namespace MyLib_Csharp_Alpha.CommonClass
             QuickSort(array, i + 1, right);
         }
 
+        // Not Unity 
+#if !UNITY_5_3_OR_NEWER
         public static T[] QuickSort_Debug<T>(this T[] array) where T : IComparable
         {
             T[] result = (T[])array.Clone();
@@ -76,6 +78,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
             QuickSort_Debug(array, left, i - 1);
             QuickSort_Debug(array, i + 1, right);
         }
+#endif
 
     }
 }
