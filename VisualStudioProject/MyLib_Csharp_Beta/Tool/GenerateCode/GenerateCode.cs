@@ -51,18 +51,25 @@ namespace MyLib_Csharp_Beta.Tool
                 });
             });
 
-        public static string GenerateByGroup(string template, params string[][][] args) =>
+        public static string GenerateByGroup(string template, params string[][][] groups) =>
             BuildString(builder =>
             {
-                
-                //int[] refer = new int[args.Length];
-                ////refer.Map((ele, i) => args[i].set.Length);
-                //refer.CombinationLoop(indexs =>
-                //{
-                //    string temp = template;
-                //    //indexs.Loop((index, i) => temp = temp.Replace($"<{i}>", set[i][index]));
-                //    builder.Append(temp);
-                //});
+                int[] refer = new int[groups.Length];
+                refer.Map((ele, i) => groups[i][0].Length);
+                refer.CombinationLoop(indexs =>
+                {
+                    //string temp = template;
+                    groups.Length.Loop(groupNum =>
+                    {
+                        indexs.Loop((index, i) =>
+                        {
+                            $"<{groupNum}_{i}_{index}>".Println();
+                            //temp = temp.Replace($"<{groupNum}_{i}>", groups[i][0][index]);
+                        });
+                    });
+                    "".Println();
+                    //builder.Append(temp);
+                });
             });
 
 

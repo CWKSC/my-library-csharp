@@ -19,10 +19,14 @@ namespace MyLib_Csharp_Beta.Tool
 
             Generate(template, set0, set1, set2).Println();
 
-            string[][] group0 = { set0, set1 };
-            string[][] group1 = { set2 };
+            string template_group = "<0_0> <0_1> <1_0>\n";
+            string[] group0_set0 = { "12", "34", "56" };
+            string[] group0_set1 = { "xx", "yy", "zz" };
+            string[] group1_set0 = { "aa", "bb", "cc", "dd" };
+            string[][] group0 = { group0_set0, group0_set1 };
+            string[][] group1 = { group1_set0 };
 
-            GenerateByGroup(template, group0, group1); // not finish
+            GenerateByGroup(template_group, group0, group1); // not finish
         }
 
 

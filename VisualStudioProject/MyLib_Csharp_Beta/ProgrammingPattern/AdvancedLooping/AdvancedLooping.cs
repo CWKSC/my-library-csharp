@@ -8,16 +8,16 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     {
 
 
-        public static void CombinationLoop(this int[] indexArray, Action<int[]> action)
+        public static void CombinationLoop(this int[] refer, Action<int[]> action)
         {
-            int[] indexs = new int[indexArray.Length];
+            int[] indexs = new int[refer.Length];
             while (true)
             {
                 action(indexs);
                 indexs[^1]++;
-                for (int i = indexArray.Length - 1; i >= 0; i--)
+                for (int i = refer.Length - 1; i >= 0; i--)
                 {
-                    if (indexs[i] < indexArray[i]) break;
+                    if (indexs[i] < refer[i]) break;
                     if (i == 0) return;
                     indexs[i] = 0;
                     indexs[i - 1]++;
