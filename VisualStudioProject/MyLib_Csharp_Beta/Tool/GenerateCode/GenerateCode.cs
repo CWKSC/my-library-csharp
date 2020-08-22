@@ -58,17 +58,18 @@ namespace MyLib_Csharp_Beta.Tool
                 refer.Map((ele, i) => groups[i][0].Length);
                 refer.CombinationLoop(indexs =>
                 {
-                    //string temp = template;
+                    string temp = template;
                     groups.Length.Loop(groupNum =>
                     {
-                        indexs.Loop((index, i) =>
+                        groups[groupNum].Length.Loop(setNum => 
                         {
-                            $"<{groupNum}_{i}_{index}>".Println();
-                            //temp = temp.Replace($"<{groupNum}_{i}>", groups[i][0][index]);
+                            //$"<{groupNum}_{setNum}_{indexs[groupNum]}>".Println();
+                            temp = temp.Replace($"<{groupNum}_{setNum}>", groups[groupNum][setNum][indexs[groupNum]]);
                         });
+                        
                     });
-                    "".Println();
-                    //builder.Append(temp);
+                    //"".Println();
+                    builder.Append(temp);
                 });
             });
 
