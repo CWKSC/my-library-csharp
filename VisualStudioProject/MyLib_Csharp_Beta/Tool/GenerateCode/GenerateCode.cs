@@ -60,15 +60,8 @@ namespace MyLib_Csharp_Beta.Tool
                 {
                     string temp = template;
                     groups.Length.Loop(groupNum =>
-                    {
                         groups[groupNum].Length.Loop(setNum => 
-                        {
-                            //$"<{groupNum}_{setNum}_{indexs[groupNum]}>".Println();
-                            temp = temp.Replace($"<{groupNum}_{setNum}>", groups[groupNum][setNum][indexs[groupNum]]);
-                        });
-                        
-                    });
-                    //"".Println();
+                            temp = temp.Replace($"<{groupNum}_{setNum}>", groups[groupNum][setNum][indexs[groupNum]])));
                     builder.Append(temp);
                 });
             });
