@@ -12,6 +12,7 @@ namespace MyLib_Csharp_Beta.Tool
 
         public static void Test()
         {
+            // string Generate(string template, params string[][] set) //
             string template = "<0> <1> <2>\n";
             string[] set0 = { "12", "34" };
             string[] set1 = { "xx", "yy", "zz" };
@@ -20,7 +21,7 @@ namespace MyLib_Csharp_Beta.Tool
             Generate(template, set0, set1, set2).Println();
 
 
-
+            // string GenerateByGroup(string template, params string[][][] groups) //
             string template_group = "<0_0> <0_1> <1_0>\n";
             string[] group0_set0 = { "12", "34", "56" };
             string[] group0_set1 = { "xx", "yy", "zz" };
@@ -30,8 +31,7 @@ namespace MyLib_Csharp_Beta.Tool
 
             GenerateByGroup(template_group, group0, group1).Println();
 
-
-
+            // Another example of GenerateByGroup //
             Generate_CartesianToPolar();
         }
 
@@ -44,7 +44,7 @@ namespace MyLib_Csharp_Beta.Tool
     return (result < 0 ? result + TwoPI : result) * <1_1>;
 }
 ";
-            // Group0 //
+            // Group0 set //
             string[] group0_set0_parameter_args = {
                 "double x, double y",
                 "Vector2 point",
@@ -54,7 +54,7 @@ namespace MyLib_Csharp_Beta.Tool
                 "point.Y, point.X",
                 "list[1], list[0]" };
 
-            // Group1 //
+            // Group1 set //
             string[] group1_set0_type = {
                 "Radians",
                 "Degrees",
@@ -66,6 +66,7 @@ namespace MyLib_Csharp_Beta.Tool
                 "RadToGrad"
             };
 
+            // Group //
             string[][] group0 = {
                 group0_set0_parameter_args,
                 group0_set1_ATan2_input_parameter

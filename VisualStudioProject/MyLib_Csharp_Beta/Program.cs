@@ -18,10 +18,8 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            //int[] refer = { 2, 3, 4 };
-            //refer.CombinationLoop(indexs => indexs.Println());
-            //AdvancedLooping.Test();
-            GenerateCode.Test();
+            MyObject.Test();
+            //GenerateCode.Test();
         }
 
 
