@@ -18,7 +18,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            MyObject.Test();
+            MyArray.Test();
             //GenerateCode.Test();
         }
 
