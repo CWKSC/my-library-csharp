@@ -27,9 +27,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         {
             int[] result = new int[n];
             Random random = new Random();
-            for (int i = 0; i < n; i++)
-                result[i] = random.Next(min, max);
-            return result;
+            return result.Map((_, __) => random.Next(min, max));
         }
 
         /// <summary>[min, max)</summary>

@@ -14,7 +14,9 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             while (true)
             {
                 action(indexs);
-                indexs[^1]++;
+#pragma warning disable IDE0056 // 使用索引運算子 // for version < C# 8
+                indexs[indexs.Length - 1]++;
+#pragma warning restore IDE0056 // 使用索引運算子
                 for (int i = refer.Length - 1; i >= 0; i--)
                 {
                     if (indexs[i] < refer[i]) break;
