@@ -28,6 +28,8 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         }
 
 
+        //// nCr ////
+
         public static int Loop_nC2<T>(this T[] array, Action<T, T> action) =>
             array.Length.Loop(i =>
                 (i + 1, array.Length - 1).Loop(j =>
@@ -48,6 +50,10 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         {
             // OWO
         }
+
+
+
+        //// nPr ////
 
         public static T[] Loop_nP2<T>(this T[] array, Action<T, T> action) =>
             array.Loop((ele1, _) => 
