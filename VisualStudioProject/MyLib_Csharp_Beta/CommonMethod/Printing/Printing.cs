@@ -54,15 +54,27 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public static T[] Printlnlnln<T>(this T[] array) => array.Printlnln().ln();
 
 
+        //// Print for T[][] ////
+
+        public static T[][] Print<T>(this T[][] array2d)
+        {
+            array2d.JoinPrint((array1d, _) => 
+                array1d.JoinStr((ele, i) => 
+                    ele.ToString(), 
+                    ", "), 
+                "\n");
+            return array2d;
+        }
+        public static T[][] Println<T>(this T[][] array) => array.Print().ln();
+        public static T[][] Printlnln<T>(this T[][] array) => array.Println().ln();
+        public static T[][] Printlnlnln<T>(this T[][] array) => array.Printlnln().ln();
+
 
         //// Print for T[,] ////
 
         public static T[,] Print<T>(this T[,] array)
         {
-            array.ToJagged().JoinPrint((ele, _) => 
-                ele.JoinStr((ele2, __) => 
-                    ele2.ToString(), ", "), 
-                "\n");
+            array.ToJagged().Print();
             return array;
         }
         public static T[,] Println<T>(this T[,] array) => array.Print().ln();

@@ -25,12 +25,7 @@ namespace MyLib_Csharp_Beta.Tool
         //}
 
 
-        public static int[] GetRowLengthArray<T>(this T[][] array)
-        {
-            int[] rowLength = new int[array.Length];
-            rowLength.Map((ele, i) => array[i].Length);
-            return rowLength;
-        }
+
 
         public static string BuildString(Action<StringBuilder> action)
         {

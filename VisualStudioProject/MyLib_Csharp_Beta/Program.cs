@@ -18,7 +18,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            MyArray.Test();
+            JaggedArray.Test();
             //GenerateCode.Test();
         }
 
