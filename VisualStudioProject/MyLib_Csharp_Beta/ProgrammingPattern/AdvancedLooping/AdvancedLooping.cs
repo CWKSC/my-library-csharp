@@ -66,8 +66,32 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                     array.Loop((ele3, ___) => 
                         action(ele1, ele2, ele3))));
 
+        [Obsolete]
+        public static void Loop_nPr_loop<T>(this T[] array, T[] result, List<T> list, int r)
+        {
+            array.Loop((ele, _) =>
+            {
+                list.Add(ele);
+                if (r == 0)
+                {
+                    result = list.ToArray();
+                    list.Clear();
+                    return;
+                }
+                Loop_nPr_loop(array, result, list, r - 1);
+            });
+        }
+
+        [Obsolete]
         public static void Loop_nPr<T>(this T[] array, int r, Action<T[]> action)
         {
+            List<T> list = new List<T>();
+            T[] result = new T[r];
+            array.Loop((ele, _) =>
+            {
+                array.Loop_nPr_loop(result, list, r);
+                action(result);
+            });
             // QWQ 
         }
 

@@ -16,13 +16,20 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             string[] list = { "1", "2", "3", "4", "5" };
 
             // nCr //
+            "nC2".Println();
             list.Loop_nC2((a, b) => (a, b).Println()).ln();
+            "nC3".Println();
             list.Loop_nC3((a, b, c) => (a, b, c).Println()).ln();
+            "nC4".Println();
             list.Loop_nC4((a, b, c, d) => (a, b, c, d).Println()).ln();
-            
+
             // nPr //
+            "nP2".Println();
             list.Loop_nP2((a, b) => (a, b).Println()).ln();
+            "nP3".Println();
             list.Loop_nP3((a, b, c) => (a, b, c).Println()).ln();
+            "nPr".Println();
+            list.Loop_nPr(2, arr => arr.Println());
 
         }
 
