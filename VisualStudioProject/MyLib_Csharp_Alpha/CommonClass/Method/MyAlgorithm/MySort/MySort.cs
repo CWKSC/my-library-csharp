@@ -37,6 +37,8 @@ namespace MyLib_Csharp_Alpha.CommonClass
         {
             int aLength = A.Length;
             int bLength = B.Length;
+            if (aLength == 0) { return (T[])B.Clone(); }
+            if (bLength == 0) { return (T[])A.Clone(); }
             T[] result = new T[aLength + bLength];
             int i = 0, j = 0, resultIndex = 0;
             while (true)
