@@ -19,10 +19,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            int[] vs = { 1, 2, 3 };
-            vs.JoinPrint((ele, i) => ele.ToString(), ", ");
-
-            //Printing.Test();
+            Printing.Test();
             //AdvancedLooping.Test();
             //JaggedArray.Test();
             //GenerateCode.Test();
