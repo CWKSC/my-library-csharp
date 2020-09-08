@@ -10,14 +10,27 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static void Test()
         {
-            string OneToTen = BuildString(builder =>
+            string zeroToNine = BuildString(builder =>
             {
-                builder.Append("123");
-                builder.Append("456");
-                builder.Append("789");
+                for(int i = 0; i < 10; i++)
+                {
+                    builder.Append(i);
+                }
             });
 
-            OneToTen.Println();
+            zeroToNine.Printlnln();
+
+            int[] prime = BuildArray<int>(5, x =>
+            {
+                x[0] = 2;
+                x[1] = 3;
+                x[2] = 5;
+                x[3] = 7;
+                x[4] = 11;
+            });
+
+            prime.Printlnln();
+
 
         }
 
