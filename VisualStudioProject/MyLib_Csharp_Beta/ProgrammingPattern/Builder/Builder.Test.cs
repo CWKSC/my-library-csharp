@@ -10,9 +10,10 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static void Test()
         {
+            // BuildString //
             string zeroToNine = BuildString(builder =>
             {
-                for(int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     builder.Append(i);
                 }
@@ -20,6 +21,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
             zeroToNine.Printlnln();
 
+            // BuildArray //
             int[] prime = BuildArray<int>(5, x =>
             {
                 x[0] = 2;
@@ -30,6 +32,17 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             });
 
             prime.Printlnln();
+
+            // Build<List<T>> //
+            List<int> twoToTen = Build<List<int>>(list =>
+            {
+                for (int i = 2; i <= 10; i++)
+                {
+                    list.Add(i);
+                }
+            });
+
+            twoToTen.Printlnln();
 
 
         }

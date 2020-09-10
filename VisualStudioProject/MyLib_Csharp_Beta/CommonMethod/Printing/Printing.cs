@@ -1,7 +1,8 @@
 ﻿using MyLib_Csharp_Beta.CommonType;
 using MyLib_Csharp_Beta.ProgrammingPattern;
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using static MyLib_Csharp_Beta.ProgrammingPattern.ProgramStructure;
 
 namespace MyLib_Csharp_Beta.CommonMethod
@@ -42,6 +43,8 @@ namespace MyLib_Csharp_Beta.CommonMethod
 #pragma warning restore IDE1006 // 命名樣式
 
 
+
+
         //// Print for T[] ////
 
         public static T[] Print<T>(this T[] array)
@@ -52,6 +55,20 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public static T[] Println<T>(this T[] array) => array.Print().ln();
         public static T[] Printlnln<T>(this T[] array) => array.Println().ln();
         public static T[] Printlnlnln<T>(this T[] array) => array.Printlnln().ln();
+
+
+
+        //// Print for List<T> ////
+
+        public static List<T> Print<T>(this List<T> list) =>
+            list.ToArray().Print().ToList();
+        public static List<T> Println<T>(this List<T> list) =>
+            list.ToArray().Println().ToList();
+        public static List<T> Printlnln<T>(this List<T> list) =>
+            list.ToArray().Printlnln().ToList();
+        public static List<T> Printlnlnln<T>(this List<T> list) =>
+            list.ToArray().Printlnlnln().ToList();
+
 
 
         //// Print for T[][] ////
@@ -68,6 +85,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public static T[][] Println<T>(this T[][] array) => array.Print().ln();
         public static T[][] Printlnln<T>(this T[][] array) => array.Println().ln();
         public static T[][] Printlnlnln<T>(this T[][] array) => array.Printlnln().ln();
+
 
 
         //// Print for T[,] ////
