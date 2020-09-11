@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MyLib_Csharp_Beta.CommonMethod
 {
-    public static partial class ToString
+    public static partial class MyToString
     {
 
-        public static string ToStr<T>(this T[] array) => 
+        public static string ToStr<T>(this T[] array) =>
             array.JoinStr((ele, _) => ele.ToString(), ", ");
 
 

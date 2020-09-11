@@ -16,10 +16,9 @@ namespace MyLib_Csharp_Beta
     public class Program
     {
 
-
         public static void Main(string[] args)
         {
-            Builder.Test();
+            MyToString.Test();
 
         }
 

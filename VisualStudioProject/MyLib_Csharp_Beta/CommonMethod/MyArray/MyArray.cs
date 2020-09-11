@@ -8,6 +8,17 @@ namespace MyLib_Csharp_Beta.CommonMethod
     public static partial class MyArray
     {
 
+        /// <summary>
+        /// start from index, copy length length <br />
+        /// reference to: https://stackoverflow.com/a/943650/11693034
+        /// </summary>
+        public static T[] SubArray<T>(this T[] data, int index, int length)
+        {
+            T[] result = new T[length];
+            Array.Copy(data, index, result, 0, length);
+            return result;
+        }
+
 
 
         /// <summary>[min, max)</summary>
