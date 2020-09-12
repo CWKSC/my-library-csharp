@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using static MyLib_Csharp_Beta.ProgrammingPattern.Builder;
+
 namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static partial class MyArray
@@ -18,6 +20,12 @@ namespace MyLib_Csharp_Beta.CommonMethod
             Array.Copy(data, index, result, 0, length);
             return result;
         }
+
+
+
+        public static T[] ToRepeatArray<T>(this T value, int length) =>
+            BuildArray<T>(length, result =>
+                result.Map((ele, i) => value));
 
 
 

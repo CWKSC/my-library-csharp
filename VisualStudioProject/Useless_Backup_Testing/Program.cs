@@ -14,6 +14,7 @@ namespace Useless_Backup_Testing
 
         public static void Main(string[] args)
         {
+
             string source =
 @"
 foo . 2 .
