@@ -11,6 +11,21 @@ namespace MyLib_Csharp_Beta.CommonMethod
     public static partial class MyString
     {
 
+        public static string[] AllAdd(this string[] array, string add) =>
+            array.Map((ele, i) => ele + add);
+
+        public static string[] AllAddFront(this string[] array, string add) =>
+            array.Map((ele, i) => add + ele);
+
+
+
+        public static string[] Mix(this string[] array, string[] other) =>
+            BuildArray<string>(array.Length, result =>
+                result.Map((ele, i) => array[i] + other[i]));
+
+
+
+
         public static string[][] ToUpperTriangular(this string[] array) =>
             BuildArray<string[]>(array.Length, result =>
                 result.Map((ele, i) => 
