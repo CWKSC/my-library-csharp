@@ -17,6 +17,7 @@ namespace MyLib_Csharp_Alpha.Tool
             Fact isGreen = new Fact("it is Green");
             Fact isYellow = new Fact("it is Yellow");
 
+
             Rule R1 = new Rule((croaks, eatsFlies), isFrog);
             Rule R2 = new Rule((chirps, sings), isCanary);
             Rule R3 = new Rule(isFrog, isGreen);

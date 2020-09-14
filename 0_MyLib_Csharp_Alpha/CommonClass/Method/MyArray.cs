@@ -17,7 +17,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
         {
             int[] result = new int[n];
             Random random = new Random();
-            for (int i = 0; i < result.Length; i++)
+            for (int i = 0; i < n; i++)
             {
                 result[i] = random.Next(min, max);
             }
