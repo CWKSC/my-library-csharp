@@ -1,4 +1,5 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
+using MyLib_Csharp_Beta.ProgrammingPattern;
 
 namespace MyLib_Csharp_Beta.Tool
 {
@@ -11,6 +12,7 @@ namespace MyLib_Csharp_Beta.Tool
         {
             // string Generate(string template, params string[][] set) //
             string template = "<0> <1> <2>\n";
+
             string[] set0 = { "12", "34" };
             string[] set1 = { "xx", "yy", "zz" };
             string[] set2 = { "aa", "bb", "cc", "dd" };
@@ -47,6 +49,7 @@ namespace MyLib_Csharp_Beta.Tool
 
             // string GenerateByGroup(string template, params string[][][] groups) //
             string template_group = "<0_0> <0_1> <1_0>\n";
+
             string[] group0_set0 = { "12", "34", "56" };
             string[] group0_set1 = { "xx", "yy", "zz" };
             string[] group1_set0 = { "aa", "bb", "cc", "dd" };
@@ -70,8 +73,44 @@ namespace MyLib_Csharp_Beta.Tool
             */
 
 
+
             // Another example of GenerateByGroup //
             Generate_CartesianToPolar();
+
+
+
+            // GenerateByName //
+            string template_byName = "<type> <varname><suffix>;\n";
+
+            (string, string[]) typeSet = ("type", new string[] { "int", "string", "bool", "double" });
+            (string, string[]) varnameSet = ("varname", new string[] { "x", "y", "z" });
+            (string, string[]) suffixSet = ("suffix", new string[] { "1", "2", "3" });
+
+            GenerateByName(template_byName, typeSet, varnameSet, suffixSet).Printlnln();
+
+
+            // GenerateByName generate generic class //
+            string template_byName2 = "class Box<<generic>> { }\n";
+
+            (string, string[]) genericSet = ("generic", "T".ToConcatUpperTriangular_SeparateBy(5, ", "));
+
+            GenerateByName(template_byName2, genericSet).Printlnln();
+
+
+
+            // GenerateByName generate generic class //
+            string template_byName3 = "public static void Foo<T><<generic>> { }\n";
+
+            string[] var = { "x", "y", "z", "a", "b"};
+            (string, string[]) genericSet2 = ("generic", 
+                "T".ToConcatUpperTriangular_SeparateBy(5, ", ").AllAdd(" ").Mix(var));
+            // T x
+            // T x, T y
+            // T x, T y, T z
+            // T x, T y, T z, T a
+            // T x, T y, T z, T a, T b
+
+            GenerateByName(template_byName3, genericSet2).Printlnln();
 
 
         }
@@ -117,7 +156,7 @@ namespace MyLib_Csharp_Beta.Tool
                 group1_set1_convert
             };
 
-            GenerateByGroup(template, group0, group1).Println();
+            GenerateByGroup(template, group0, group1).Printlnln();
         }
         /*
         public static double CartesianToPolar_Radians(double x, double y) {

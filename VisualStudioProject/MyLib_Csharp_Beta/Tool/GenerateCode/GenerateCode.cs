@@ -55,6 +55,21 @@ namespace MyLib_Csharp_Beta.Tool
             });
 
 
+        public static string GenerateByName(string template, params (string name, string[] set)[] sets) =>
+            BuildString(builder => 
+            {
+                int[] refer = new int[sets.Length];
+                refer.Map((ele, i) => sets[i].set.Length);
+                refer.CombinationLoop(indexs =>
+                {
+                    string temp = template;
+                    indexs.Loop((index, i) => temp = temp.Replace($"<{sets[i].name}>", sets[i].set[index]));
+                    builder.Append(temp);
+                });
+            });
+
+
+
 
     }
 }

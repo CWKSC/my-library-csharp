@@ -26,11 +26,12 @@ namespace MyLib_Csharp_Alpha
 
         public static void Main(string[] args)
         {
+            (1, 2.0, true, "123").ToObjectArray().Printlnln();
             //int[] dataSet = {1, 2, 3};
             //dataSet.Map(x => x*3).Print();
 
             //((Func<int, int>)(i => dataSet[i])).Map(x => x * 3);
-            LagrangeInterpolationPolynomial.Test();
+            //LagrangeInterpolationPolynomial.Test();
             //MultipleInheritance.Test();
         }
 

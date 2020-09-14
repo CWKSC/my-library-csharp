@@ -24,6 +24,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
             return result;
         }
 
+
         public static T[] ToArray<T>(this ITuple tuple)
         {
             T[] result = new T[tuple.Length];
