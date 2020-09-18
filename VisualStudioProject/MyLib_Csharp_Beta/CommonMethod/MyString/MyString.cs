@@ -25,6 +25,17 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 
 
+        public static string ToRepeatValue(this string value, int times) =>
+            BuildString(builder => 
+                times.Loop(_ => 
+                    builder.Append(value)));
+
+        
+        public static string[] ToRepeatArray(this string value, int length) =>
+            BuildArray<string>(length, result => 
+                result.Map((ele, i) => value));
+
+
 
         public static string[][] ToUpperTriangular(this string[] array) =>
             BuildArray<string[]>(array.Length, result =>
@@ -58,6 +69,10 @@ namespace MyLib_Csharp_Beta.CommonMethod
                     value.ToRepeatArray(i + 1)));
 
 
+        /// <summary>
+        /// "T".ToConcatUpperTriangular_SeparateBy(5, "*") <br />
+        /// T, T*T, T*T*T, T*T*T*T, T*T*T*T*T
+        /// </summary>
         public static string[] ToConcatUpperTriangular_SeparateBy(this string value, int length, string separate) =>
             BuildArray<string>(length, result =>
                 result.Map((ele, i) =>

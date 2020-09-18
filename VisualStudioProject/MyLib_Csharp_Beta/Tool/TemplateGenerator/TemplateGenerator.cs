@@ -10,7 +10,7 @@ using static MyLib_Csharp_Beta.ProgrammingPattern.Builder;
 
 namespace MyLib_Csharp_Beta.Tool
 {
-    public static partial class GenerateCode
+    public static partial class TemplateGenerator
     {
 
         public static string Generate(string template, string[] set1, string[] set2) =>

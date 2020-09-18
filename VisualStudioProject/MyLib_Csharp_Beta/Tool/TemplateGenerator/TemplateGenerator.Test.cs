@@ -3,7 +3,7 @@ using MyLib_Csharp_Beta.ProgrammingPattern;
 
 namespace MyLib_Csharp_Beta.Tool
 {
-    public static partial class GenerateCode
+    public static partial class TemplateGenerator
     {
 
 
@@ -87,6 +87,45 @@ namespace MyLib_Csharp_Beta.Tool
             (string, string[]) suffixSet = ("suffix", new string[] { "1", "2", "3" });
 
             GenerateByName(template_byName, typeSet, varnameSet, suffixSet).Printlnln();
+            /*
+            int x1;
+            int x2;
+            int x3;
+            int y1;
+            int y2;
+            int y3;
+            int z1;
+            int z2;
+            int z3;
+            string x1;
+            string x2;
+            string x3;
+            string y1;
+            string y2;
+            string y3;
+            string z1;
+            string z2;
+            string z3;
+            bool x1;
+            bool x2;
+            bool x3;
+            bool y1;
+            bool y2;
+            bool y3;
+            bool z1;
+            bool z2;
+            bool z3;
+            double x1;
+            double x2;
+            double x3;
+            double y1;
+            double y2;
+            double y3;
+            double z1;
+            double z2;
+            double z3;
+            */
+
 
 
             // GenerateByName generate generic class //
@@ -95,15 +134,25 @@ namespace MyLib_Csharp_Beta.Tool
             (string, string[]) genericSet = ("generic", "T".ToConcatUpperTriangular_SeparateBy(5, ", "));
 
             GenerateByName(template_byName2, genericSet).Printlnln();
+            /*
+            class Box<T> { }
+            class Box<T, T> { }
+            class Box<T, T, T> { }
+            class Box<T, T, T, T> { }
+            class Box<T, T, T, T, T> { }
+            */
 
 
+            // Not Finish //
 
             // GenerateByName generate generic class //
             string template_byName3 = "public static void Foo<T><<generic>> { }\n";
 
             string[] var = { "x", "y", "z", "a", "b"};
+            
             (string, string[]) genericSet2 = ("generic", 
                 "T".ToConcatUpperTriangular_SeparateBy(5, ", ").AllAdd(" ").Mix(var));
+            // Expect: //
             // T x
             // T x, T y
             // T x, T y, T z
@@ -111,6 +160,13 @@ namespace MyLib_Csharp_Beta.Tool
             // T x, T y, T z, T a, T b
 
             GenerateByName(template_byName3, genericSet2).Printlnln();
+            /*
+            public static void Foo<T><T x> { }
+            public static void Foo<T><T, T y> { }
+            public static void Foo<T><T, T, T z> { }
+            public static void Foo<T><T, T, T, T a> { }
+            public static void Foo<T><T, T, T, T, T b> { }
+            */
 
 
         }
@@ -128,11 +184,13 @@ namespace MyLib_Csharp_Beta.Tool
             string[] group0_set0_parameter_args = {
                 "double x, double y",
                 "Vector2 point",
-                "List<double> list" };
+                "List<double> list"
+            };
             string[] group0_set1_ATan2_input_parameter = {
                 "y, x",
                 "point.Y, point.X",
-                "list[1], list[0]" };
+                "list[1], list[0]"
+            };
 
             // Group1 set //
             string[] group1_set0_type = {
