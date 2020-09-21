@@ -29,6 +29,9 @@ namespace MyLib_Csharp_Beta.CommonMethod
             t.ToUpperTriangular(5).Printlnln();
             t.ToConcatUpperTriangular_SeparateBy(5, "*").Printlnln();
 
+            // ToRepeatValue / Array //
+            t.ToRepeatValue(5).Printlnln();
+            t.ToRepeatArray(5).Printlnln();
         }
         /* Output:
         10, 20, 30, 40, 50

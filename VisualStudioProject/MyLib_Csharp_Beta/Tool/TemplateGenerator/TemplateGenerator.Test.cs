@@ -143,29 +143,34 @@ namespace MyLib_Csharp_Beta.Tool
             */
 
 
-            // Not Finish //
 
-            // GenerateByName generate generic class //
-            string template_byName3 = "public static void Foo<T><<generic>> { }\n";
+            // GenerateByNameAndGroup generate generic class //
+            string template_byName3 = "public static T Add<T>(<genericVar>) { return <returnValue>; }\n";
 
-            string[] var = { "x", "y", "z", "a", "b"};
-            
-            (string, string[]) genericSet2 = ("generic", 
-                "T".ToConcatUpperTriangular_SeparateBy(5, ", ").AllAdd(" ").Mix(var));
-            // Expect: //
-            // T x
-            // T x, T y
-            // T x, T y, T z
-            // T x, T y, T z, T a
-            // T x, T y, T z, T a, T b
+            string[] var = { "a", "b", "c", "d", "e" };
 
-            GenerateByName(template_byName3, genericSet2).Printlnln();
+            (string, string[]) genericVarSet = ("genericVar",
+                "T ".ToRepeatArray(5).Mix(var).ToConcatUpperTriangular_SeparateBy(", "));
+            // T a
+            // T a, T b
+            // T a, T b, T c
+            // T a, T b, T c, T d
+            // T a, T b, T c, T d, T e
+
+            (string, string[]) returnValueSet = ("returnValue", var.ToConcatUpperTriangular_SeparateBy(" + "));
+            // a
+            // a + b
+            // a + b + c
+            // a + b + c + d
+            // a + b + c + d + e
+
+            GenerateByNameAndGroup(template_byName3, new (string, string[])[] { genericVarSet, returnValueSet }).Printlnln();
             /*
-            public static void Foo<T><T x> { }
-            public static void Foo<T><T, T y> { }
-            public static void Foo<T><T, T, T z> { }
-            public static void Foo<T><T, T, T, T a> { }
-            public static void Foo<T><T, T, T, T, T b> { }
+            public static T Add<T>(T a) { return a; }
+            public static T Add<T>(T a, T b) { return a + b; }
+            public static T Add<T>(T a, T b, T c) { return a + b + c; }
+            public static T Add<T>(T a, T b, T c, T d) { return a + b + c + d; }
+            public static T Add<T>(T a, T b, T c, T d, T e) { return a + b + c + d + e; }
             */
 
 
