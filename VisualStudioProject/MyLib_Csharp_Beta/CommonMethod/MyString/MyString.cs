@@ -25,6 +25,10 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 
 
+        public static string[] ToStringArray(this int length) =>
+            BuildArray<string>(length, result =>
+                result.Map((ele, i) => i.ToString()));
+
         public static string ToRepeatValue(this string value, int times) =>
             BuildString(builder => 
                 times.Loop(_ => 
@@ -55,7 +59,6 @@ namespace MyLib_Csharp_Beta.CommonMethod
                     array.ConcatSubArray(0, i + 1)));
 
 
-
         public static string[] ToConcatUpperTriangular_SeparateBy(this string[] array, string separate) =>
              BuildArray<string>(array.Length, result =>
                 result.Map((ele, i) =>
@@ -73,10 +76,17 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// "T".ToConcatUpperTriangular_SeparateBy(5, "*") <br />
         /// T, T*T, T*T*T, T*T*T*T, T*T*T*T*T
         /// </summary>
-        public static string[] ToConcatUpperTriangular_SeparateBy(this string value, int length, string separate) =>
+        public static string[] ToConcat1dArray_SeparateBy(this string value, int length, string separate) =>
             BuildArray<string>(length, result =>
                 result.Map((ele, i) =>
                     string.Join(separate, value.ToRepeatArray(i + 1))));
+
+
+        public static string[] Xn(string A, int n) => 
+            A.ToRepeatArray(n)
+             .Mix(n.ToStringArray());
+
+        public static string[] GenericType(int n) => Xn("T", n);
 
 
     }

@@ -1,6 +1,8 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 using MyLib_Csharp_Beta.ProgrammingPattern;
 
+using static MyLib_Csharp_Beta.CommonMethod.MyString;
+
 namespace MyLib_Csharp_Beta.Tool
 {
     public static partial class TemplateGenerator
@@ -128,29 +130,63 @@ namespace MyLib_Csharp_Beta.Tool
 
 
 
-            // GenerateByName generate generic class //
-            string template_byName2 = "class Box<<generic>> { }\n";
+            // GenerateByNameAndGroup generate generic class //
+            string template_genericClass  = "class Box<<generic>> {\n<member>\n}\n";
 
-            (string, string[]) genericSet = ("generic", "T".ToConcatUpperTriangular_SeparateBy(5, ", "));
+            (string, string[]) genericSet = ("generic",
+                GenericType(5)
+                   .ToConcatUpperTriangular_SeparateBy(", "));
 
-            GenerateByName(template_byName2, genericSet).Printlnln();
+            (string, string[]) memberSet = ("member",
+                GenericType(5)
+                   .AllAdd(" ")
+                   .Mix(Xn("t", 5))
+                   .AllAdd(";")
+                   .AllAddFront("    ")
+                   .ToConcatUpperTriangular_SeparateBy("\n"));
+
+            (string, string[])[] group = { genericSet, memberSet };
+
+            GenerateByNameAndGroup(template_genericClass, group).Printlnln();
             /*
-            class Box<T> { }
-            class Box<T, T> { }
-            class Box<T, T, T> { }
-            class Box<T, T, T, T> { }
-            class Box<T, T, T, T, T> { }
+            class Box<T0> {
+                T0 t0;
+            }
+            class Box<T0, T1> {
+                T0 t0;
+                T1 t1;
+            }
+            class Box<T0, T1, T2> {
+                T0 t0;
+                T1 t1;
+                T2 t2;
+            }
+            class Box<T0, T1, T2, T3> {
+                T0 t0;
+                T1 t1;
+                T2 t2;
+                T3 t3;
+            }
+            class Box<T0, T1, T2, T3, T4> {
+                T0 t0;
+                T1 t1;
+                T2 t2;
+                T3 t3;
+                T4 t4;
+            }
             */
 
 
 
             // GenerateByNameAndGroup generate generic class //
-            string template_byName3 = "public static T Add<T>(<genericVar>) { return <returnValue>; }\n";
+            string template_genericMethod = "public static T Add<T>(<genericVar>) { return <returnValue>; }\n";
 
             string[] var = { "a", "b", "c", "d", "e" };
 
             (string, string[]) genericVarSet = ("genericVar",
-                "T ".ToRepeatArray(5).Mix(var).ToConcatUpperTriangular_SeparateBy(", "));
+                "T ".ToRepeatArray(5)
+                    .Mix(var)
+                    .ToConcatUpperTriangular_SeparateBy(", "));
             // T a
             // T a, T b
             // T a, T b, T c
@@ -164,7 +200,7 @@ namespace MyLib_Csharp_Beta.Tool
             // a + b + c + d
             // a + b + c + d + e
 
-            GenerateByNameAndGroup(template_byName3, new (string, string[])[] { genericVarSet, returnValueSet }).Printlnln();
+            GenerateByNameAndGroup(template_genericMethod, new (string, string[])[] { genericVarSet, returnValueSet }).Printlnln();
             /*
             public static T Add<T>(T a) { return a; }
             public static T Add<T>(T a, T b) { return a + b; }

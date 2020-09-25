@@ -27,7 +27,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
             string t = "T";
             t.ToUpperTriangular(5).Printlnln();
-            t.ToConcatUpperTriangular_SeparateBy(5, "*").Printlnln();
+            t.ToConcat1dArray_SeparateBy(5, "*").Printlnln();
 
             // ToRepeatValue / Array //
             t.ToRepeatValue(5).Printlnln();
