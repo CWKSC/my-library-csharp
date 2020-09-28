@@ -13,13 +13,11 @@ using System.Runtime.InteropServices.ComTypes;
 namespace MyLib_Csharp_Beta
 {
 
-    public class Program
+    public static class Program
     {
-
 
         public static void Main(string[] args)
         {
-            //MyString.Test();
             TemplateGenerator.Test();
         }
 

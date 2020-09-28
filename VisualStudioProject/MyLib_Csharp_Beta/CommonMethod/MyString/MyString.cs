@@ -34,10 +34,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
                 times.Loop(_ => 
                     builder.Append(value)));
 
-        
-        public static string[] ToRepeatArray(this string value, int length) =>
-            BuildArray<string>(length, result => 
-                result.Map((ele, i) => value));
+       
 
 
 

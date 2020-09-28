@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyLib_Csharp_Beta.CommonMethod;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -46,9 +47,27 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                         (k + 1, array.Length - 1).Loop(l => 
                             action(array[i], array[j], array[k], array[l])))));
 
-        public static void Loop_nCr<T>(this T[] array, int r, Action<T[]> action)
+
+
+        // it not nCr, it is sum of nCr
+        [Obsolete]
+        public static T[] Loop_nCr<T>(this T[] array, int r, Action<T[]> action)
         {
-            // OWO
+            (1, array.Length).Loop(nn =>
+                r.ToRepeatArray(nn).CombinationLoop(i_s =>
+                    action(Builder.BuildArray<T>(i_s.Length, ele =>
+                        i_s.Loop(i => ele[i] = array[i])
+                    ))
+                )
+            );
+            return array;
+        }
+
+        // Sum of nCr //
+        public static void Loop_nCr_Sum(this int n, int r, Action<int[]> action)
+        {
+            (1, r).Loop(nn => 
+                n.ToRepeatArray(nn).CombinationLoop(action));
         }
 
 

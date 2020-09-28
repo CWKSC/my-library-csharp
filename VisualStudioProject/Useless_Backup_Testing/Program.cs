@@ -17,6 +17,24 @@ namespace Useless_Backup_Testing
 
             string source =
 @"
+foo 2 .
+
+boo 
+    tokens 1 x
+    tokens 2 y
+    x + y
+.
+
+ifEmpty 
+    tokens 1 token
+    until . content
+    if token  content
+.
+
+// until \n args .
+
+/* until */ args .
+
 foo . 2 .
 boo 
     index token 0 x 
@@ -56,5 +74,7 @@ def def
         }
 
     }
+
+
 
 }
