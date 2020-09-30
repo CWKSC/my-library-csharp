@@ -32,5 +32,13 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         }
 
 
+        public static List<T> BuildList<T>(Action<List<T>> action)
+        {
+            List<T> result = new List<T>();
+            action(result);
+            return result;
+        }
+
+
     }
 }
