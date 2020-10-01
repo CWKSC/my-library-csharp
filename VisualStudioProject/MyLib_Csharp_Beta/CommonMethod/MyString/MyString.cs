@@ -11,9 +11,15 @@ namespace MyLib_Csharp_Beta.CommonMethod
     public static partial class MyString
     {
 
+        /// <summary>
+        /// add string to each string[] element
+        /// </summary>
         public static string[] AllAdd(this string[] array, string add) =>
             array.Map((ele, i) => ele + add);
 
+        /// <summary>
+        /// add string to each string[] element in front
+        /// </summary>
         public static string[] AllAddFront(this string[] array, string add) =>
             array.Map((ele, i) => add + ele);
 

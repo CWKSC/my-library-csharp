@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using static MyLib_Csharp_Beta.CommonMethod.Printing;
+
 namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static partial class MyString
@@ -13,25 +15,52 @@ namespace MyLib_Csharp_Beta.CommonMethod
             string[] OneToFive = { "1", "2", "3", "4", "5"};
             OneToFive.AllAdd("0").Println();
             OneToFive.AllAddFront("S").Printlnln();
+            // 10, 20, 30, 40, 50
+            // S10, S20, S30, S40, S50
+
 
             // Mix two string[] //
             string[] ABCD = { "a", "b", "c", "d" };
             string[] OneToFour = { "1", "2", "3", "4" };
             ABCD.Mix(OneToFour).Printlnln();
+            // a1, b2, c3, d4
+
 
             /// ToUpperTriangular ///
             string[] OneToThree = { "1", "2", "3" };
-            OneToThree.ToUpperTriangular().Printlnln();
-            OneToThree.ToConcatUpperTriangular().Printlnln();
-            OneToThree.ToConcatUpperTriangular_SeparateBy("*").Printlnln();
+            AllPrintlnln(
+                OneToThree.ToUpperTriangular()
+                // 1
+                // 1, 2
+                // 1, 2, 3
+                ,
+                OneToThree.ToConcatUpperTriangular()
+                // 1, 12, 123
+                ,
+                OneToThree.ToConcatUpperTriangular_SeparateBy("*")
+                // 1, 1*2, 1*2*3
+            );
 
             string t = "T";
-            t.ToUpperTriangular(5).Printlnln();
-            t.ToConcat1dArray_SeparateBy(5, "*").Printlnln();
+            AllPrintlnln(
+                t.ToUpperTriangular(5)
+                // T
+                // T, T
+                // T, T, T
+                // T, T, T, T
+                // T, T, T, T, T
+                ,
+                t.ToConcat1dArray_SeparateBy(5, "*")
+                // T, T*T, T*T*T, T*T*T*T, T*T*T*T*T
+                ,
+                t.ToRepeatValue(5)
+                // TTTTT
+                ,
+                t.ToRepeatArray(5)
+                // T, T, T, T, T
+            );
 
-            // ToRepeatValue / Array //
-            t.ToRepeatValue(5).Printlnln();
-            t.ToRepeatArray(5).Printlnln();
+            
         }
         /* Output:
         10, 20, 30, 40, 50
@@ -54,6 +83,10 @@ namespace MyLib_Csharp_Beta.CommonMethod
         T, T, T, T, T
 
         T, T*T, T*T*T, T*T*T*T, T*T*T*T*T
+
+        TTTTT
+
+        T, T, T, T, T
         */
 
     }

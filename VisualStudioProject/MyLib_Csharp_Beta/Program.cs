@@ -9,6 +9,8 @@ using MyLib_Csharp_Beta.Tool;
 using static MyLib_Csharp_Beta.MyMath.SumOf_ProductOf;
 using MyLib_Csharp_Beta.CommonMethod;
 using System.Runtime.InteropServices.ComTypes;
+using System.Reflection;
+using System.Linq;
 
 namespace MyLib_Csharp_Beta
 {
@@ -16,9 +18,12 @@ namespace MyLib_Csharp_Beta
     public static class Program
     {
 
+
+
         public static void Main(string[] args)
         {
-            TemplateGenerator.Test();
+            MyString.Test();
+            //TemplateGenerator.Test();
         }
 
 
