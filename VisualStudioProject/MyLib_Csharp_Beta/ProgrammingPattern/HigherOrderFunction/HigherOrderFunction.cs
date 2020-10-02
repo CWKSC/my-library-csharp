@@ -13,5 +13,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             x => A(B(x));
 
 
+
     }
 }

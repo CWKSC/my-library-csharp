@@ -2,6 +2,8 @@
 using MyLib_Csharp_Beta.CommonType;
 using System;
 
+using static MyLib_Csharp_Beta.ProgrammingPattern.ApplyFunction;
+
 namespace MyLib_Csharp_Beta.ProgrammingPattern
 {
     public static partial class ProgramStructure
@@ -17,6 +19,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             _(condition = true).
             Call(printCondition, isIfElseReach).
             ReturnVoid();
+
 
         /* Output
         condition variable : False
