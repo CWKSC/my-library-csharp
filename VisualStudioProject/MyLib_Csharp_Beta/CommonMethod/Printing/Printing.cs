@@ -102,12 +102,12 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 
 
-        public static object[] AllPrint(params dynamic[] values) => 
-            values.Loop((ele, _) => Print(ele));
+        public static object[] AllPrint(params dynamic[] values) =>
+            ApplyFunction.ApplyFunc(ele => Print(ele), values);
         public static object[] AllPrintln(params dynamic[] values) =>
-            values.Loop((ele, _) => Println(ele));
+            ApplyFunction.ApplyFunc(ele => Println(ele), values);
         public static object[] AllPrintlnln(params dynamic[] values) =>
-            values.Loop((ele, _) => Printlnln(ele));
+            ApplyFunction.ApplyFunc(ele => Printlnln(ele), values);
 
 
 

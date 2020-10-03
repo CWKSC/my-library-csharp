@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CommonMethod\MyString\MyString.cs~RFfee6e.TMP" />
     <None Remove="ProgrammingPattern\JoinFunction\JoinFunction.cs~RF106a83.TMP" />
   </ItemGroup>
 
