@@ -250,7 +250,7 @@ namespace MyLib_Csharp_Beta.Tool
 
             (string, string[]) genericSet = ("generic",
                 GenericType(5)
-                   .ToConcatUpperTriangular_SeparateBy(", "));
+                   .ToConcat1dArray_SeparateBy(", "));
 
             (string, string[]) memberSet = ("member",
                 GenericType(5)
@@ -258,7 +258,7 @@ namespace MyLib_Csharp_Beta.Tool
                    .Mix(Xn("t", 5))
                    .AllAdd(";")
                    .AllAddFront("    ")
-                   .ToConcatUpperTriangular_SeparateBy("\n"));
+                   .ToConcat1dArray_SeparateBy("\n"));
 
             (string, string[])[] group = { genericSet, memberSet };
 
@@ -306,14 +306,14 @@ namespace MyLib_Csharp_Beta.Tool
             (string, string[]) genericVarSet = ("genericVar",
                 "T ".ToRepeatArray(5)
                     .Mix(var)
-                    .ToConcatUpperTriangular_SeparateBy(", "));
+                    .ToConcat1dArray_SeparateBy(", "));
             // T a
             // T a, T b
             // T a, T b, T c
             // T a, T b, T c, T d
             // T a, T b, T c, T d, T e
 
-            (string, string[]) returnValueSet = ("returnValue", var.ToConcatUpperTriangular_SeparateBy(" + "));
+            (string, string[]) returnValueSet = ("returnValue", var.ToConcat1dArray_SeparateBy(" + "));
             // a
             // a + b
             // a + b + c

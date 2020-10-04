@@ -34,10 +34,10 @@ namespace MyLib_Csharp_Beta.CommonMethod
                 // 1, 2
                 // 1, 2, 3
                 ,
-                OneToThree.ToConcatUpperTriangular()
+                OneToThree.ToConcat1dArray()
                 // 1, 12, 123
                 ,
-                OneToThree.ToConcatUpperTriangular_SeparateBy("*")
+                OneToThree.ToConcat1dArray_SeparateBy("*")
                 // 1, 1*2, 1*2*3
             );
 

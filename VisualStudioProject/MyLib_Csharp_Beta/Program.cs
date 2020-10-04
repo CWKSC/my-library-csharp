@@ -22,7 +22,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            TemplateGenerator.Test();
+            MyString.Test();
         }
 
 

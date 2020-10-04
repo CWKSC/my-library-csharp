@@ -31,6 +31,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             return result;
         }
 
+        public static T[] BuildArrayForEach<T>(int size, Func<int, T> action)
+        {
+            T[] result = new T[size];
+            result.Init(i => action(i));
+            return result;
+        }
+
+
 
         public static List<T> BuildList<T>(Action<List<T>> action)
         {
