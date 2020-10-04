@@ -9,6 +9,5 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
         public static T To<T>(this object value) => (T)Convert.ChangeType(value, typeof(T));
 
-
     }
 }

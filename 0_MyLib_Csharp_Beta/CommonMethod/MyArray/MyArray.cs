@@ -22,10 +22,14 @@ namespace MyLib_Csharp_Beta.CommonMethod
         }
 
 
-
+        /// <summary>
+        /// <code>
+        /// "T".ToRepeatArray(5) <br />
+        /// {"T", "T", "T", "T", "T"}
+        /// </code>
+        /// </summary>
         public static T[] ToRepeatArray<T>(this T value, int length) =>
-            BuildArray<T>(length, result =>
-                result.Map((ele, i) => value));
+            BuildArrayForEach(length, _ => value);
 
 
 
@@ -47,7 +51,6 @@ namespace MyLib_Csharp_Beta.CommonMethod
                     result[i, j] = random.Next(min, max);
             return result;
         }
-
 
 
     }

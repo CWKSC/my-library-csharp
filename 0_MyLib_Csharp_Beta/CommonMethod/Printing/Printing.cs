@@ -100,5 +100,16 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public static T[,] Printlnlnln<T>(this T[,] array) => array.Printlnln().ln();
 
 
+
+
+        public static object[] AllPrint(params dynamic[] values) =>
+            ApplyFunction.ApplyFunc(ele => Print(ele), values);
+        public static object[] AllPrintln(params dynamic[] values) =>
+            ApplyFunction.ApplyFunc(ele => Println(ele), values);
+        public static object[] AllPrintlnln(params dynamic[] values) =>
+            ApplyFunction.ApplyFunc(ele => Printlnln(ele), values);
+
+
+
     }
 }

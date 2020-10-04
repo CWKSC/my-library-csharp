@@ -128,6 +128,5 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         }
 
 
-
     }
 }

@@ -16,6 +16,12 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             dataSet.Loop((ele, i) => dataSet[i] = operation(ele, i));
 
 
+        public static T[] Init<T>(this T[] dataSet, Func<int, T> operation, int[] mapIndex) =>
+           dataSet.Loop((_, i) => dataSet[mapIndex[i]] = operation(i));
+        public static T[] Init<T>(this T[] dataSet, Func<int, T> operation) =>
+            dataSet.Loop((_, i) => dataSet[i] = operation(i));
+
+
         public static T[] Map_new<T>(this T[] dataSet, Func<T, int, T> operation, int[] mapIndex)
         {
             T[] result = new T[dataSet.Length];
