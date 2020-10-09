@@ -16,7 +16,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// <code>
         /// string[] OneToFive = { "1", "2", "3", "4", "5"}; <br />
         /// OneToFive.AllAdd("0") <br />
-        /// // {"10", "20", "30", "40", "50"}
+        /// {"10", "20", "30", "40", "50"}
         /// </code>
         /// </summary>
         public static string[] AllAdd(this string[] array, string add) =>
@@ -27,7 +27,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// <code>
         /// string[] OneToFive = { "1", "2", "3", "4", "5"}; <br />
         /// OneToFive.AllAdd("0") <br />
-        /// // {"01", "02", "03", "04", "05"}
+        /// {"01", "02", "03", "04", "05"}
         /// </code>
         /// </summary>
         public static string[] AllAddFront(this string[] array, string add) =>
@@ -39,7 +39,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// string[] ABCD = { "a", "b", "c", "d" }; <br />
         /// string[] OneToFour = { "1", "2", "3", "4" }; <br />
         /// ABCD.Mix(OneToFour) <br />
-        /// // {"a1", "b2", "c3", "d4"}
+        /// {"a1", "b2", "c3", "d4"}
         /// </code>
         /// </summary>
         public static string[] Mix(this string[] array, string[] other) =>
@@ -50,7 +50,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// <summary>
         /// <code>
         /// new string[] {"1", "2", "3", "4"}.ConcatToOneString() <br />
-        /// // "1234"
+        /// "1234"
         /// </code>
         /// </summary>
         public static string ConcatToOneString(this string[] array) =>
@@ -72,7 +72,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
         /// <summary>
         /// "T".ToRepeatValue(5) <br />
-        /// TTTTT
+        /// "TTTTT"
         /// </summary>
         public static string ToRepeatValue(this string value, int times) =>
             BuildString(builder =>
@@ -81,37 +81,78 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 
 
+        /// <summary>
+        /// <code>
+        /// "T".ToUpperTriangular(5) <br /> <br />
+        /// {<br />
+        /// {"T"},<br />
+        /// {"T", "T"},<br />
+        /// {"T", "T", "T"},<br />
+        /// {"T", "T", "T", "T"},<br />
+        /// {"T", "T", "T", "T", "T"}<br />
+        /// }
+        /// </code>
+        /// </summary>
+        public static string[][] ToUpperTriangular(this string value, int length) =>
+            BuildArrayForEach(length,
+                i => value.ToRepeatArray(i + 1));
 
+        /// <summary>
+        /// <code>
+        /// new string[] { "1", "2", "3" }.ToUpperTriangular() <br /> <br />
+        /// {<br />
+        /// {"1"},<br />
+        /// {"1", "2"},<br />
+        /// {"1", "2", "3"}<br />
+        /// }
+        /// </code>
+        /// </summary>
         public static string[][] ToUpperTriangular(this string[] array) =>
             BuildArrayForEach(array.Length, 
                 i => array.SubArray(0, i + 1));
 
 
-        public static string ConcatSubArray(this string[] array, int index, int length) =>
+        /// <summary>
+        /// <code>
+        /// string[] ABCDEF = { "a", "b", "c", "d", "e", "f"}; <br />
+        /// ABCDEF.ConcatSubArrayToString(0, 2) // "ab" <br />
+        /// ABCDEF.ConcatSubArrayToString(0, 4) // "abcd" <br />
+        /// ABCDEF.ConcatSubArrayToString(2, 2) // "cd" <br />
+        /// ABCDEF.ConcatSubArrayToString(2, 4).// "cdef"
+        /// </code>
+        /// </summary>
+        public static string ConcatSubArrayToString(this string[] array, int index, int length) =>
             BuildString(builder =>
                 (index, index + length - 1).Loop(i => 
                     builder.Append(array[i])));
 
 
+        /// <summary>
+        /// <code>
+        /// new string[]{ "1", "2", "3" }.ToConcat1dArray() <br />
+        /// {"1", "12", "123"}
+        /// </code>
+        /// </summary>
         public static string[] ToConcat1dArray(this string[] array) =>
              BuildArrayForEach(array.Length, 
-                 i => array.ConcatSubArray(0, i + 1));
+                 i => array.ConcatSubArrayToString(0, i + 1));
 
 
+        /// <summary>
+        /// <code>
+        /// new string[]{ "1", "2", "3" }.ToConcat1dArray_SeparateBy("*") <br />
+        /// {"1", "1*2", "1*2*3"}
+        /// </code>
+        /// </summary>
         public static string[] ToConcat1dArray_SeparateBy(this string[] array, string separate) =>
              BuildArrayForEach(array.Length, 
                  i => string.Join(separate, array.SubArray(0, i + 1)));
 
 
 
-        public static string[][] ToUpperTriangular(this string value, int length) =>
-            BuildArrayForEach(length, 
-                i => value.ToRepeatArray(i + 1));
-
-
         /// <summary>
         /// "T".ToConcat1dArray_SeparateBy(5, "*") <br />
-        /// T, T*T, T*T*T, T*T*T*T, T*T*T*T*T
+        /// {"T", "T*T", "T*T*T", "T*T*T*T", "T*T*T*T*T"}
         /// </summary>
         public static string[] ToConcat1dArray_SeparateBy(this string value, int length, string separate) =>
             BuildArrayForEach(length, 
