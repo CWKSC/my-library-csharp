@@ -13,7 +13,7 @@ namespace MyLib_Csharp_Beta.Tool
     public static partial class TemplateGenerator
     {
 
-        public static string[] Generate(string template, string[] set1, string[] set2) =>
+        public static string[] Generate(this string template, string[] set1, string[] set2) =>
             BuildList<string>(list => {
                 set1.Loop((set1_ele, _) =>
                     set2.Loop((set2_ele, __) =>
@@ -26,7 +26,7 @@ namespace MyLib_Csharp_Beta.Tool
 
 
 
-        public static string[] Generate(string template, params string[][] set) =>
+        public static string[] Generate(this string template, params string[][] set) =>
             BuildList<string>(list =>
             {
                 int[] refer = set.GetRowLengthArray();
@@ -39,7 +39,7 @@ namespace MyLib_Csharp_Beta.Tool
             }).ToArray();
 
 
-        public static string[] GenerateByGroup(string template, params string[][][] groups) =>
+        public static string[] GenerateByGroup(this string template, params string[][][] groups) =>
             BuildList<string>(list =>
             {
                 int[] refer = new int[groups.Length];
@@ -55,7 +55,7 @@ namespace MyLib_Csharp_Beta.Tool
             }).ToArray();
 
 
-        public static string[] GenerateByName(string template, params (string name, string[] set)[] sets) =>
+        public static string[] GenerateByName(this string template, params (string name, string[] set)[] sets) =>
             BuildList<string>(list =>
             {
                 int[] refer = new int[sets.Length];
@@ -68,7 +68,7 @@ namespace MyLib_Csharp_Beta.Tool
                 });
             }).ToArray();
 
-        public static string[] GenerateByNameAndGroup(string template, params (string name, string[] set)[][] groups) =>
+        public static string[] GenerateByNameAndGroup(this string template, params (string name, string[] set)[][] groups) =>
             BuildList<string>(list =>
             {
                 int[] refer = new int[groups.Length];

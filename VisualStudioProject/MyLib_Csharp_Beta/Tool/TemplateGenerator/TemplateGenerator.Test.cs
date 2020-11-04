@@ -26,6 +26,7 @@ namespace MyLib_Csharp_Beta.Tool
             Test_GenerateByNameAndGroup_Generate_Generic_Class(); // Generate generic class
             Test_GenerateByNameAndGroup_Generate_Generic_Method(); // Generat generic method
 
+            AdvancedExample();
         }
 
 
@@ -333,6 +334,75 @@ namespace MyLib_Csharp_Beta.Tool
             */
             #endregion
         }
+
+
+
+        public static void AdvancedExample()
+        {
+            int n = 5;
+
+            var sets2 = GenerateByNameAndGroup(
+                            "<<1>> <<2>>\n",
+                            new[] {
+                                ("1", new []{ "a", "b" })
+                            },
+                            new[]
+                            {
+                                ("2", new []{ "c", "d" })
+                            }
+                        );
+            sets2.ConcatToOneString().Println();
+
+            GenerateByNameAndGroup("<statement>",
+                new[]{
+                    ("statement", sets2)
+                },
+                new[]
+                {
+                    ("a", new[]{ "a1", "a2" })
+                },
+                new[]
+                {
+                    ("b", new[]{ "b1", "b2" })
+                },
+                new[]
+                {
+                    ("c", new[]{ "c1", "c2" })
+                },
+                new[]
+                {
+                    ("d", new[]{ "d1", "d2" })
+                }
+            ).ConcatToOneString().Println(); ;
+
+
+            return;
+
+            var x3list = Xn("x", 3);
+            var sets = GenerateByNameAndGroup(
+                            "<<a><b>> if(<<a>> == <<b>>)",
+                            new[] {
+                                ("a", x3list)
+                            },
+                            new[]
+                            {
+                                ("b", x3list)
+                            }
+                        );
+
+            GenerateByNameAndGroup("<if>\n",
+                new[]{
+                    ("if", sets)
+                },
+                new[]{
+                    ("x0x0", new[]{ "//" }),
+                    ("x1x1", new[]{ "//" }),
+                    ("x2x2", new[]{ "//" })
+                }
+            ).ConcatToOneString().Println(); ;
+        }
+
+
 
     }
 }

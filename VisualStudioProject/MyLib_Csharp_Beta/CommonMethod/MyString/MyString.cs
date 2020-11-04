@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using static MyLib_Csharp_Beta.ProgrammingPattern.Builder;
@@ -66,7 +67,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// {"0", "1", "2", "3", "4"}
         /// </code>
         /// </summary>
-        public static string[] ToSequenceNumberStringArray(this int n) =>
+        public static string[] ToZeroToNStringArray(this int n) =>
             BuildArrayForEach(n, i => i.ToString());
 
 
@@ -165,7 +166,8 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// </summary>
         public static string[] Xn(string X, int n) => 
             X.ToRepeatArray(n)
-             .Mix(n.ToSequenceNumberStringArray());
+             .Mix(n.ToZeroToNStringArray());
+
 
         /// <summary>
         /// {"T0", "T1", "T2", "T3", ..., "T(n-1)"} <br /><br />

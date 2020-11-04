@@ -19,10 +19,9 @@ namespace MyLib_Csharp_Beta
     {
 
 
-
         public static void Main(string[] args)
         {
-            MyString.Test();
+            TemplateGenerator.Test();
         }
 
 
