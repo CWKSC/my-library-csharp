@@ -1,6 +1,6 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 using MyLib_Csharp_Beta.ProgrammingPattern;
-
+using System;
 using static MyLib_Csharp_Beta.CommonMethod.MyString;
 
 namespace MyLib_Csharp_Beta.Tool
@@ -26,7 +26,7 @@ namespace MyLib_Csharp_Beta.Tool
             Test_GenerateByNameAndGroup_Generate_Generic_Class(); // Generate generic class
             Test_GenerateByNameAndGroup_Generate_Generic_Method(); // Generat generic method
 
-            AdvancedExample();
+            EasyGenericPattern();
         }
 
 
@@ -337,70 +337,50 @@ namespace MyLib_Csharp_Beta.Tool
 
 
 
-        public static void AdvancedExample()
+        public static void EasyGenericPattern()
         {
-            int n = 5;
+            const int n = 5;
+            string template =
+@"public static T<number>[] UnpackItem<number><<generic>>(this (<generic>)[] tuple) =>
+    tuple.Select(pkg => pkg.Item<number>).ToArray();
 
-            var sets2 = GenerateByNameAndGroup(
-                            "<<1>> <<2>>\n",
-                            new[] {
-                                ("1", new []{ "a", "b" })
-                            },
-                            new[]
-                            {
-                                ("2", new []{ "c", "d" })
-                            }
-                        );
-            sets2.ConcatToOneString().Println();
+";
+            GenerateGenricPattern(template, nGeneric: n, nNumber: 2).ConcatToOneString().Println();
+            #region result
+            /*
+            public static T1[] UnpackItem1<T1>(this (T1)[] tuple) =>
+                tuple.Select(pkg => pkg.Item1).ToArray();
 
-            GenerateByNameAndGroup("<statement>",
-                new[]{
-                    ("statement", sets2)
-                },
-                new[]
-                {
-                    ("a", new[]{ "a1", "a2" })
-                },
-                new[]
-                {
-                    ("b", new[]{ "b1", "b2" })
-                },
-                new[]
-                {
-                    ("c", new[]{ "c1", "c2" })
-                },
-                new[]
-                {
-                    ("d", new[]{ "d1", "d2" })
-                }
-            ).ConcatToOneString().Println(); ;
+            public static T2[] UnpackItem2<T1>(this (T1)[] tuple) =>
+                tuple.Select(pkg => pkg.Item2).ToArray();
 
+            public static T1[] UnpackItem1<T1, T2>(this (T1, T2)[] tuple) =>
+                tuple.Select(pkg => pkg.Item1).ToArray();
 
-            return;
+            public static T2[] UnpackItem2<T1, T2>(this (T1, T2)[] tuple) =>
+                tuple.Select(pkg => pkg.Item2).ToArray();
 
-            var x3list = Xn("x", 3);
-            var sets = GenerateByNameAndGroup(
-                            "<<a><b>> if(<<a>> == <<b>>)",
-                            new[] {
-                                ("a", x3list)
-                            },
-                            new[]
-                            {
-                                ("b", x3list)
-                            }
-                        );
+            public static T1[] UnpackItem1<T1, T2, T3>(this (T1, T2, T3)[] tuple) =>
+                tuple.Select(pkg => pkg.Item1).ToArray();
 
-            GenerateByNameAndGroup("<if>\n",
-                new[]{
-                    ("if", sets)
-                },
-                new[]{
-                    ("x0x0", new[]{ "//" }),
-                    ("x1x1", new[]{ "//" }),
-                    ("x2x2", new[]{ "//" })
-                }
-            ).ConcatToOneString().Println(); ;
+            public static T2[] UnpackItem2<T1, T2, T3>(this (T1, T2, T3)[] tuple) =>
+                tuple.Select(pkg => pkg.Item2).ToArray();
+
+            public static T1[] UnpackItem1<T1, T2, T3, T4>(this (T1, T2, T3, T4)[] tuple) =>
+                tuple.Select(pkg => pkg.Item1).ToArray();
+
+            public static T2[] UnpackItem2<T1, T2, T3, T4>(this (T1, T2, T3, T4)[] tuple) =>
+                tuple.Select(pkg => pkg.Item2).ToArray();
+
+            public static T1[] UnpackItem1<T1, T2, T3, T4, T5>(this (T1, T2, T3, T4, T5)[] tuple) =>
+                tuple.Select(pkg => pkg.Item1).ToArray();
+
+            public static T2[] UnpackItem2<T1, T2, T3, T4, T5>(this (T1, T2, T3, T4, T5)[] tuple) =>
+                tuple.Select(pkg => pkg.Item2).ToArray();
+            */
+            #endregion
         }
+
 
 
 

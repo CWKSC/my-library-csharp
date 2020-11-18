@@ -63,12 +63,22 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// <summary>
         /// <code>
         /// {"0", "1", "2", ..., "n-1"} <br /><br />
-        /// ToSequenceNumberStringArray(5) <br />
+        /// ToZeroToNStringArray(5) <br />
         /// {"0", "1", "2", "3", "4"}
         /// </code>
         /// </summary>
         public static string[] ToZeroToNStringArray(this int n) =>
             BuildArrayForEach(n, i => i.ToString());
+
+
+        /// <summary>
+        /// (3, 7).ToRangeStringArray() <br />
+        /// {"3", "4", "5", "6", "7"}
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        public static string[] ToRangeStringArray(this (int start, int end) arg) =>
+            BuildArrayForEach(arg.Size(), i => (arg.start + i).ToString());
 
 
         /// <summary>
@@ -176,6 +186,22 @@ namespace MyLib_Csharp_Beta.CommonMethod
         /// </summary>
         public static string[] GenericType(int n) => Xn("T", n);
 
+
+
+        /// <summary>
+        /// GenericTemplate(3)<br/>
+        /// { <br/>
+        /// "T1",<br/>
+        /// "T1, T2",<br/>
+        /// "T1, T2, T3"<br/>
+        /// }
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static string[] GenericTemplate(int n) =>
+            BuildArrayForEach(n, i =>
+                string.Join(", ", "T".ToRepeatArray(i + 1).Mix((1, i + 1).ToRangeStringArray())));
+            
 
     }
 }

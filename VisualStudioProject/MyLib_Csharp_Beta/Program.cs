@@ -11,12 +11,22 @@ using MyLib_Csharp_Beta.CommonMethod;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection;
 using System.Linq;
+using System.IO;
+using System.Collections.Generic;
+using static MyLib_Csharp_Beta.CommonMethod.MyString;
+using static MyLib_Csharp_Beta.Tool.TemplateGenerator;
 
 namespace MyLib_Csharp_Beta
 {
 
     public static class Program
     {
+
+        public static T1[] UnpackItem1<T1, T2>(this (T1, T2)[] tuple) => 
+            tuple.Select(pkg => pkg.Item1).ToArray();
+        public static T2[] UnpackItem2<T1, T2>(this (T1, T2)[] tuple) =>
+            tuple.Select(pkg => pkg.Item2).ToArray();
+
 
 
         public static void Main(string[] args)

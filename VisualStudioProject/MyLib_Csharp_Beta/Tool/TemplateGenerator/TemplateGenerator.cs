@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+using static MyLib_Csharp_Beta.CommonMethod.MyString;
 using static MyLib_Csharp_Beta.ProgrammingPattern.Builder;
 
 namespace MyLib_Csharp_Beta.Tool
@@ -85,6 +86,29 @@ namespace MyLib_Csharp_Beta.Tool
             }).ToArray();
 
 
+
+        /// <summary>
+        /// Given &lt;generic&gt; and &lt;number&gt; set by default <br/>
+        /// &lt;generic&gt; from T1 to Tn <br/>
+        /// &lt;number&gt; from numberStart to numberEnd<br/><br/>
+        /// <code>
+        /// GenerateGenricPattern("(&lt;generic&gt;) arg", 3) <br />
+        /// {<br />
+        /// "(T1) arg",<br />
+        /// "(T1, T2) arg",<br />
+        /// "(T1, T2, T3) arg"<br />
+        /// }
+        /// </code>
+        /// </summary>
+        /// <param name="template"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static string[] GenerateGenricPattern(string template, int nGeneric = 6, int numberEnd = 2, int numberStart = 1)
+        {
+            var genericSet = ("generic", GenericTemplate(nGeneric));
+            var numberSet = ("number", (numberStart, numberEnd).ToRangeStringArray());
+            return GenerateByNameAndGroup(template, new[] { genericSet }, new[] { numberSet });
+        }
 
 
     }
