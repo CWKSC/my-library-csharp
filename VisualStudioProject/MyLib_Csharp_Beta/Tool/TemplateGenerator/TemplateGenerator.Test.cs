@@ -345,7 +345,7 @@ namespace MyLib_Csharp_Beta.Tool
     tuple.Select(pkg => pkg.Item<number>).ToArray();
 
 ";
-            GenerateGenricPattern(template, nGeneric: n, nNumber: 2).ConcatToOneString().Println();
+            GenerateGenricPattern(template, nGeneric: n, numberEnd: 2).ConcatToOneString().Println();
             #region result
             /*
             public static T1[] UnpackItem1<T1>(this (T1)[] tuple) =>
