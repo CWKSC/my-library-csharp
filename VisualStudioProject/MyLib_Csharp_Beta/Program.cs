@@ -15,6 +15,7 @@ using System.IO;
 using System.Collections.Generic;
 using static MyLib_Csharp_Beta.CommonMethod.MyString;
 using static MyLib_Csharp_Beta.Tool.TemplateGenerator;
+using MyLib_Csharp_Beta.ProgrammingPattern.Functional;
 
 namespace MyLib_Csharp_Beta
 {
@@ -32,19 +33,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            string flag = "";
-            int[] outputhex = { 0x5B, 0x13, 0x49, 0x77, 0x13, 0x5E, 0x7D, 0x13 };
-            int[] key = { 0x10, 0x20, 0x30 };
-            int[] index = { 0, 1, 2, 0, 1, 2, 0, 1 };
-            for (int i = outputhex.Length - 1; i >= 0; i--)
-            {
-                flag = (char)(outputhex[i] ^ key[index[i]]) + flag;
-            }
-            flag.Println(); // K3yg3nm3
-
-            // key = letsplaychess
-
-
+            Monoid.Test();
             //TemplateGenerator.Test();
         }
 
