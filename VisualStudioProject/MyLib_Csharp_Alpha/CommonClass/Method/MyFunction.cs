@@ -51,6 +51,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
         public delegate RecursionRefFunc<T> RecursionRefFunc<T>(ref T arg);
         public delegate RecursionOutFunc<T> RecursionOutFunc<T>(out T arg);
         public delegate RecursionInFunc<T> RecursionInFunc<T>(in T arg);
+        public delegate RecursionFunc RecursionFunc();
 
 
         public static Func<int, T> ToFunc<T>(this T[] array) => 

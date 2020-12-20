@@ -21,6 +21,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
         public delegate RecursionRefFunc<T> RecursionRefFunc<T>(ref T arg);
         public delegate RecursionOutFunc<T> RecursionOutFunc<T>(out T arg);
         public delegate RecursionInFunc<T> RecursionInFunc<T>(in T arg);
+        public delegate RecursionFunc RecursionFunc();
 
 
 

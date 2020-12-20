@@ -26,5 +26,22 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                     InfAlt));
         }
 
+
+
+        public delegate (T value, InfRing<T> next) InfRing<T>();
+        public static (int value, InfRing<int> next) threeLengthRing() =>
+            (1, () => (2, () => (3, threeLengthRing)));
+
+
+
+        public delegate (T value, List<InfTree<T>> nexts) InfTree<T>();
+        public static (int value, List<InfTree<int>> nexts) tree(int x) => 
+            (x, new List<InfTree<int>>{
+                () => tree(x += 1),
+                () => tree(x += 2) });
+
+
+
+
     }
 }
