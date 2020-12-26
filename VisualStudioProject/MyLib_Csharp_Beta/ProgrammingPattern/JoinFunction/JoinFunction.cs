@@ -53,11 +53,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         public static (int start, int end, int step) JoinFunc(this (int start, int end, int step) args, MyAction<int> work, MyAction<int> join)
         {
             work.Invoke(args.start);
-            (args.start + args.step, args.end, args.step).Loop(i =>
+            if(args.start != args.end)
             {
-                join.Invoke(i);
-                work.Invoke(i);
-            });
+                (args.start + args.step, args.end, args.step).Loop(i =>
+                {
+                    join.Invoke(i);
+                    work.Invoke(i);
+                });
+            }
             return args;
         }
         public static (int start, int end, int step) JoinFunc(this (int start, int end, int step) args, Action<int> work, MyAction<int> join) =>

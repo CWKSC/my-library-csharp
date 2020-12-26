@@ -33,7 +33,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            MyMonoid.Test();
+            MyHKT.Test();
             //Monoid.Test();
             //TemplateGenerator.Test();
         }
