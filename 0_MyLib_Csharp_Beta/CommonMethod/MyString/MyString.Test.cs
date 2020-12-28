@@ -8,11 +8,11 @@ namespace MyLib_Csharp_Beta.CommonMethod
 {
     public static partial class MyString
     {
-         
+
         public static void Test()
         {
             // AllAdd, AllAddFront //
-            string[] OneToFive = { "1", "2", "3", "4", "5"};
+            string[] OneToFive = { "1", "2", "3", "4", "5" };
             OneToFive.AllAdd("0").Println();
             OneToFive.AllAddFront("S").Printlnln();
             // 10, 20, 30, 40, 50
@@ -26,7 +26,10 @@ namespace MyLib_Csharp_Beta.CommonMethod
             // a1, b2, c3, d4
 
 
-            /// ToUpperTriangular ///
+            new string[] { "1", "2", "3", "4" }.ConcatToOneString().Println();
+            // 1234
+
+
             string[] OneToThree = { "1", "2", "3" };
             AllPrintlnln(
                 OneToThree.ToUpperTriangular()
@@ -60,7 +63,29 @@ namespace MyLib_Csharp_Beta.CommonMethod
                 // T, T, T, T, T
             );
 
-            
+
+            // string ConcatSubArrayToString(this string[] array, int index, int length) //
+            string[] ABCDEF = { "a", "b", "c", "d", "e", "f"};
+            AllPrintln(
+                ABCDEF.ConcatSubArrayToString(0, 2),
+                ABCDEF.ConcatSubArrayToString(0, 4),
+                ABCDEF.ConcatSubArrayToString(2, 2),
+                ABCDEF.ConcatSubArrayToString(2, 4)
+            ).ln();
+            // ab
+            // abcd
+            // cd
+            // cdef
+
+
+            AllPrintln(
+                Xn("X", 4)
+                // X0, X1, X2, X3
+                ,
+                GenericType(5)
+                // T0, T1, T2, T3, T4
+            );
+
         }
         /* Output:
         10, 20, 30, 40, 50
@@ -68,6 +93,7 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
         a1, b2, c3, d4
 
+        1234
         1
         1, 2
         1, 2, 3
@@ -87,6 +113,14 @@ namespace MyLib_Csharp_Beta.CommonMethod
         TTTTT
 
         T, T, T, T, T
+
+        ab
+        abcd
+        cd
+        cdef
+
+        X0, X1, X2, X3
+        T0, T1, T2, T3, T4
         */
 
     }
