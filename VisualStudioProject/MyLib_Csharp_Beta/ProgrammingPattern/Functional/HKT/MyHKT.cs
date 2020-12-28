@@ -7,42 +7,51 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
     public static partial class MyHKT
     {
 
-        //interface Functor<F>
+        //public interface Functor<F>
         //{
-        //    public F<B> Map<A, B>(F<A> a, Func<A, B> f);
+        //    public F<B> Map<A, B>(Func<A, B> f, F<A> a);
         //}
 
-        class Foo<F> { }
+        //public interface Functor<F>
+        //{
+        //    public object Map(Func<object, object> f, object a);
+        //}
 
         public interface HKT<F, A> { }
 
         public interface Functor<F>
         {
-            public HKT<F, B> Map<A, B>(HKT<F, A> ma, Func<A, B> f);
+            public HKT<F, B> Map<A, B>(Func<A, B> f, HKT<F, A> a);
         }
 
-        public interface Functor<A, B>
+        public interface ListHKT { }
+        public class ListHKT<T> : HKT<ListHKT, T>, ListHKT
         {
-            public Func<A, B> Map<A, B>(Func<A, A> fa, Func<A, B> F) => x => F(fa(x));
+            public List<T> value;
+            public ListHKT() => value = new List<T>();
+            public ListHKT(List<T> v) => value = v;
+            public static implicit operator ListHKT<T>(List<T> list) => new ListHKT<T>(list);
+            public static implicit operator List<T>(ListHKT<T> list) => list.value;
+
+            public static ListHKT<T> Narrow(HKT<ListHKT, T> v) => (ListHKT<T>)v;
         }
 
-        public interface HKTList { }
-        public class HKTList<A> : HKT<HKTList, A>, HKTList
+
+
+
+        public class ListF : Functor<ListHKT>
         {
-
-            public List<A> value;
-            public HKTList() => value = new List<A>();
-            public HKTList(List<A> v) => value = v;
-            public static HKTList<T> Narrow<T>(HKT<HKTList, T> v) => (HKTList<T>)v;
+            public HKT<ListHKT, B> Map<A, B>(Func<A, B> f, HKT<ListHKT, A> a)
+            {
+                List<A> aList = ListHKT<A>.Narrow(a).value;
+                B[] result = new B[aList.Count];
+                for (int i = 0; i < aList.Count; i++)
+                {
+                    result[i] = f(aList[i]);
+                }
+                return new ListHKT<B>(new List<B>(result));
+            }
         }
-
-        //class ListF : Functor<HKTList> {
-
-        //    public HKT<HKTList, B> Map<A, B>(HKT<HKTList, A> ma, Func<A, B> f) => 
-        //        HKTList<A>.Narrow(ma)
-        //            .value.map(f)
-        //            .collect(HKTList.collector());
-        //}
 
     }
 }
