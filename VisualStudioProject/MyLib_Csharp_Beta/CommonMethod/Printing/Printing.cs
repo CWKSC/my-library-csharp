@@ -36,9 +36,9 @@ namespace MyLib_Csharp_Beta.CommonMethod
         //// lnPrint ////
 
 #pragma warning disable IDE1006 // 命名樣式
-        public static T lnPrint<T>(this T value) { ("\n" + value).Print(); return value; }
-        public static T lnPrintln<T>(this T value) { ("\n" + value).Println();  return value; }
-        public static T lnPrintlnln<T>(this T value) { ("\n" + value).Printlnln(); return value; }
+        public static T lnPrint<T>(this T value) { ln(); value.Print(); return value; }
+        public static T lnPrintln<T>(this T value) { ln(); value.Println();  return value; }
+        public static T lnPrintlnln<T>(this T value) { ln(); value.Printlnln(); return value; }
 
 #pragma warning restore IDE1006 // 命名樣式
 

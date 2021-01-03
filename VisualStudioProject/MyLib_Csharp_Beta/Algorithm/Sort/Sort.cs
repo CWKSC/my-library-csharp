@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyLib_Csharp_Beta.Algorithm
@@ -39,6 +40,35 @@ namespace MyLib_Csharp_Beta.Algorithm
             }
             return result;
         }
+
+
+
+        public static T[] SortNSortedArray<T>(params T[][] arrays) where T : IComparable
+        {
+            int length = arrays.Aggregate(0, (pre, ele) => pre + ele.Length);
+            T[] result = new T[length];
+            int[] indexs = arrays.Select((ele, i) => arrays[i].Length).ToArray();
+            for (int i = length - 1; i >= 0; i--)
+            {
+                int k = 0;
+                while (indexs[k] == 0) k++;
+                int maxIndex = k;
+                T max = arrays[k][indexs[k] - 1];
+                for (int j = 1; j < arrays.Length; j++)
+                {
+                    if (indexs[j] == 0) continue;
+                    if (arrays[j][indexs[j] - 1].CompareTo(max) > 0)
+                    {
+                        max = arrays[j][indexs[j] - 1];
+                        maxIndex = j;
+                    }
+                }
+                indexs[maxIndex]--;
+                result[i] = max;
+            }
+            return result;
+        }
+
 
 
     }
