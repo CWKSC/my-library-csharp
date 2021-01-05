@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
+#pragma warning disable IDE1006 // 命名樣式
+
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class MyHKT
@@ -19,7 +21,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
         //}
 
         public interface HKT<F, A> { }
-
         public interface Functor<F>
         {
             public HKT<F, B> Map<A, B>(Func<A, B> f, HKT<F, A> a);
@@ -44,6 +45,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                     ListHKT<A>.Narrow(a).value.Select(f)));
         }
 
-
     }
 }
+
+#pragma warning restore IDE1006 // 命名樣式

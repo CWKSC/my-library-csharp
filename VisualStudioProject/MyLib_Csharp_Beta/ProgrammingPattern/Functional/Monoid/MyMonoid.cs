@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
+#pragma warning disable IDE1006 // 命名樣式
+#pragma warning disable IDE0060 // 移除未使用的參數
+
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class MyMonoid
     {
 
-#pragma warning disable IDE1006 // 命名樣式
         // public interface Unital { }
         public interface Unital<T> { public T Identity(); }
         public interface BinaryOperation<T> { public T BinaryOperation(T a, T b); }
@@ -58,6 +60,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 
         public static T When<T>(this Monoid<T> monoid, bool c, T then) =>
             c ? then : monoid.Identity();
+
         public static T Cond<T>(this Monoid<T> monoid, bool c, T then, T els) =>
             c ? then : els;
 
@@ -72,5 +75,5 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
     }
 }
 
-
+#pragma warning restore IDE0060 // 移除未使用的參數
 #pragma warning restore IDE1006 // 命名樣式

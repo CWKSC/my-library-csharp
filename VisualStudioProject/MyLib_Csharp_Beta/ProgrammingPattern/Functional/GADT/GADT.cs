@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable IDE1006 // 命名樣式
+
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class GADT
     {
+
         public interface Expr { }
         public interface Expr<T> : Expr { }
         public class IntVal : Expr<int>
@@ -38,3 +41,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
         }
     }
 }
+
+#pragma warning restore IDE1006 // 命名樣式
+

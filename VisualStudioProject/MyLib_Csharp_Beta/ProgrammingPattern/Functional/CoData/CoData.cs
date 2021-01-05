@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable IDE1006 // 命名樣式
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
@@ -27,11 +28,10 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
         }
 
 
-
         public delegate (T value, InfRing<T> next) InfRing<T>();
+
         public static (int value, InfRing<int> next) threeLengthRing() =>
             (1, () => (2, () => (3, threeLengthRing)));
-
 
 
         public delegate (T value, List<InfTree<T>> nexts) InfTree<T>();
@@ -40,8 +40,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                 () => tree(x += 1),
                 () => tree(x += 2) });
 
-
-
-
     }
 }
+
+#pragma warning restore IDE1006 // 命名樣式

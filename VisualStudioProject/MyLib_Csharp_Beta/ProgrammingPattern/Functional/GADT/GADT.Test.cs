@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable IDE0059 // 指派了不必要的值
+
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class GADT
     {
+
         public static void Test()
         {
             // 1 + 2
@@ -25,3 +28,5 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 
     }
 }
+
+#pragma warning restore IDE0059 // 指派了不必要的值

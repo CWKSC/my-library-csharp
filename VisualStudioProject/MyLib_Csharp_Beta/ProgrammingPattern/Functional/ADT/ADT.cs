@@ -6,7 +6,8 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class ADT
     {
-#pragma warning disable IDE0051 // 刪除未使用的私用成員
+#pragma warning disable IDE1006 // 命名樣式
+
         public interface ISchoolPerson { }
         public sealed class Student : ISchoolPerson
         {
@@ -30,7 +31,9 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
             False
         }
 
+
         public interface Nat { }
+
         public sealed class Z : Nat { }
         public sealed class S : Nat
         {
@@ -72,7 +75,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
             public Dictionary<string, JsonValue> value;
         }
 
-#pragma warning restore IDE0051 // 刪除未使用的私用成員
+#pragma warning restore IDE1006 // 命名樣式
 
     }
 }
