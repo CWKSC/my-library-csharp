@@ -8,8 +8,11 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 
 #pragma warning disable IDE1006 // 命名樣式
 
-    public interface Maybe<T>
+
+    public interface Maybe { }
+    public interface Maybe<T> : HKT<Maybe, T>, Maybe
     {
+        public static Maybe<T> Narrow(HKT<Maybe, T> v) => (Maybe<T>)v;
 
         //public static Maybe<int?> AddI(Maybe<int?> ma, Maybe<int?> mb)
         //{
@@ -19,7 +22,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
         //        ((Just<int?>)ma).value +
         //        ((Just<int?>)mb).value);
         //}
-
         public static Maybe<int?> AddE(Maybe<int?> ma, Maybe<int?> mb)
         {
             try
@@ -31,34 +33,23 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                 return new Nothing<int?>();
             }
         }
-
         public static Maybe<int?> AddI(Maybe<int?> ma, Maybe<int?> mb)
         {
             MaybeM m = new MaybeM();
-            return MaybeHKT<int?>.Narrow(
-                m.FlatMap(new MaybeHKT<int?>(ma), a =>
-                m.FlatMap(new MaybeHKT<int?>(mb), b =>
+            return Maybe<int?>.Narrow(
+                m.FlatMap(ma, a =>
+                m.FlatMap(mb, b =>
                 m.Pure(a + b)))
-            ).maybe;
+            );
         }
     }
+
     public class Nothing<T> : Maybe<T> { }
     public class Just<T> : Maybe<T>
     {
         public T value;
         public Just() { }
         public Just(T value) => this.value = value;
-    }
-
-
-    public interface MaybeHKT { }
-    public class MaybeHKT<T> : HKT<MaybeHKT, T>, MaybeHKT
-    {
-        public Maybe<T> maybe;
-        public MaybeHKT() => maybe = new Nothing<T>();
-        public MaybeHKT(T value) => maybe = new Just<T>(value);
-        public MaybeHKT(Maybe<T> maybe) => this.maybe = maybe;
-        public static MaybeHKT<T> Narrow(HKT<MaybeHKT, T> v) => (MaybeHKT<T>)v;
     }
 
 
