@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
+#pragma warning disable IDE1006 // 命名樣式
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
     public static partial class ADT
     {
-#pragma warning disable IDE1006 // 命名樣式
 
         public interface ISchoolPerson { }
         public sealed class Student : ISchoolPerson
@@ -75,7 +74,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
             public Dictionary<string, JsonValue> value;
         }
 
-#pragma warning restore IDE1006 // 命名樣式
-
     }
 }
+
+#pragma warning restore IDE1006 // 命名樣式

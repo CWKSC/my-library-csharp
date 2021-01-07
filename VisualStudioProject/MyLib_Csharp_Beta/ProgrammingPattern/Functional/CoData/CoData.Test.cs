@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using IntList = MyLib_Csharp_Beta.ProgrammingPattern.Functional.ADT.List<int>;
 using IntNil = MyLib_Csharp_Beta.ProgrammingPattern.Functional.ADT.Nil<int>;
 using IntCons = MyLib_Csharp_Beta.ProgrammingPattern.Functional.ADT.Cons<int>;
-using static MyLib_Csharp_Beta.CommonMethod.MyFunc;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
@@ -44,7 +41,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
             Console.WriteLine(tree(1).nexts[1]().nexts[1]().value); // 5
         }
 
-
-
     }
+
 }

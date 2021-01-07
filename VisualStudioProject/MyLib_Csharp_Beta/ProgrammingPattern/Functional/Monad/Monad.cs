@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static MyLib_Csharp_Beta.ProgrammingPattern.Functional.MyHKT;
 
 #pragma warning disable IDE1006 // 命名樣式
 

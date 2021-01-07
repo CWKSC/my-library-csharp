@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 #pragma warning disable IDE1006 // 命名樣式
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional

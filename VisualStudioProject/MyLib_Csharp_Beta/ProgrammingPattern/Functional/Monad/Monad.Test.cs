@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using static MyLib_Csharp_Beta.ProgrammingPattern.Functional.MyHKT;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
@@ -30,9 +28,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                 Console.Write(ele + " ");
             // 1.5 2.5 2.5 3.5 3.5 4.5 4.5 5.5
             Console.WriteLine();
-
-
-
 
         }
     }

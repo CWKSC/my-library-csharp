@@ -1,13 +1,12 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 using static MyLib_Csharp_Beta.ProgrammingPattern.ApplyFunction;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
 {
-    public static partial class MyMonoid
+
+    public static partial class Monoid_Test
     {
         public static void Test()
         {
@@ -34,4 +33,5 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
             )();
         }
     }
+
 }

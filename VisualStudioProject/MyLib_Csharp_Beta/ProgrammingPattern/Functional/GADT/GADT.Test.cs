@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 #pragma warning disable IDE0059 // 指派了不必要的值
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional

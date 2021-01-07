@@ -27,7 +27,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            MonadTest.Test();
+
         }
 
     }
