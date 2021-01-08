@@ -27,7 +27,7 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-
+            StateMonad_Test.Test();
         }
 
     }
