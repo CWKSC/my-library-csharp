@@ -9,6 +9,30 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     {
 
 
+        public static void FFor(
+            (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
+            Action<dynamic[]> action)
+        {
+            dynamic[] result = new dynamic[statements.Length];
+            for (int i = 0; i < statements.Length; i++)
+            {
+                result[i] = statements[i].variable;
+            }
+            while (true)
+            {
+                action(result);
+                result[^1] = statements[^1].step(result[^1]);
+                for (int i = statements.Length - 1; i >= 0; i--)
+                {
+                    if (statements[i].condition(result[i])) break;
+                    if (i == 0) return;
+                    result[i] = statements[i].variable;
+                    result[i - 1] = statements[i - 1].step(result[i - 1]);
+                }
+            };
+        }
+
+
         public static int[] CombinationLoop(this int[] refer, Action<int[]> action)
         {
             int[] indexs = new int[refer.Length];
@@ -27,6 +51,11 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                 }
             };
         }
+
+
+        public static IEnumerable<int[]> CombinationLoop_iter(this int[] refer) =>
+            CallBack.CallBackToIEnumerable<int[]>(action => refer.CombinationLoop(action));
+
 
 
         //// nCr ////

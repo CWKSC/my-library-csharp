@@ -10,6 +10,17 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static void Test()
         {
+            "FFor".Println();
+            FFor(new (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[]{
+                (0, i => i <= 2, i => i + 1),
+                (1.2f, i => i <= 2f, i => i + 0.5f),
+                ('a', i => i <= 'c', i => ++i)
+            },
+                result => result.Println()
+            );
+            "".ln();
+
+            "CombinationLoop".Println();
             int[] refer = { 2, 3, 4 };
             refer.CombinationLoop(indexs => indexs.Println()).ln();
 

@@ -111,5 +111,17 @@ namespace MyLib_Csharp_Beta.CommonMethod
 
 
 
+        public static void PrintFields<T>(this T o)
+        {
+            Array.ForEach(o.GetType().GetFields(), ele =>
+            {
+                Console.Write(ele.FieldType + " " + ele.Name + " ");
+                var value = ele.GetValue(o);
+                Console.WriteLine(value ?? "null");
+            });
+        }
+
+
+
     }
 }

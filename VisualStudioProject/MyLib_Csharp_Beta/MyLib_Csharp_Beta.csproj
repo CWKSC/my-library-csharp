@@ -12,8 +12,4 @@
     <None Remove="ProgrammingPattern\JoinFunction\JoinFunction.cs~RF106a83.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataStructure\" />
-  </ItemGroup>
-
 </Project>

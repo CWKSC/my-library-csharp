@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "7p9dtaN2GJG7zVBMkmvcHMJ8hS+VwixnJ1Q47NODQmE0HG0y1AnE/z01WlWMvg5A82p2HVl8MA6ElYKtYsxVmQ==",
+  "dgSpecHash": "kT2AkB0lKBOdZ5UkGoyoXl/lvDp9otoPx/2loTi9b7rQP9s3yplGGh/jWUOADoZO8uUQ4VQkrgyuXRZXyquuBQ==",
   "success": true,
   "projectFilePath": "D:\\User\\Develop\\GitHub\\MyLib_Csharp\\VisualStudioProject\\Useless_Backup_Testing\\Useless_Backup_Testing.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sam97\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\sam97\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\sam97\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

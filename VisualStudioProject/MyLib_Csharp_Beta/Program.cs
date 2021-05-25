@@ -18,16 +18,21 @@ using static MyLib_Csharp_Beta.Tool.TemplateGenerator;
 using MyLib_Csharp_Beta.ProgrammingPattern.Functional;
 using MyLib_Csharp_Beta.Algorithm;
 using System.Text;
+using System.Text.RegularExpressions;
+using MyLib_Csharp_Beta.DataStructure;
+using System.Collections;
 
 namespace MyLib_Csharp_Beta
 {
 
+
     public static class Program
     {
 
+
         public static void Main(string[] args)
         {
-            Lambda.Test();
+            AdvancedLooping.Test();
         }
 
     }

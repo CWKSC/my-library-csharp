@@ -7,6 +7,65 @@ namespace MyLib_Csharp_Alpha.CommonClass
     public partial class MyPrime
     {
 
+        public class Primes
+        {
+            public static List<int> primesList = new List<int>() {
+            2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271
+        };
+
+            public class PrimeList : IEnumerable<int>
+            {
+
+                private void ExpandPrimeList(int max)
+                {
+                    int x = primesList[primesList.Count - 1] + 2;
+                    while (primesList.Count == max)
+                    {
+                        bool isPrime = true;
+                        for (int i = 0; primesList[i] * primesList[i] <= x; i++)
+                        {
+                            if (x % primesList[i] == 0)
+                            {
+                                isPrime = false;
+                                break;
+                            }
+                        }
+                        if (isPrime) primesList.Add(x);
+                        x += 2;
+                    }
+                }
+
+
+                public int this[int i]
+                {
+                    get
+                    {
+                        if (i > primesList.Count - 1) ExpandPrimeList(i);
+                        return primesList[i];
+                    }
+                    set { primesList[i] = value; }
+                }
+
+                public IEnumerator<int> GetEnumerator()
+                {
+                    int i = 0;
+                    while (true)
+                    {
+                        yield return this[i++];
+                    }
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    return GetEnumerator();
+                }
+            }
+
+            public static IEnumerable<int> Stream()
+            {
+                return new PrimeList();
+            }
+        }
 
 
         public static void PrimePerformanceTest()

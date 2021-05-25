@@ -104,7 +104,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern.Functional
                 new App(f.GenUUID(), x.GenUUID());
 
             public Expr ApplyUUID(Val a) =>
-                new Fun((Val)f.ApplyUUID(a), x.ApplyUUID(a));
+                new App(f.ApplyUUID(a), x.ApplyUUID(a));
 
             public override string ToString() => 
                 "(" + f + " " + x + ")";
