@@ -29,7 +29,6 @@ namespace MyLib_Csharp_Beta
     public static class Program
     {
 
-
         public static void Main(string[] args)
         {
             AdvancedLooping.Test();

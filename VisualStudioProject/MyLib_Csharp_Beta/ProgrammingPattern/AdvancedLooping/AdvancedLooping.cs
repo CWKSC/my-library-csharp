@@ -22,12 +22,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             {
                 action(result);
                 result[^1] = statements[^1].step(result[^1]);
-                for (int i = statements.Length - 1; i >= 0; i--)
+                int i = statements.Length - 1;
+                while (true)
                 {
                     if (statements[i].condition(result[i])) break;
                     if (i == 0) return;
                     result[i] = statements[i].variable;
-                    result[i - 1] = statements[i - 1].step(result[i - 1]);
+                    i--;
+                    result[i] = statements[i].step(result[i]);
                 }
             };
         }
@@ -42,12 +44,14 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 #pragma warning disable IDE0056 // 使用索引運算子 // for version < C# 8
                 indexs[indexs.Length - 1]++;
 #pragma warning restore IDE0056 // 使用索引運算子
-                for (int i = refer.Length - 1; i >= 0; i--)
+                int i = refer.Length - 1;
+                while (true)
                 {
                     if (indexs[i] < refer[i]) break;
                     if (i == 0) return refer;
                     indexs[i] = 0;
-                    indexs[i - 1]++;
+                    i--;
+                    indexs[i]++;
                 }
             };
         }

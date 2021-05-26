@@ -363,3 +363,5 @@ FodyWeavers.xsd
 *.v2
 VisualStudioProject/.vs/MyLib_Csharp/v16/.suo
 VisualStudioProject/.vs/MyLib_Csharp/DesignTimeBuild/.dtbcache.v2
+VisualStudioProject/.vs/MyLib_Csharp/v16/.suo
+VisualStudioProject/MyLib_Csharp_Beta/bin/Release/netcoreapp3.1/MyLib_Csharp_Beta.pdb
