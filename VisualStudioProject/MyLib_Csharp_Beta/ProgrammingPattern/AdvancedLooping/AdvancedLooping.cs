@@ -8,6 +8,36 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     public static partial class AdvancedLooping
     {
 
+        public static void FFor(ref dynamic[] variables,
+            (Func<dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
+            Action<dynamic[]> action)
+        {
+            bool[] inited = new bool[variables.Length];
+            int current = -1;
+            while (true)
+            {
+                current++;
+                if (!inited[current])
+                {
+                    variables[current] = statements[current].init();
+                    inited[current] = true;
+                }
+                while (!statements[current].condition(variables[current]))
+                {
+                    inited[current] = false;
+                    current--;
+                    if (current == -1) return;
+                    variables[current] = statements[current].step(variables[current]);
+                }
+                if (current == statements.Length - 1)
+                {
+                    action(variables);
+                    variables[current] = statements[current].step(variables[current]);
+                    current--;
+                }
+            };
+        }
+
 
         public static void FFor(
             (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
