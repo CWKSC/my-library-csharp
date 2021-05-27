@@ -20,11 +20,22 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             );
             "".ln();
 
+            "FFor with only statement and return IEnumerable".Println();
+            static bool condition(dynamic i) => i < 5;
+            static dynamic step(dynamic i) => i + 1;
+            IEnumerable<dynamic[]> indexsList = FFor(new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func < dynamic, dynamic > step)[] {
+                (v => 0,        condition, step),
+                (v => v[0] + 1, condition, step),
+                (v => v[1] + 1, condition, step)
+            });
+            foreach(var indexs in indexsList)
+            {
+                indexs.Println();
+            }
+            "".ln();
 
             "FFor with ref variable outside".Println();
             dynamic[] variables = new dynamic[3];
-            static bool    condition(dynamic i) => i < 5;
-            static dynamic step     (dynamic i) => i + 1;
             FFor(ref variables, new (Func<dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[]{
                 (() => 0,                condition, step),
                 (() => variables[0] + 1, condition, step),
@@ -49,6 +60,17 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             list.Loop_nC3((a, b, c) => (a, b, c).Println()).ln();
             "nC4".Println();
             list.Loop_nC4((a, b, c, d) => (a, b, c, d).Println()).ln();
+
+            "nCr (NCR(6, 4), NCR(6, 5), NCR(6, 6)".Println();
+            ApplyFunction.ApplyFunc(v => {
+                foreach (var indexs in v)
+                    Printing.Println(indexs);
+                "".ln();
+            },
+                NCR(6, 4),
+                NCR(6, 5),
+                NCR(6, 6)
+            );
 
             // nPr //
             "nP2".Println();
@@ -80,6 +102,18 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         2, 1.7, a
         2, 1.7, b
         2, 1.7, c
+
+        FFor with only statement and return IEnumerable
+        0, 1, 2
+        0, 1, 3
+        0, 1, 4
+        0, 2, 3
+        0, 2, 4
+        0, 3, 4
+        1, 2, 3
+        1, 2, 4
+        1, 3, 4
+        2, 3, 4
 
         FFor with ref variable outside
         0, 1, 2
@@ -149,6 +183,32 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         (1, 2, 4, 5)
         (1, 3, 4, 5)
         (2, 3, 4, 5)
+
+        nCr (NCR(6, 4), NCR(6, 5), NCR(6, 6)
+        0, 1, 2, 3
+        0, 1, 2, 4
+        0, 1, 2, 5
+        0, 1, 3, 4
+        0, 1, 3, 5
+        0, 1, 4, 5
+        0, 2, 3, 4
+        0, 2, 3, 5
+        0, 2, 4, 5
+        0, 3, 4, 5
+        1, 2, 3, 4
+        1, 2, 3, 5
+        1, 2, 4, 5
+        1, 3, 4, 5
+        2, 3, 4, 5
+
+        0, 1, 2, 3, 4
+        0, 1, 2, 3, 5
+        0, 1, 2, 4, 5
+        0, 1, 3, 4, 5
+        0, 2, 3, 4, 5
+        1, 2, 3, 4, 5
+
+        0, 1, 2, 3, 4, 5
 
         nP2
         (1, 1)

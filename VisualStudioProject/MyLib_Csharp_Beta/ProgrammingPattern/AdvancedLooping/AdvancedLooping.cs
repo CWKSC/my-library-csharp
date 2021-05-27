@@ -39,6 +39,36 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         }
 
 
+        public static IEnumerable<dynamic[]> FFor((Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements)
+        {
+            dynamic[] variables = new dynamic[statements.Length];
+            bool[] inited = new bool[statements.Length];
+            int current = -1;
+            while (true)
+            {
+                current++;
+                if (!inited[current])
+                {
+                    variables[current] = statements[current].init(variables);
+                    inited[current] = true;
+                }
+                while (!statements[current].condition(variables[current]))
+                {
+                    inited[current] = false;
+                    current--;
+                    if (current == -1) yield break;
+                    variables[current] = statements[current].step(variables[current]);
+                }
+                if (current == statements.Length - 1)
+                {
+                    yield return variables;
+                    variables[current] = statements[current].step(variables[current]);
+                    current--;
+                }
+            };
+        }
+
+
         public static void FFor(
             (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
             Action<dynamic[]> action)
@@ -92,7 +122,23 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
 
+
+
         //// nCr ////
+
+        public static IEnumerable<dynamic[]> NCR(int n, int r)
+        {
+            bool condition(dynamic i) => i < n;
+            static dynamic step(dynamic i) => i + 1;
+            var forStatement = new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[r];
+            forStatement[0] = (v => 0, condition, step);
+            for (int i = 1; i < r; i++)
+            {
+                int index = i - 1;
+                forStatement[i] = (v => v[index] + 1, condition, step);
+            }
+            return AdvancedLooping.FFor(forStatement);
+        }
 
         public static int Loop_nC2<T>(this T[] array, Action<T, T> action) =>
             array.Length.Loop(i =>

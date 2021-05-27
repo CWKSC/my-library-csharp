@@ -25,16 +25,8 @@ using System.Collections;
 namespace MyLib_Csharp_Beta
 {
 
-
     public static class Program
     {
-
-
-        public static void Get<T>(this List<T> group, int n, bool isOrderMatter = false, bool canRepeat = false)
-        {
-
-        }
-
 
         public static void Main(string[] args)
         {
