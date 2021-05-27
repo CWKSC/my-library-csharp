@@ -23,7 +23,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             "FFor with only statement and return IEnumerable".Println();
             static bool condition(dynamic i) => i < 5;
             static dynamic step(dynamic i) => i + 1;
-            IEnumerable<dynamic[]> indexsList = FFor(new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func < dynamic, dynamic > step)[] {
+            IEnumerable<dynamic[]> indexsList = FFor(new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func <dynamic, dynamic> step)[] {
                 (v => 0,        condition, step),
                 (v => v[0] + 1, condition, step),
                 (v => v[1] + 1, condition, step)
@@ -46,14 +46,15 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             "".ln();
 
 
-            "CombinationLoop".Println();
+            "CombinationLoop, refer = { 2, 3, 4 }".Println();
             int[] refer = { 2, 3, 4 };
             refer.CombinationLoop(indexs => indexs.Println()).ln();
 
 
-            string[] list = { "1", "2", "3", "4", "5" };
+            string[] list = { "a", "b", "c", "d", "e" };
 
             // nCr //
+            "nCr with array string[] list = { \"a\", \"b\", \"c\", \"d\", \"e\" }".Println();
             "nC2".Println();
             list.Loop_nC2((a, b) => (a, b).Println()).ln();
             "nC3".Println();
@@ -72,14 +73,31 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                 NCR(6, 6)
             );
 
+            // NPermutation //
+            "NPermutation 1, 2, 3, 4".Println();
+            ApplyFunction.ApplyFunc(v => {
+                foreach (var indexs in v)
+                    Printing.Println(indexs);
+                "".ln();
+            },
+                NPermutation(1),
+                NPermutation(2),
+                NPermutation(3),
+                NPermutation(4)
+            );
+
             // nPr //
-            "nP2".Println();
-            list.Loop_nP2((a, b) => (a, b).Println()).ln();
-            "nP3".Println();
-            list.Loop_nP3((a, b, c) => (a, b, c).Println()).ln();
-            return;
-            "nPr".Println();
-            list.Loop_nPr(2, arr => arr.Println());
+            "nPr (NPR(4, 1), NPR(4, 2), NPR(4, 3), NPR(4, 4))".Println();
+            ApplyFunction.ApplyFunc(v => {
+                foreach (var indexs in v)
+                    Printing.Println(indexs);
+                "".ln();
+            },
+                NPR(4, 1),
+                NPR(4, 2),
+                NPR(4, 3),
+                NPR(4, 4)
+            );
 
         }
         /*
@@ -127,7 +145,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         1, 3, 4
         2, 3, 4
 
-        CombinationLoop
+        CombinationLoop, refer = { 2, 3, 4 }
         0, 0, 0
         0, 0, 1
         0, 0, 2
@@ -153,36 +171,37 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         1, 2, 2
         1, 2, 3
 
+        nCr with array string[] list = { "a", "b", "c", "d", "e" }
         nC2
-        (1, 2)
-        (1, 3)
-        (1, 4)
-        (1, 5)
-        (2, 3)
-        (2, 4)
-        (2, 5)
-        (3, 4)
-        (3, 5)
-        (4, 5)
+        (a, b)
+        (a, c)
+        (a, d)
+        (a, e)
+        (b, c)
+        (b, d)
+        (b, e)
+        (c, d)
+        (c, e)
+        (d, e)
 
         nC3
-        (1, 2, 3)
-        (1, 2, 4)
-        (1, 2, 5)
-        (1, 3, 4)
-        (1, 3, 5)
-        (1, 4, 5)
-        (2, 3, 4)
-        (2, 3, 5)
-        (2, 4, 5)
-        (3, 4, 5)
+        (a, b, c)
+        (a, b, d)
+        (a, b, e)
+        (a, c, d)
+        (a, c, e)
+        (a, d, e)
+        (b, c, d)
+        (b, c, e)
+        (b, d, e)
+        (c, d, e)
 
         nC4
-        (1, 2, 3, 4)
-        (1, 2, 3, 5)
-        (1, 2, 4, 5)
-        (1, 3, 4, 5)
-        (2, 3, 4, 5)
+        (a, b, c, d)
+        (a, b, c, e)
+        (a, b, d, e)
+        (a, c, d, e)
+        (b, c, d, e)
 
         nCr (NCR(6, 4), NCR(6, 5), NCR(6, 6)
         0, 1, 2, 3
@@ -210,159 +229,112 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         0, 1, 2, 3, 4, 5
 
-        nP2
-        (1, 1)
-        (1, 2)
-        (1, 3)
-        (1, 4)
-        (1, 5)
-        (2, 1)
-        (2, 2)
-        (2, 3)
-        (2, 4)
-        (2, 5)
-        (3, 1)
-        (3, 2)
-        (3, 3)
-        (3, 4)
-        (3, 5)
-        (4, 1)
-        (4, 2)
-        (4, 3)
-        (4, 4)
-        (4, 5)
-        (5, 1)
-        (5, 2)
-        (5, 3)
-        (5, 4)
-        (5, 5)
+        NPermutation 1, 2, 3, 4
+        0
 
-        nP3
-        (1, 1, 1)
-        (1, 1, 2)
-        (1, 1, 3)
-        (1, 1, 4)
-        (1, 1, 5)
-        (1, 2, 1)
-        (1, 2, 2)
-        (1, 2, 3)
-        (1, 2, 4)
-        (1, 2, 5)
-        (1, 3, 1)
-        (1, 3, 2)
-        (1, 3, 3)
-        (1, 3, 4)
-        (1, 3, 5)
-        (1, 4, 1)
-        (1, 4, 2)
-        (1, 4, 3)
-        (1, 4, 4)
-        (1, 4, 5)
-        (1, 5, 1)
-        (1, 5, 2)
-        (1, 5, 3)
-        (1, 5, 4)
-        (1, 5, 5)
-        (2, 1, 1)
-        (2, 1, 2)
-        (2, 1, 3)
-        (2, 1, 4)
-        (2, 1, 5)
-        (2, 2, 1)
-        (2, 2, 2)
-        (2, 2, 3)
-        (2, 2, 4)
-        (2, 2, 5)
-        (2, 3, 1)
-        (2, 3, 2)
-        (2, 3, 3)
-        (2, 3, 4)
-        (2, 3, 5)
-        (2, 4, 1)
-        (2, 4, 2)
-        (2, 4, 3)
-        (2, 4, 4)
-        (2, 4, 5)
-        (2, 5, 1)
-        (2, 5, 2)
-        (2, 5, 3)
-        (2, 5, 4)
-        (2, 5, 5)
-        (3, 1, 1)
-        (3, 1, 2)
-        (3, 1, 3)
-        (3, 1, 4)
-        (3, 1, 5)
-        (3, 2, 1)
-        (3, 2, 2)
-        (3, 2, 3)
-        (3, 2, 4)
-        (3, 2, 5)
-        (3, 3, 1)
-        (3, 3, 2)
-        (3, 3, 3)
-        (3, 3, 4)
-        (3, 3, 5)
-        (3, 4, 1)
-        (3, 4, 2)
-        (3, 4, 3)
-        (3, 4, 4)
-        (3, 4, 5)
-        (3, 5, 1)
-        (3, 5, 2)
-        (3, 5, 3)
-        (3, 5, 4)
-        (3, 5, 5)
-        (4, 1, 1)
-        (4, 1, 2)
-        (4, 1, 3)
-        (4, 1, 4)
-        (4, 1, 5)
-        (4, 2, 1)
-        (4, 2, 2)
-        (4, 2, 3)
-        (4, 2, 4)
-        (4, 2, 5)
-        (4, 3, 1)
-        (4, 3, 2)
-        (4, 3, 3)
-        (4, 3, 4)
-        (4, 3, 5)
-        (4, 4, 1)
-        (4, 4, 2)
-        (4, 4, 3)
-        (4, 4, 4)
-        (4, 4, 5)
-        (4, 5, 1)
-        (4, 5, 2)
-        (4, 5, 3)
-        (4, 5, 4)
-        (4, 5, 5)
-        (5, 1, 1)
-        (5, 1, 2)
-        (5, 1, 3)
-        (5, 1, 4)
-        (5, 1, 5)
-        (5, 2, 1)
-        (5, 2, 2)
-        (5, 2, 3)
-        (5, 2, 4)
-        (5, 2, 5)
-        (5, 3, 1)
-        (5, 3, 2)
-        (5, 3, 3)
-        (5, 3, 4)
-        (5, 3, 5)
-        (5, 4, 1)
-        (5, 4, 2)
-        (5, 4, 3)
-        (5, 4, 4)
-        (5, 4, 5)
-        (5, 5, 1)
-        (5, 5, 2)
-        (5, 5, 3)
-        (5, 5, 4)
-        (5, 5, 5)
+        0, 1
+        1, 0
+
+        0, 1, 2
+        0, 2, 1
+        1, 0, 2
+        1, 2, 0
+        2, 1, 0
+        2, 0, 1
+
+        0, 1, 2, 3
+        0, 1, 3, 2
+        0, 2, 1, 3
+        0, 2, 3, 1
+        0, 3, 2, 1
+        0, 3, 1, 2
+        1, 0, 2, 3
+        1, 0, 3, 2
+        1, 2, 0, 3
+        1, 2, 3, 0
+        1, 3, 2, 0
+        1, 3, 0, 2
+        2, 1, 0, 3
+        2, 1, 3, 0
+        2, 0, 1, 3
+        2, 0, 3, 1
+        2, 3, 0, 1
+        2, 3, 1, 0
+        3, 1, 2, 0
+        3, 1, 0, 2
+        3, 2, 1, 0
+        3, 2, 0, 1
+        3, 0, 2, 1
+        3, 0, 1, 2
+
+        nPr (NPR(4, 1), NPR(4, 2), NPR(4, 3), NPR(4, 4))
+        0
+        1
+        2
+        3
+
+        0, 1
+        1, 0
+        0, 2
+        2, 0
+        0, 3
+        3, 0
+        1, 2
+        2, 1
+        1, 3
+        3, 1
+        2, 3
+        3, 2
+
+        0, 1, 2
+        0, 2, 1
+        1, 0, 2
+        1, 2, 0
+        2, 1, 0
+        2, 0, 1
+        0, 1, 3
+        0, 3, 1
+        1, 0, 3
+        1, 3, 0
+        3, 1, 0
+        3, 0, 1
+        0, 2, 3
+        0, 3, 2
+        2, 0, 3
+        2, 3, 0
+        3, 2, 0
+        3, 0, 2
+        1, 2, 3
+        1, 3, 2
+        2, 1, 3
+        2, 3, 1
+        3, 2, 1
+        3, 1, 2
+
+        0, 1, 2, 3
+        0, 1, 3, 2
+        0, 2, 1, 3
+        0, 2, 3, 1
+        0, 3, 2, 1
+        0, 3, 1, 2
+        1, 0, 2, 3
+        1, 0, 3, 2
+        1, 2, 0, 3
+        1, 2, 3, 0
+        1, 3, 2, 0
+        1, 3, 0, 2
+        2, 1, 0, 3
+        2, 1, 3, 0
+        2, 0, 1, 3
+        2, 0, 3, 1
+        2, 3, 0, 1
+        2, 3, 1, 0
+        3, 1, 2, 0
+        3, 1, 0, 2
+        3, 2, 1, 0
+        3, 2, 0, 1
+        3, 0, 2, 1
+        3, 0, 1, 2
         */
 
     }

@@ -1,6 +1,7 @@
 ﻿using MyLib_Csharp_Beta.CommonMethod;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyLib_Csharp_Beta.ProgrammingPattern
@@ -42,6 +43,36 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         public static IEnumerable<dynamic[]> FFor((Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements)
         {
             dynamic[] variables = new dynamic[statements.Length];
+            bool[] inited = new bool[statements.Length];
+            int current = -1;
+            while (true)
+            {
+                current++;
+                if (!inited[current])
+                {
+                    variables[current] = statements[current].init(variables);
+                    inited[current] = true;
+                }
+                while (!statements[current].condition(variables[current]))
+                {
+                    inited[current] = false;
+                    current--;
+                    if (current == -1) yield break;
+                    variables[current] = statements[current].step(variables[current]);
+                }
+                if (current == statements.Length - 1)
+                {
+                    yield return variables;
+                    variables[current] = statements[current].step(variables[current]);
+                    current--;
+                }
+            };
+        }
+
+
+        public static IEnumerable<int[]> FFor((Func<int[], int> init, Func<int, bool> condition, Func<int, int> step)[] statements)
+        {
+            int[] variables = new int[statements.Length];
             bool[] inited = new bool[statements.Length];
             int current = -1;
             while (true)
@@ -124,21 +155,23 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
 
 
+
         //// nCr ////
 
-        public static IEnumerable<dynamic[]> NCR(int n, int r)
+        public static IEnumerable<int[]> NCR(int n, int r)
         {
-            bool condition(dynamic i) => i < n;
-            static dynamic step(dynamic i) => i + 1;
-            var forStatement = new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[r];
+            bool condition(int i) => i < n;
+            static int step(int i) => i + 1;
+            var forStatement = new (Func<int[], int> init, Func<int, bool> condition, Func<int, int> step)[r];
             forStatement[0] = (v => 0, condition, step);
             for (int i = 1; i < r; i++)
             {
                 int index = i - 1;
                 forStatement[i] = (v => v[index] + 1, condition, step);
             }
-            return AdvancedLooping.FFor(forStatement);
+            return FFor(forStatement);
         }
+
 
         public static int Loop_nC2<T>(this T[] array, Action<T, T> action) =>
             array.Length.Loop(i =>
@@ -157,71 +190,51 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                             action(array[i], array[j], array[k], array[l])))));
 
 
-
-        // it not nCr, it is sum of nCr
-        [Obsolete]
-        public static T[] Loop_nCr<T>(this T[] array, int r, Action<T[]> action)
+        public static IEnumerable<int[]> NPR(int n, int r)
         {
-            (1, array.Length).Loop(nn =>
-                r.ToRepeatArray(nn).CombinationLoop(i_s =>
-                    action(Builder.BuildArray<T>(i_s.Length, ele =>
-                        i_s.Loop(i => ele[i] = array[i])
-                    ))
-                )
-            );
-            return array;
-        }
-
-        // Sum of nCr //
-        public static void Loop_nCr_Sum(this int n, int r, Action<int[]> action)
-        {
-            (1, r).Loop(nn => 
-                n.ToRepeatArray(nn).CombinationLoop(action));
-        }
-
-
-
-        //// nPr ////
-
-        public static T[] Loop_nP2<T>(this T[] array, Action<T, T> action) =>
-            array.Loop((ele1, _) => 
-                array.Loop((ele2, __) => 
-                    action(ele1, ele2)));
-
-        public static T[] Loop_nP3<T>(this T[] array, Action<T, T, T> action) =>
-            array.Loop((ele1, _) =>
-                array.Loop((ele2, __) =>
-                    array.Loop((ele3, ___) => 
-                        action(ele1, ele2, ele3))));
-
-        [Obsolete]
-        public static void Loop_nPr_loop<T>(this T[] array, T[] result, List<T> list, int r)
-        {
-            array.Loop((ele, _) =>
+            IEnumerable<int[]> NCRList = NCR(n, r);
+            IEnumerable<int[]> NPermutationList = NPermutation(r);
+            foreach (var indexsNCR in NCRList)
             {
-                list.Add(ele);
-                if (r == 0)
+                foreach (var indexsNPermutation in NPermutationList)
                 {
-                    result = list.ToArray();
-                    list.Clear();
-                    return;
+                    yield return indexsNCR.Select((ele, i) => indexsNCR[indexsNPermutation[i]]).ToArray();
                 }
-                Loop_nPr_loop(array, result, list, r - 1);
-            });
+            }
         }
 
-        [Obsolete]
-        public static void Loop_nPr<T>(this T[] array, int r, Action<T[]> action)
+        public static IEnumerable<int[]> NPermutation(int n)
         {
-            List<T> list = new List<T>();
-            T[] result = new T[r];
-            array.Loop((ele, _) =>
+            int[] zeroToN = Enumerable.Range(0, n).ToArray();
+
+            List<int[]> ienumerable = new List<int[]>();
+            Next_permutation(zeroToN, 0, n);
+
+            void Next_permutation(int[] indexs, int start, int length)
             {
-                array.Loop_nPr_loop(result, list, r);
-                action(result);
-            });
-            // QWQ 
+                if (start == length - 1)
+                {
+                    ienumerable.Add((int[])indexs.Clone());
+                }
+                else
+                {
+                    for (int i = start; i <= length - 1; i++)
+                    {
+                        int temp = indexs[start];
+                        indexs[start] = indexs[i];
+                        indexs[i] = temp;
+                        Next_permutation(indexs, start + 1, length);
+                        temp = indexs[start];
+                        indexs[start] = indexs[i];
+                        indexs[i] = temp;
+                    }
+                }
+            }
+
+            return ienumerable;
         }
+
+
 
 
     }
