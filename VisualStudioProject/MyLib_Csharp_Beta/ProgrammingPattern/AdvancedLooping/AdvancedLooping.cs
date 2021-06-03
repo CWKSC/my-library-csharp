@@ -9,9 +9,9 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
     public static partial class AdvancedLooping
     {
 
-        public static void FFor(ref dynamic[] variables,
-            (Func<dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
-            Action<dynamic[]> action)
+        public static void FFor<T>(ref T[] variables,
+            (Func<T> init, Func<T, bool> condition, Func<T, T> step)[] statements,
+            Action<T[]> action)
         {
             bool[] inited = new bool[variables.Length];
             int current = -1;
@@ -39,10 +39,9 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             };
         }
 
-
-        public static IEnumerable<dynamic[]> FFor((Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements)
+        public static IEnumerable<T[]> FFor<T>((Func<T[], T> init, Func<T, bool> condition, Func<T, T> step)[] statements)
         {
-            dynamic[] variables = new dynamic[statements.Length];
+            T[] variables = new T[statements.Length];
             bool[] inited = new bool[statements.Length];
             int current = -1;
             while (true)
@@ -65,62 +64,6 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
                     yield return variables;
                     variables[current] = statements[current].step(variables[current]);
                     current--;
-                }
-            };
-        }
-
-
-        public static IEnumerable<int[]> FFor((Func<int[], int> init, Func<int, bool> condition, Func<int, int> step)[] statements)
-        {
-            int[] variables = new int[statements.Length];
-            bool[] inited = new bool[statements.Length];
-            int current = -1;
-            while (true)
-            {
-                current++;
-                if (!inited[current])
-                {
-                    variables[current] = statements[current].init(variables);
-                    inited[current] = true;
-                }
-                while (!statements[current].condition(variables[current]))
-                {
-                    inited[current] = false;
-                    current--;
-                    if (current == -1) yield break;
-                    variables[current] = statements[current].step(variables[current]);
-                }
-                if (current == statements.Length - 1)
-                {
-                    yield return variables;
-                    variables[current] = statements[current].step(variables[current]);
-                    current--;
-                }
-            };
-        }
-
-
-        public static void FFor(
-            (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] statements,
-            Action<dynamic[]> action)
-        {
-            dynamic[] result = new dynamic[statements.Length];
-            for (int i = 0; i < statements.Length; i++)
-            {
-                result[i] = statements[i].variable;
-            }
-            while (true)
-            {
-                action(result);
-                result[^1] = statements[^1].step(result[^1]);
-                int i = statements.Length - 1;
-                while (true)
-                {
-                    if (statements[i].condition(result[i])) break;
-                    if (i == 0) return;
-                    result[i] = statements[i].variable;
-                    i--;
-                    result[i] = statements[i].step(result[i]);
                 }
             };
         }

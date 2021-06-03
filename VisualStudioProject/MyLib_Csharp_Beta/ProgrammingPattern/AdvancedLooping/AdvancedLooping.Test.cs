@@ -10,20 +10,22 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         public static void Test()
         {
-            "FFor".Println();
-            FFor(new (dynamic variable, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[]{
-                (0,    i => i <= 2,   i => i + 1),
-                (1.2f, i => i <= 2f,  i => i + 0.5f),
-                ('a',  i => i <= 'c', i => ++i)
-            },
-                result => result.Println()
-            );
+            "FFor<dynamic> return IEnumerable".Println();
+            IEnumerable<dynamic[]> dynamicsFor = FFor(new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[] {
+                (v => 0,    i => i <= 2,   i => i + 1),
+                (v => 1.2f, i => i <= 2f,  i => i + 0.5f),
+                (v => 'a',  i => i <= 'c', i => ++i)
+            });
+            foreach (var indexs in dynamicsFor)
+            {
+                indexs.Println();
+            }
             "".ln();
 
-            "FFor with only statement and return IEnumerable".Println();
-            static bool condition(dynamic i) => i < 5;
-            static dynamic step(dynamic i) => i + 1;
-            IEnumerable<dynamic[]> indexsList = FFor(new (Func<dynamic[], dynamic> init, Func<dynamic, bool> condition, Func <dynamic, dynamic> step)[] {
+            "FFor<int> return IEnumerable".Println();
+            static bool condition(int i) => i < 5;
+            static int step(int i) => i + 1;
+            IEnumerable<int[]> indexsList = FFor(new (Func<int[], int> init, Func<int, bool> condition, Func<int, int> step) [] {
                 (v => 0,        condition, step),
                 (v => v[0] + 1, condition, step),
                 (v => v[1] + 1, condition, step)
@@ -34,9 +36,9 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
             }
             "".ln();
 
-            "FFor with ref variable outside".Println();
-            dynamic[] variables = new dynamic[3];
-            FFor(ref variables, new (Func<dynamic> init, Func<dynamic, bool> condition, Func<dynamic, dynamic> step)[]{
+            "FFor<int> with ref variable outside".Println();
+            int[] variables = new int[3];
+            FFor(ref variables, new (Func<int> init, Func<int, bool> condition, Func<int, int> step)[]{
                 (() => 0,                condition, step),
                 (() => variables[0] + 1, condition, step),
                 (() => variables[1] + 1, condition, step)
@@ -101,7 +103,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
 
         }
         /*
-        FFor
+        FFor<dynamic> return IEnumerable
         0, 1.2, a
         0, 1.2, b
         0, 1.2, c
@@ -121,7 +123,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         2, 1.7, b
         2, 1.7, c
 
-        FFor with only statement and return IEnumerable
+        FFor<int> return IEnumerable
         0, 1, 2
         0, 1, 3
         0, 1, 4
@@ -133,7 +135,7 @@ namespace MyLib_Csharp_Beta.ProgrammingPattern
         1, 3, 4
         2, 3, 4
 
-        FFor with ref variable outside
+        FFor<int> with ref variable outside
         0, 1, 2
         0, 1, 3
         0, 1, 4
