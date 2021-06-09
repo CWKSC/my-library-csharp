@@ -28,10 +28,48 @@ namespace MyLib_Csharp_Beta
     public static class Program
     {
 
+        public static List<T> BackTracking<T>(T init, Func<T, (int n, T[] addState)> f,
+             Func<T, T> whenStep = null, Func<T, T> whenPrev = null, Func<T, T> whenEnd = null)
+        {
+            List<T> states = new() { init };
+            while (true)
+            {
+                if (states.Count == 0) return new (){ };
+                (int n, T[] addState) = f(states[^1]);
+                if (n > 0)
+                {
+                    states.AddRange(addState);
+                }
+                else if (n < 0)
+                {
+                    states.RemoveRange(states.Count - n - 1, n);
+                }
+                else if (n == 0)
+                {
+                    return states;
+                }
+            }
+        }
+
+
         public static void Main(string[] args)
         {
-            AdvancedLooping.Test();
+            NQueen.Test();
+            return;
+
+            BackTracking(1
+            ,
+            state =>
+            {
+                if (state < 5)
+                {
+                    return (1, new[] { state + 1 });
+                }
+                return (0, null);
+            }).Println();
+            // AdvancedLooping.Test();
         }
+        
 
     }
 
