@@ -54,8 +54,9 @@ namespace MyLib_Csharp_Beta
 
         public static void Main(string[] args)
         {
-            NQueen.Test();
+
             return;
+            //NQueen.Test();
 
             BackTracking(1
             ,

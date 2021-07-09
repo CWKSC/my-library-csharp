@@ -10,3 +10,4 @@ D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp_Beta\obj\Re
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp_Beta\obj\Release\netcoreapp3.1\MyLib_Csharp_Beta.dll
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp_Beta\obj\Release\netcoreapp3.1\MyLib_Csharp_Beta.pdb
 D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp_Beta\obj\Release\netcoreapp3.1\MyLib_Csharp_Beta.genruntimeconfig.cache
+D:\User\Develop\GitHub\MyLib_Csharp\VisualStudioProject\MyLib_Csharp_Beta\obj\Release\netcoreapp3.1\MyLib_Csharp_Beta.csproj.AssemblyReference.cache
