@@ -25,7 +25,7 @@ namespace MyLib_Csharp_Alpha.CommonClass
             Tabling_Func((x) => Gamma(x), 1, 10); ln(2);
 
             
-            initValue = (0, 1);
+            var initValue = (0, 1);
             static double recurrenceRelationFunc(List<double> T, int n) => T[n - 1] + T[n - 2];
             double Fibonacci(int n) => initValue.RecurrenceRelation(recurrenceRelationFunc, n);
             void PrintFibonacci(int n) => ($"Fibonacci({n}) : " + Fibonacci(n)).Println();
